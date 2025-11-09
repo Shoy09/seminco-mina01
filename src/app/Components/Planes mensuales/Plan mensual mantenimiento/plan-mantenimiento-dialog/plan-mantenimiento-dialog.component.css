@@ -1,0 +1,157 @@
+/* Estilos específicos para la tabla con mejor separación */
+.table-container {
+  padding: 1.5rem;
+}
+
+.table-responsive {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-table {
+  font-size: 0.875rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.custom-table th {
+  font-weight: 600;
+  border-bottom: 2px solid #dee2e6;
+  padding: 1rem 0.75rem;
+  background-color: #f8f9fa;
+  border-top: none;
+}
+
+.custom-table td {
+  padding: 1rem 0.75rem;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+}
+
+.custom-table tr:last-child td {
+  border-bottom: none;
+}
+
+.custom-table tr:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Badges para sistemas */
+.sistema-badge {
+  font-size: 0.75rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+}
+
+.bg-sistema-mecanico {
+  background-color: #e9ecef;
+  color: #495057;
+  border: 1px solid #ced4da;
+}
+
+.bg-sistema-electrico {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+}
+
+.bg-sistema-hidraulico {
+  background-color: #cce7ff;
+  color: #004085;
+  border: 1px solid #99ceff;
+}
+
+.bg-sistema-neumatico {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #a6e1e8;
+}
+
+/* Estilos para celdas de actividades */
+.actividades-cell {
+  max-width: 200px;
+}
+
+.actividades-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+
+/* Estado vacío */
+.empty-state {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border: 1px solid #dee2e6;
+}
+
+/* Mejoras en el progreso de cumplimiento */
+.cumplimiento-indicator {
+  padding: 0.25rem 0;
+}
+
+.progress {
+  border-radius: 3px;
+  background-color: #e9ecef;
+}
+
+.progress-bar {
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* Separación entre filas */
+.custom-table tr {
+  border-bottom: 8px solid transparent;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .table-container {
+    padding: 1rem;
+  }
+  
+  .table-responsive {
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .actividades-cell {
+    max-width: 150px;
+  }
+  
+  .sistema-badge {
+    min-width: 60px;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .table-container {
+    padding: 0.5rem;
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    padding: 0.5rem 0.25rem;
+  }
+}

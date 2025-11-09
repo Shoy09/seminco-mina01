@@ -1,0 +1,48 @@
+<div class="metas-container">    
+    <div class="top-bar">
+      <div class="month-selector">
+        <label for="mes">Mes:</label>
+        <select [(ngModel)]="mesSeleccionado" (change)="cambiarMes(mesSeleccionado)">
+          <option *ngFor="let mes of meses" [value]="mes">{{ mes }}</option>
+        </select>      
+      </div>
+  
+      <button class="btn-subir" (click)="subirMetas()">Subir Metas</button>
+    </div>
+  
+    <div class="metas-grid">
+      <!-- Tarjeta por cada área -->
+      <div class="meta-card" *ngFor="let area of areasConMetas; let areaIndex = index">
+        <div class="meta-header">
+          <h2>{{area.nombre}}</h2>
+          <span class="meta-period">{{area.periodo}}</span>
+        </div>
+        
+        <div class="meta-list-container">
+          <div class="meta-list">
+            <!-- Meta por cada objetivo del área -->
+            <div class="meta-item" *ngFor="let meta of area.metas; let metaIndex = index">
+              <div class="meta-info">
+                <span class="meta-name">{{meta.nombre}}</span>
+                <span class="meta-target">{{meta.objetivo}}</span>
+              </div>
+              <div class="meta-actions">
+                <button class="btn-icon edit" title="Editar meta" (click)="editarMeta(areaIndex, metaIndex)">
+                  <span class="icon-edit"></span>
+                </button>
+                <button class="btn-icon delete" title="Eliminar meta" (click)="eliminarMeta(areaIndex, metaIndex)">
+                  <span class="icon-delete"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="card-footer">
+          <button class="btn btn-add" (click)="agregarMeta(areaIndex)">
+            <span class="icon-plus"></span> Agregar Meta
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

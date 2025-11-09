@@ -1,0 +1,1014 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>I-MINER documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">I-MINER documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  CreatePlanProduccionComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/Components/Planes mensuales/Plan mensual produccion/create-plan-produccion/create-plan-produccion.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-create-plan-produccion</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>MatFormFieldModule</code>
+                            <code>MatDialogModule</code>
+                            <code>CommonModule</code>
+                            <code>MatInputModule</code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>MatSelectModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./create-plan-produccion.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./create-plan-produccion.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#camposDinamicos" >camposDinamicos</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                <a href="#data" >data</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dialogRef" >dialogRef</a>
+                            </li>
+                            <li>
+                                <a href="#planForm" >planForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancelar" >cancelar</a>
+                            </li>
+                            <li>
+                                <a href="#generarCamposDinamicos" >generarCamposDinamicos</a>
+                            </li>
+                            <li>
+                                <a href="#guardar" >guardar</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: FormBuilder, planProduccionService: <a href="../injectables/PlanProduccionService.html" target="_self">PlanProduccionService</a>, dialogRef: <a href="../interfaces/PlanProduccion.html" target="_self">MatDialogRef&lt;CreatePlanProduccionComponent&gt;</a>, _toastr: ToastrService, data: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/Components/Planes mensuales/Plan mensual produccion/create-plan-produccion/create-plan-produccion.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>planProduccionService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PlanProduccionService.html" target="_self" >PlanProduccionService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialogRef</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/PlanProduccion.html" target="_self" >MatDialogRef&lt;CreatePlanProduccionComponent&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_toastr</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>data</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelar"></a>
+                    <span class="name">
+                        <span ><b>cancelar</b></span>
+                        <a href="#cancelar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/app/Components/Planes mensuales/Plan mensual produccion/create-plan-produccion/create-plan-produccion.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generarCamposDinamicos"></a>
+                    <span class="name">
+                        <span ><b>generarCamposDinamicos</b></span>
+                        <a href="#generarCamposDinamicos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>generarCamposDinamicos()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="66"
+                                    class="link-to-prism">src/app/Components/Planes mensuales/Plan mensual produccion/create-plan-produccion/create-plan-produccion.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guardar"></a>
+                    <span class="name">
+                        <span ><b>guardar</b></span>
+                        <a href="#guardar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>guardar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/Components/Planes mensuales/Plan mensual produccion/create-plan-produccion/create-plan-produccion.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="camposDinamicos"></a>
+                    <span class="name">
+                        <span ><b>camposDinamicos</b></span>
+                        <a href="#camposDinamicos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/Components/Planes mensuales/Plan mensual produccion/create-plan-produccion/create-plan-produccion.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="data"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                        <span ><b>data</b></span>
+                        <a href="#data"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Inject(MAT_DIALOG_DATA)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/Components/Planes mensuales/Plan mensual produccion/create-plan-produccion/create-plan-produccion.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialogRef"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>dialogRef</b></span>
+                        <a href="#dialogRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/PlanProduccion.html" target="_self" >MatDialogRef&lt;CreatePlanProduccionComponent&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/Components/Planes mensuales/Plan mensual produccion/create-plan-produccion/create-plan-produccion.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="planForm"></a>
+                    <span class="name">
+                        <span ><b>planForm</b></span>
+                        <a href="#planForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/Components/Planes mensuales/Plan mensual produccion/create-plan-produccion/create-plan-produccion.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Inject } from &#x27;@angular/core&#x27;;
+import { PlanProduccion } from &#x27;../../../../models/plan_produccion.model&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { PlanProduccionService } from &#x27;../../../../services/plan-produccion.service&#x27;;
+import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from &#x27;@angular/material/dialog&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { MatFormFieldModule } from &#x27;@angular/material/form-field&#x27;;
+import { MatInputModule } from &#x27;@angular/material/input&#x27;;
+import { MatSelectModule } from &#x27;@angular/material/select&#x27;;
+
+@Component({
+  selector: &#x27;app-create-plan-produccion&#x27;,
+  imports: [MatFormFieldModule, MatDialogModule, CommonModule, MatInputModule, FormsModule, ReactiveFormsModule, MatSelectModule ],
+  templateUrl: &#x27;./create-plan-produccion.component.html&#x27;,
+  styleUrl: &#x27;./create-plan-produccion.component.css&#x27;
+})
+export class CreatePlanProduccionComponent {
+  planForm: FormGroup;
+  camposDinamicos: string[] &#x3D; [];
+
+  constructor(
+    private fb: FormBuilder,
+    private planProduccionService: PlanProduccionService,
+    public dialogRef: MatDialogRef&lt;CreatePlanProduccionComponent&gt;,
+    private _toastr: ToastrService,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.camposDinamicos &#x3D; this.generarCamposDinamicos();
+
+    this.planForm &#x3D; this.fb.group({
+      anio: [{ value: data.anio, disabled: true }],
+      mes: [{ value: data.mes, disabled: true }],
+      semana: [&#x27;&#x27;],
+      mina: [&#x27;&#x27;],
+      zona: [&#x27;&#x27;],
+      area: [&#x27;&#x27;],
+      fase: [&#x27;&#x27;],
+      minado_tipo: [&#x27;&#x27;],
+      tipo_labor: [&#x27;&#x27;],
+      tipo_mineral: [&#x27;&#x27;],
+      estructura_veta: [&#x27;&#x27;],
+      nivel: [&#x27;&#x27;],
+      block: [&#x27;&#x27;],
+      labor: [&#x27;&#x27;],
+      ala: [&#x27;&#x27;],
+      ancho_veta: [&#x27;&#x27;],
+      ancho_minado_sem: [&#x27;&#x27;],
+      ancho_minado_mes: [&#x27;&#x27;],
+      ag_gr: [&#x27;&#x27;],
+      porcentaje_cu: [&#x27;&#x27;],
+      porcentaje_pb: [&#x27;&#x27;],
+      porcentaje_zn: [&#x27;&#x27;],
+      vpt_act: [&#x27;&#x27;],
+      vpt_final: [&#x27;&#x27;],
+      cut_off_1: [&#x27;&#x27;],
+      cut_off_2: [&#x27;&#x27;],
+      programado: [{ value: &#x27;No Programado&#x27;, disabled: true }],
+    });
+
+    this.camposDinamicos.forEach((campo) &#x3D;&gt; {
+      this.planForm.addControl(campo, this.fb.control(&#x27;&#x27;));
+    });
+  }
+
+  generarCamposDinamicos(): string[] {
+    const campos &#x3D; [];
+    for (let i &#x3D; 1; i &lt;&#x3D; 28; i++) {
+      campos.push(&#x60;${i}A&#x60;);
+      campos.push(&#x60;${i}B&#x60;);
+    }
+    return campos;
+  }
+
+  cancelar(): void {
+    this.dialogRef.close();
+  }
+
+  guardar(): void {
+    if (this.planForm.valid) {
+      this.planForm.get(&#x27;anio&#x27;)?.enable();
+      this.planForm.get(&#x27;mes&#x27;)?.enable();
+      this.planForm.get(&#x27;programado&#x27;)?.enable();
+
+      const formData &#x3D; this.planForm.value;
+
+      const nuevoPlan: PlanProduccion &#x3D; {
+        anio: formData.anio,
+        mes: formData.mes,
+        semana: formData.semana,
+        mina: formData.mina,
+        zona: formData.zona,
+        area: formData.area,
+        fase: formData.fase,
+        minado_tipo: formData.minado_tipo,
+        tipo_labor: formData.tipo_labor,
+        tipo_mineral: formData.tipo_mineral,
+        estructura_veta: formData.estructura_veta,
+        nivel: formData.nivel,
+        block: formData.block,
+        labor: formData.labor,
+        ala: formData.ala,
+        ancho_veta: formData.ancho_veta,
+        ancho_minado_sem: formData.ancho_minado_sem,
+        ancho_minado_mes: formData.ancho_minado_mes,
+        ag_gr: formData.ag_gr,
+        porcentaje_cu: formData.porcentaje_cu,
+        porcentaje_pb: formData.porcentaje_pb,
+        porcentaje_zn: formData.porcentaje_zn,
+        vpt_act: formData.vpt_act,
+        vpt_final: formData.vpt_final,
+        cut_off_1: formData.cut_off_1,
+        cut_off_2: formData.cut_off_2,
+        programado: formData.programado,
+      }; 
+
+      // Agregar campos dinámicos
+      this.camposDinamicos.forEach((campo) &#x3D;&gt; {
+        nuevoPlan[&#x60;columna_${campo}&#x60;] &#x3D; formData[campo] || null;
+      });
+
+      this.planProduccionService.createPlanProduccion(nuevoPlan).subscribe({
+        next: () &#x3D;&gt; {
+          this._toastr.success(&#x27;Plan de producción creado exitosamente&#x27;, &#x27;Éxito&#x27;);
+          this.dialogRef.close(true);
+        },
+        error: () &#x3D;&gt; {
+          this._toastr.error(&#x27;Hubo un problema al crear el plan de producción&#x27;, &#x27;Error&#x27;);
+        }
+      });
+    } else {
+      this._toastr.warning(&#x27;Por favor, complete todos los campos requeridos&#x27;, &#x27;Advertencia&#x27;);
+    }
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;h2 mat-dialog-title&gt;Ingresar Plan de Metraje&lt;/h2&gt;
+
+&lt;div mat-dialog-content class&#x3D;&quot;dialog-content&quot;&gt;
+    &lt;form [formGroup]&#x3D;&quot;planForm&quot;&gt;
+        &lt;!-- Campos Fijos --&gt;
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Año&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;anio&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Mes&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;mes&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Semana&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;semana&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Mina&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;mina&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Zona&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;zona&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Área&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;area&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Fase&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;fase&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Tipo de Minado&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;minado_tipo&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Tipo de Labor&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;tipo_labor&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Tipo de Mineral&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;tipo_mineral&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Estructura/Veta&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;estructura_veta&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Nivel&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;nivel&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Block&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;block&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Labor&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;labor&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Ala&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;ala&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Ancho Veta&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;ancho_veta&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Ancho Minado (Semana)&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;ancho_minado_sem&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Ancho Minado (Mes)&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;ancho_minado_mes&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Ag (g/t)&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;ag_gr&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;% Cu&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;porcentaje_cu&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;% Pb&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;porcentaje_pb&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;% Zn&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;porcentaje_zn&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;VPT Actual&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;vpt_act&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;VPT Final&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;vpt_final&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Cut-Off 1&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;cut_off_1&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Cut-Off 2&lt;/mat-label&gt;
+            &lt;input matInput type&#x3D;&quot;number&quot; formControlName&#x3D;&quot;cut_off_2&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+            &lt;mat-label&gt;Programado&lt;/mat-label&gt;
+            &lt;mat-select formControlName&#x3D;&quot;programado&quot;&gt;
+                &lt;mat-option value&#x3D;&quot;Programado&quot;&gt;Programado&lt;/mat-option&gt;
+                &lt;mat-option value&#x3D;&quot;No Programado&quot;&gt;No Programado&lt;/mat-option&gt;
+            &lt;/mat-select&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Campos Dinámicos --&gt;
+        &lt;div class&#x3D;&quot;campos-dinamicos-container&quot;&gt;
+            &lt;div *ngFor&#x3D;&quot;let campo of camposDinamicos&quot; class&#x3D;&quot;campo-item&quot;&gt;
+                &lt;mat-form-field appearance&#x3D;&quot;outline&quot;&gt;
+                    &lt;mat-label&gt;{{ campo }}&lt;/mat-label&gt;
+                    &lt;input matInput type&#x3D;&quot;number&quot; [formControlName]&#x3D;&quot;campo&quot;&gt;
+                &lt;/mat-form-field&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+
+&lt;div mat-dialog-actions class&#x3D;&quot;button-group&quot;&gt;
+    &lt;button mat-button color&#x3D;&quot;warn&quot; (click)&#x3D;&quot;cancelar()&quot;&gt;Cancelar&lt;/button&gt;
+    &lt;button mat-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;guardar()&quot; [disabled]&#x3D;&quot;!planForm.valid&quot;&gt;Guardar&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><h2 mat-dialog-title>Ingresar Plan de Metraje</h2><div mat-dialog-content class="dialog-content">    <form [formGroup]="planForm">        <!-- Campos Fijos -->        <mat-form-field appearance="outline">            <mat-label>Año</mat-label>            <input matInput type="number" formControlName="anio">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Mes</mat-label>            <input matInput type="text" formControlName="mes">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Semana</mat-label>            <input matInput type="text" formControlName="semana">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Mina</mat-label>            <input matInput type="text" formControlName="mina">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Zona</mat-label>            <input matInput type="text" formControlName="zona">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Área</mat-label>            <input matInput type="text" formControlName="area">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Fase</mat-label>            <input matInput type="text" formControlName="fase">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Tipo de Minado</mat-label>            <input matInput type="text" formControlName="minado_tipo">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Tipo de Labor</mat-label>            <input matInput type="text" formControlName="tipo_labor">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Tipo de Mineral</mat-label>            <input matInput type="text" formControlName="tipo_mineral">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Estructura/Veta</mat-label>            <input matInput type="text" formControlName="estructura_veta">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Nivel</mat-label>            <input matInput type="text" formControlName="nivel">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Block</mat-label>            <input matInput type="text" formControlName="block">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Labor</mat-label>            <input matInput type="text" formControlName="labor">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Ala</mat-label>            <input matInput type="text" formControlName="ala">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Ancho Veta</mat-label>            <input matInput type="number" formControlName="ancho_veta">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Ancho Minado (Semana)</mat-label>            <input matInput type="number" formControlName="ancho_minado_sem">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Ancho Minado (Mes)</mat-label>            <input matInput type="number" formControlName="ancho_minado_mes">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Ag (g/t)</mat-label>            <input matInput type="number" formControlName="ag_gr">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>% Cu</mat-label>            <input matInput type="number" formControlName="porcentaje_cu">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>% Pb</mat-label>            <input matInput type="number" formControlName="porcentaje_pb">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>% Zn</mat-label>            <input matInput type="number" formControlName="porcentaje_zn">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>VPT Actual</mat-label>            <input matInput type="number" formControlName="vpt_act">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>VPT Final</mat-label>            <input matInput type="number" formControlName="vpt_final">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Cut-Off 1</mat-label>            <input matInput type="number" formControlName="cut_off_1">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Cut-Off 2</mat-label>            <input matInput type="number" formControlName="cut_off_2">        </mat-form-field>        <mat-form-field appearance="outline">            <mat-label>Programado</mat-label>            <mat-select formControlName="programado">                <mat-option value="Programado">Programado</mat-option>                <mat-option value="No Programado">No Programado</mat-option>            </mat-select>        </mat-form-field>        <!-- Campos Dinámicos -->        <div class="campos-dinamicos-container">            <div *ngFor="let campo of camposDinamicos" class="campo-item">                <mat-form-field appearance="outline">                    <mat-label>{{ campo }}</mat-label>                    <input matInput type="number" [formControlName]="campo">                </mat-form-field>            </div>        </div>    </form></div><div mat-dialog-actions class="button-group">    <button mat-button color="warn" (click)="cancelar()">Cancelar</button>    <button mat-button color="primary" (click)="guardar()" [disabled]="!planForm.valid">Guardar</button></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BarrasMetroPerforadosLaborComponent', 'selector': 'app-barras-metro-perforados-labor'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'CrearDataComponent', 'selector': 'app-crear-data'},{'name': 'CreatePlanAvanceComponent', 'selector': 'app-create-plan-avance'},{'name': 'CreatePlanMetrajeComponent', 'selector': 'app-create-plan-metraje'},{'name': 'CreatePlanProduccionComponent', 'selector': 'app-create-plan-produccion'},{'name': 'DialogEditMetaComponent', 'selector': 'app-dialog-edit-meta'},{'name': 'DialogEditMetaComponent', 'selector': 'app-dialog-edit-meta'},{'name': 'DialogEditMetaComponent', 'selector': 'app-dialog-edit-meta'},{'name': 'DialogMetaComponent', 'selector': 'app-dialog-meta'},{'name': 'DialogMetaComponent', 'selector': 'app-dialog-meta'},{'name': 'DialogMetaComponent', 'selector': 'app-dialog-meta'},{'name': 'DisponibilidadMecanicaEquipoComponent', 'selector': 'app-disponibilidad-mecanica-equipo'},{'name': 'DisponibilidadMecanicaEquipoComponent', 'selector': 'app-disponibilidad-mecanica-equipo'},{'name': 'DisponibilidadMecanicaEquipoComponent', 'selector': 'app-disponibilidad-mecanica-equipo'},{'name': 'DisponibilidadMecanicaGeneralComponent', 'selector': 'app-disponibilidad-mecanica-general'},{'name': 'DisponibilidadMecanicaGeneralComponent', 'selector': 'app-disponibilidad-mecanica-general'},{'name': 'DisponibilidadMecanicaGeneralComponent', 'selector': 'app-disponibilidad-mecanica-general'},{'name': 'EditarOperacionesDialogComponent', 'selector': 'app-editar-operaciones-dialog'},{'name': 'EditPlanAvanceComponent', 'selector': 'app-edit-plan-avance'},{'name': 'EditPlanMetrajeComponent', 'selector': 'app-edit-plan-metraje'},{'name': 'EditPlanProduccionComponent', 'selector': 'app-edit-plan-produccion'},{'name': 'EstadoFormComponent', 'selector': 'app-estado-form'},{'name': 'EstadoFormEditarComponent', 'selector': 'app-estado-form-editar'},{'name': 'EstadosComponent', 'selector': 'app-estados'},{'name': 'ExplosivosComponent', 'selector': 'app-explosivos'},{'name': 'GraficoBarrasAgrupadaComponent', 'selector': 'app-grafico-barras-agrupada'},{'name': 'GraficoBarrasAgrupadaNumLaborComponent', 'selector': 'app-grafico-barras-agrupada-num-labor'},{'name': 'GraficoBarrasComponent', 'selector': 'app-grafico-barras'},{'name': 'GraficoBarrasMetrosLaborComponent', 'selector': 'app-grafico-barras-metros-labor'},{'name': 'GraficoEstadosComponent', 'selector': 'app-grafico-estados'},{'name': 'GraficoEstadosComponent', 'selector': 'app-grafico-estados'},{'name': 'GraficoEstadosComponent', 'selector': 'app-grafico-estados'},{'name': 'GraficoHorometrosComponent', 'selector': 'app-grafico-horometros'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorizontalMetaPrincipalComponent', 'selector': 'app-horizontal-meta-principal'},{'name': 'HorometrosComponent', 'selector': 'app-horometros'},{'name': 'HorometrosComponent', 'selector': 'app-horometros'},{'name': 'LargoMetaPrincipalComponent', 'selector': 'app-largo-meta-principal'},{'name': 'LoadingDialogComponent', 'selector': 'app-loading-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LongitudDePerforacionComponent', 'selector': 'app-longitud-de-perforacion'},{'name': 'MallaInstaladaEquipoComponent', 'selector': 'app-malla-instalada-equipo'},{'name': 'MallaInstaladaLaborComponent', 'selector': 'app-malla-instalada-labor'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'MetasComponent', 'selector': 'app-metas'},{'name': 'MetrosPerforadosEquipoComponent', 'selector': 'app-metros-perforados-equipo'},{'name': 'MetrosPerforadosEquipoComponent', 'selector': 'app-metros-perforados-equipo'},{'name': 'MetrosPerforadosLaborComponent', 'selector': 'app-metros-perforados-labor'},{'name': 'MetrosPerforadosLaborComponent', 'selector': 'app-metros-perforados-labor'},{'name': 'MostrarGraficosComponent', 'selector': 'app-mostrar-graficos'},{'name': 'OpcionesDialogComponent', 'selector': 'app-opciones-dialog'},{'name': 'OperacionesDialogComponent', 'selector': 'app-operaciones-dialog'},{'name': 'PlanDetallesDialogComponent', 'selector': 'app-plan-detalles-dialog'},{'name': 'PlanMensualListComponent', 'selector': 'app-plan-mensual-list'},{'name': 'PlanMetrajeDetallesDialogComponent', 'selector': 'app-plan-metraje-detalles-dialog'},{'name': 'PlanMetrajeListComponent', 'selector': 'app-plan-metraje-list'},{'name': 'PlanProduccionDetallesDialogComponent', 'selector': 'app-plan-produccion-detalles-dialog'},{'name': 'PlanProduccionListComponent', 'selector': 'app-plan-produccion-list'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'PromedioDeEstadosGeneralComponent', 'selector': 'app-promedio-de-estados-general'},{'name': 'PromedioDeEstadosGeneralComponent', 'selector': 'app-promedio-de-estados-general'},{'name': 'PromedioDeEstadosGeneralComponent', 'selector': 'app-promedio-de-estados-general'},{'name': 'PromedioMayasComponent', 'selector': 'app-promedio-mayas'},{'name': 'PromedioNTaladroComponent', 'selector': 'app-promedio-n-taladro'},{'name': 'PromedioTaladrosComponent', 'selector': 'app-promedio-taladros'},{'name': 'PromMetrosPerforadosSeccionComponent', 'selector': 'app-prom-metros-perforados-seccion'},{'name': 'PromNumTaladroSeccionComponent', 'selector': 'app-prom-num-taladro-seccion'},{'name': 'PromNumTaladroTipoLaborComponent', 'selector': 'app-prom-num-taladro-tipo-labor'},{'name': 'RendimientoDePerforacionesComponent', 'selector': 'app-rendimiento-de-perforaciones'},{'name': 'RendimientoDePerforacionesComponent', 'selector': 'app-rendimiento-de-perforaciones'},{'name': 'RendimientoDePerforacionesComponent', 'selector': 'app-rendimiento-de-perforaciones'},{'name': 'RendimientoPromedioComponent', 'selector': 'app-rendimiento-promedio'},{'name': 'RendimientoPromedioComponent', 'selector': 'app-rendimiento-promedio'},{'name': 'RendimientoPromedioComponent', 'selector': 'app-rendimiento-promedio'},{'name': 'SeleccionProcesoEstatosDialogComponent', 'selector': 'app-seleccion-proceso-estatos-dialog'},{'name': 'SostenimientoGraficosComponent', 'selector': 'app-sostenimiento-graficos'},{'name': 'SostenimientoMetaPrincipalComponent', 'selector': 'app-sostenimiento-meta-principal'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'TaladroHorizontalGraficaComponent', 'selector': 'app-taladro-horizontal-grafica'},{'name': 'TaladroLargoGraficaComponent', 'selector': 'app-taladro-largo-grafica'},{'name': 'UsuarioComponent', 'selector': 'app-usuario'},{'name': 'UsuarioDialogComponent', 'selector': 'app-usuario-dialog'},{'name': 'UsuariosComponent', 'selector': 'app-usuarios'},{'name': 'UtilizacionEquipoComponent', 'selector': 'app-utilizacion-equipo'},{'name': 'UtilizacionEquipoComponent', 'selector': 'app-utilizacion-equipo'},{'name': 'UtilizacionEquipoComponent', 'selector': 'app-utilizacion-equipo'},{'name': 'UtilizacionGeneralComponent', 'selector': 'app-utilizacion-general'},{'name': 'UtilizacionGeneralComponent', 'selector': 'app-utilizacion-general'},{'name': 'UtilizacionGeneralComponent', 'selector': 'app-utilizacion-general'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CreatePlanProduccionComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CreatePlanProduccionComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

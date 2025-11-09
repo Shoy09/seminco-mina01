@@ -1,0 +1,107 @@
+<!-- Contenedor de pestañas y formulario -->
+<div class="form-container">
+  <!-- Pestañas -->
+  <div class="tabs">
+    <button class="tab-btn" [class.active]="formularioActivo === 'botones'" (click)="mostrarFormulario('botones')">
+      Crear nueva data <img src="mas.svg" class="side-image" />
+    </button>
+    <button class="tab-btn" [class.active]="formularioActivo === 'documento'" (click)="mostrarFormulario('documento')">
+      Carga de datos <img src="archivo.svg" class="side-image" />
+    </button>
+  </div>
+
+  <!-- Formulario de botones -->
+  <div *ngIf="formularioActivo === 'botones'" class="ventana">
+    <div class="button-container-wrapper">
+
+      <div class="button-container" *ngFor="let button of buttonc" (click)="abrirModal(button)">
+
+        <p class="button-nombre">{{ button.nombre }}</p>
+        <img [src]="button.icon" alt="Ícono" class="button-icon">
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" *ngIf="modalAbierto">
+    <div class="modal">
+      <button class="close-icon" (click)="cerrarModal()">✖</button>
+
+      <!-- Nuevo contenedor para dar espacio interno -->
+      <div class="modal-content">
+        <div class="subtitu">
+          <h2>{{ modalContenido?.nombre }}</h2>
+          <p>Creación del tipo de {{ modalContenido?.nombre }}</p>
+        </div>
+
+        <!-- Formulario dentro del modal -->
+        <form (submit)="guardarDatos()" class="forme">
+          <div class="form-group" *ngFor="let campo of modalContenido?.campos">
+            <label>{{ campo.label }}</label>
+            <div class="input-container">
+              <input *ngIf="campo.tipo !== 'select'" [type]="campo.tipo" [(ngModel)]="nuevoDato[campo.nombre]" [name]="campo.nombre" required class="form-input">
+
+              <select *ngIf="campo.tipo === 'select'" [(ngModel)]="nuevoDato[campo.nombre]" [name]="campo.nombre" required class="form-input">
+                <option *ngFor="let opcion of campo.opciones" [value]="opcion">{{ opcion }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="button-group">
+            <button type="submit" class="btn-submit">Guardar</button>
+          </div>
+        </form>
+
+        <!-- Tabla dentro del modal -->
+        <div class="tabla-scroll">
+          <table>
+            <thead>
+            <tr>
+              <th>#</th>
+              <th *ngFor="let campo of modalContenido?.campos">{{ campo.label }}</th>
+              <th>Opciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let dato of modalContenido?.datos; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td *ngFor="let campo of modalContenido?.campos">{{ dato[campo.nombre] }}</td>
+              <td><img src="dele.svg" alt="Eliminar" class="action-icon" (click)="eliminar(dato)"></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Formulario de carga de documento -->
+  <div *ngIf="formularioActivo === 'documento'" class="ventana">
+    <form class="custom-form">
+      <div class="form-row">
+        <div class="form-groupu">
+          <label for="year" class="titu">Año</label>
+          <select id="year">
+            <option selected>Seleccione un año</option>
+            <option *ngFor="let year of years">{{ year }}</option>
+          </select>
+        </div>
+        <div class="form-groupu">
+          <label for="month" class="titu">Mes</label>
+          <select id="month">
+            <option selected>Seleccione un mes</option>
+            <option *ngFor="let mes of meses">{{ mes }}</option>
+          </select>
+        </div>
+        <div class="form-groupu">
+          <label for="fileUpload" class="titu">Documento</label>
+          <div class="file-upload">
+            <label for="fileUpload" class="btn-upload">Subir documento</label>
+            <input type="file" id="fileUpload" hidden>
+            <input type="text" class="file-name" placeholder="Seleccione un archivo" readonly>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn-submit">Carga de datos <img src="folder.svg" class="side-image" /></button>
+    </form>
+  </div>
+</div>

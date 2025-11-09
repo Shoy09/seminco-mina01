@@ -1,0 +1,32 @@
+.meta-cumplida {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .meta-no-cumplida {
+    color: red;
+    font-weight: bold;
+  }
+  .chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .meta-text {
+    margin-top: 15px;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .meta-cumplida {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .meta-no-cumplida {
+    color: red;
+    font-weight: bold;
+  }
+  

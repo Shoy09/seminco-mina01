@@ -1,0 +1,40 @@
+<div class="chart-container">
+  <apx-chart
+    #chart
+    [series]="chartOptions.series!"
+    [chart]="chartOptions.chart!"
+    [labels]="chartOptions.labels!"
+    [plotOptions]="chartOptions.plotOptions!"
+    [fill]="chartOptions.fill!"
+    [colors]="chartOptions.colors!"
+    [responsive]="chartOptions.responsive!"
+    [legend]="chartOptions.legend!">
+  </apx-chart>
+
+  <div class="chart-info">
+    <div class="info-box">
+      <p>
+        <span class="label">Meta establecida:</span>
+        <span class="value">{{ meta | number:'1.2-2' }} m/h</span>
+      </p>
+      <p>
+        <span class="label">Rendimiento real:</span>
+        <span class="value">{{ rendimientoPromedio | number:'1.2-2' }} m/h</span>
+      </p>
+      <p>
+        <span class="label">cumplimiento:</span>
+        <span class="value" [ngClass]="{
+          'success': porcentajeCumplimiento >= 100,
+          'warning': porcentajeCumplimiento >= 90 && porcentajeCumplimiento < 100,
+          'danger': porcentajeCumplimiento < 90
+        }">
+          {{ porcentajeCumplimiento | number:'1.2-2' }}%
+        </span>
+      </p>
+      <p *ngIf="porcentajeCumplimiento > 100" class="excedente">
+        <span class="label">Excedente:</span>
+        <span class="value">+{{ (rendimientoPromedio - meta) | number:'1.2-2' }} m/h</span>
+      </p>
+    </div>
+  </div>
+</div>

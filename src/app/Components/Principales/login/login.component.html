@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Mejorado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="split-container">
+
+    <div class="left-panel">
+      <img src="login/logo1.png" class="header-image" alt="Logo" />
+      
+      <form class="login-form" (ngSubmit)="login()">
+        <div class="form-group">
+          <label for="usuario">Usuario</label>
+          <input type="text" id="usuario" class="form-control" placeholder="Ingresa tu Usuario"
+                 [(ngModel)]="codigo_dni" name="usuario" required pattern="\d+" title="Solo se permiten números">
+        </div>        
+        
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <div class="password-wrapper">
+            <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-control password-input"
+              placeholder="Ingresa tu contraseña" [(ngModel)]="password" name="password" required>
+            <i class="mdi password-toggle" [ngClass]="showPassword ? 'mdi-eye password-toggle' : 'mdi-eye-off'"
+              (click)="togglePassword()"></i>
+          </div>
+        </div>
+
+        <div class="botoncentra">
+          <button type="submit" class="btn btn-primary">Ingresar</button>
+          <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+        </div>
+      </form>
+    </div> 
+
+    <div class="right-panel">
+      <img src="login/slohomc.png" class="side-image" alt="Imagen de fondo" />
+      <div class="overlay"></div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

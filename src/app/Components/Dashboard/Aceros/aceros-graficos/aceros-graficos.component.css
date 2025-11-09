@@ -1,0 +1,349 @@
+.dashboard-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.filtros-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.filtros-container label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+}
+
+.filtros-container input,
+.filtros-container select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 160px;
+}
+
+.filtros-container button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.filtros-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos de la tabla */
+.table-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.stock-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.stock-table th {
+  background-color: #21899C;
+  color: white;
+  font-weight: bold;
+  padding: 12px 8px;
+  text-align: left;
+  border: 1px solid #1a6f7f;
+}
+
+.stock-table td {
+  padding: 12px 8px;
+  border: 1px solid #e0e0e0;
+  vertical-align: middle;
+}
+
+.table-row:hover {
+  background-color: #f8f9fa;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Estilos específicos de celdas */
+.proceso-cell, .tipo-acero-cell {
+  font-weight: 500;
+}
+
+.descripcion-cell {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Colores para stock */
+.stock-positivo {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.stock-negativo {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.stock-cero {
+  color: #6c757d;
+  font-weight: bold;
+}
+
+/* Estilos para últimas transacciones */
+.ultimo-registro {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid #21899C;
+}
+
+.ultimo-fecha {
+  font-weight: 600;
+  font-size: 12px;
+  color: #495057;
+}
+
+.ultimo-turno {
+  font-size: 11px;
+  color: #6c757d;
+  background-color: #e9ecef;
+  padding: 2px 6px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.ultimo-cantidad {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.ultimo-ingreso-cell .ultimo-cantidad {
+  color: #28a745;
+}
+
+.ultima-salida-cell .ultimo-cantidad {
+  color: #dc3545;
+}
+
+.sin-registro {
+  color: #6c757d;
+  font-style: italic;
+  font-size: 12px;
+  padding: 8px;
+}
+
+/* Botón ver */
+.btn-ver {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-ver:hover {
+  background: #0056b3;
+}
+
+.sin-datos {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Estilos del modal (se mantienen igual) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  background: #21899C;
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.btn-cerrar {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.modal-body {
+  padding: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  padding: 16px 20px;
+  background: #f8f9fa;
+  text-align: right;
+  border-top: 1px solid #dee2e6;
+}
+
+/* Secciones del modal */
+.seccion-ingresos, .seccion-salidas {
+  margin-bottom: 24px;
+}
+
+.titulo-seccion {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid;
+}
+
+.ingreso {
+  color: #28a745;
+  border-color: #28a745;
+}
+
+.salida {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+.detalles-lista {
+  space-y: 8px;
+}
+
+.detalle-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detalle-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.detalle-fecha {
+  font-weight: 500;
+  min-width: 100px;
+}
+
+.detalle-turno, .detalle-equipo, .detalle-operador {
+  color: #6c757d;
+}
+
+.detalle-cantidad {
+  font-weight: bold;
+  margin-left: auto;
+}
+
+.detalle-item.ingreso .detalle-cantidad {
+  color: #28a745;
+}
+
+.detalle-item.salida .detalle-cantidad {
+  color: #dc3545;
+}
+
+.sin-datos-modal {
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  padding: 20px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .stock-table {
+    font-size: 12px;
+  }
+  
+  .stock-table th,
+  .stock-table td {
+    padding: 8px 4px;
+  }
+  
+  .ultimo-registro {
+    padding: 6px;
+  }
+  
+  .ultimo-fecha {
+    font-size: 11px;
+  }
+  
+  .ultimo-turno {
+    font-size: 10px;
+  }
+  
+  .ultimo-cantidad {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 20px;
+  }
+  
+  .detalle-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .detalle-cantidad {
+    margin-left: 0;
+  }
+}

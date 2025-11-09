@@ -1,0 +1,1009 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>I-MINER documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">I-MINER documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  GraficoBarrasAgrupadaComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada/grafico-barras-agrupada.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnChanges</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-grafico-barras-agrupada</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>NgApexchartsModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./grafico-barras-agrupada.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./grafico-barras-agrupada.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#chart" >chart</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#chartOptions" >chartOptions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getDefaultOptions" >getDefaultOptions</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnChanges" >ngOnChanges</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#processData" >processData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateChart" >updateChart</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#datos" >datos</a>
+                            </li>
+                            <li>
+                                <a href="#metas" >metas</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada/grafico-barras-agrupada.component.ts:45</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="datos"></a>
+                        <b>datos</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada/grafico-barras-agrupada.component.ts:42</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="metas"></a>
+                        <b>metas</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Meta.html" target="_self" >Meta[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada/grafico-barras-agrupada.component.ts:43</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDefaultOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>getDefaultOptions</b></span>
+                        <a href="#getDefaultOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getDefaultOptions()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada/grafico-barras-agrupada.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ChartOptions" target="_self" >ChartOptions</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <span ><b>ngOnChanges</b></span>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(changes: SimpleChanges)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada/grafico-barras-agrupada.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>changes</td>
+                                            <td>
+                                                        <code>SimpleChanges</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="processData"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>processData</b></span>
+                        <a href="#processData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>processData(data: any[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="172"
+                                    class="link-to-prism">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada/grafico-barras-agrupada.component.ts:172</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                        <code>any[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>literal type</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateChart"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>updateChart</b></span>
+                        <a href="#updateChart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateChart()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="139"
+                                    class="link-to-prism">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada/grafico-barras-agrupada.component.ts:139</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chart"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>chart</b></span>
+                        <a href="#chart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ChartComponent</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;chart&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada/grafico-barras-agrupada.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chartOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>chartOptions</b></span>
+                        <a href="#chartOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#ChartOptions" target="_self" >ChartOptions</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada/grafico-barras-agrupada.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnChanges, SimpleChanges, ViewChild } from &#x27;@angular/core&#x27;;
+import {
+  ApexAxisChartSeries,
+  ApexChart,
+  ChartComponent,
+  ApexDataLabels,
+  ApexPlotOptions,
+  ApexYAxis,
+  ApexLegend,
+  ApexStroke,
+  ApexXAxis,
+  ApexFill,
+  ApexTooltip,
+  NgApexchartsModule
+} from &quot;ng-apexcharts&quot;;
+import { Meta } from &#x27;../../../../../models/meta.model&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+
+export type ChartOptions &#x3D; {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  plotOptions: ApexPlotOptions;
+  yaxis: ApexYAxis;
+  xaxis: ApexXAxis;
+  fill: ApexFill;
+  tooltip: ApexTooltip;
+  stroke: ApexStroke;
+  legend: ApexLegend;
+  colors?: string[];
+  annotations?: any;
+};
+
+@Component({
+  selector: &#x27;app-grafico-barras-agrupada&#x27;,
+  standalone: true,
+  imports: [CommonModule, NgApexchartsModule],
+  templateUrl: &#x27;./grafico-barras-agrupada.component.html&#x27;,
+  styleUrl: &#x27;./grafico-barras-agrupada.component.css&#x27;
+})
+export class GraficoBarrasAgrupadaComponent implements OnChanges {
+  @Input() datos: any[] &#x3D; [];
+  @Input() metas: Meta[] &#x3D; [];
+  @ViewChild(&quot;chart&quot;) chart!: ChartComponent;
+  public chartOptions: ChartOptions;
+
+  constructor() {
+    this.chartOptions &#x3D; this.getDefaultOptions();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes[&#x27;datos&#x27;] || changes[&#x27;metas&#x27;]) {
+      if (this.datos &amp;&amp; this.datos.length &gt; 0) {
+        this.updateChart();
+      } else {
+        this.chartOptions &#x3D; this.getDefaultOptions();
+      }
+    }
+  }
+
+  private getDefaultOptions(): ChartOptions {
+    return {
+      series: [],
+      chart: {
+        type: &quot;bar&quot;,
+        height: 350,
+        stacked: true, // Barras apiladas
+        toolbar: { show: true },
+        zoom: { enabled: true }
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          borderRadius: 5,
+          endingShape: &quot;rounded&quot;,
+          columnWidth: &#x27;70%&#x27;,
+          dataLabels: {
+            enabled: false // Desactivamos las etiquetas individuales
+          }
+        } as any
+      },
+      dataLabels: {
+        enabled: false // Desactivamos dataLabels globalmente
+      },
+      stroke: {
+        show: true,
+        width: [1, 1, 3], // Grosor diferente para barras (1) y línea (3)
+        colors: [&#x27;#fff&#x27;, &#x27;#fff&#x27;, &#x27;#BF4342&#x27;] // Color para la línea de meta
+      },
+      colors: [&#x27;#3B82F6&#x27;, &#x27;#10B981&#x27;, &#x27;#BF4342&#x27;], // Azul para taladros, verde para rimados, rojo para meta
+      fill: {
+        opacity: 1
+      },
+      xaxis: {
+        categories: [],
+        title: {
+          text: &#x27;Equipos&#x27;
+        },
+        labels: {
+          style: {
+            fontSize: &#x27;12px&#x27;
+          }
+        }
+      },
+      yaxis: {
+        title: {
+          text: &#x27;Número de Taladros&#x27;
+        },
+        labels: {
+          formatter: (value: number) &#x3D;&gt; value.toFixed(0)
+        }
+      },
+      tooltip: {
+        shared: true,
+        intersect: false,
+        y: {
+          formatter: (val: number, { seriesIndex }) &#x3D;&gt; {
+            if (seriesIndex &#x3D;&#x3D;&#x3D; 2) {
+              return &#x60;${val.toFixed(0)} taladros&#x60;;
+            }
+            return &#x60;${val.toFixed(0)} taladros&#x60;;
+          }
+        }
+      },
+      legend: {
+        show: true,
+        position: &#x27;top&#x27;,
+        horizontalAlign: &#x27;center&#x27;,
+        markers: {
+          fillColors: [&#x27;#3B82F6&#x27;, &#x27;#10B981&#x27;, &#x27;#BF4342&#x27;]
+        }
+      },
+      annotations: {
+        points: [] // Inicializamos las anotaciones vacías
+      }
+    };
+  }
+
+  private updateChart(): void {
+    if (!this.datos || this.datos.length &#x3D;&#x3D;&#x3D; 0) {
+      console.warn(&#x27;No hay datos para mostrar&#x27;);
+      return;
+    }
+    
+    const processedData &#x3D; this.processData(this.datos);
+    
+    this.chartOptions &#x3D; {
+      ...this.chartOptions,
+      series: processedData.series,
+      xaxis: {
+        ...this.chartOptions.xaxis,
+        categories: processedData.categories,
+        labels: {
+          style: {
+            fontSize: &#x27;12px&#x27;,
+            fontFamily: &#x27;Arial&#x27;
+          }
+        }
+      },
+      annotations: {
+        points: processedData.annotations // Añadimos las anotaciones
+      }
+    };
+    
+    setTimeout(() &#x3D;&gt; {
+      if (this.chart &amp;&amp; this.chart.updateOptions) {
+        this.chart.updateOptions(this.chartOptions);
+      }
+    }, 100);
+  }
+
+  private processData(data: any[]): { series: any[], categories: string[], annotations: any[] } {
+    const equiposMap &#x3D; new Map&lt;string, {taladros: number, rimados: number, meta: number}&gt;();
+    const annotations: any[] &#x3D; [];
+
+    data.forEach(item &#x3D;&gt; {
+      const codigo &#x3D; item.codigo;
+      const ntaladro &#x3D; Number(item.ntaladro) || 0;
+      const ntaladrosRimados &#x3D; Number(item.ntaladros_rimados) || 0;
+
+      const valorActual &#x3D; equiposMap.get(codigo) || {taladros: 0, rimados: 0, meta: 0};
+      valorActual.taladros +&#x3D; ntaladro;
+      valorActual.rimados +&#x3D; ntaladrosRimados;
+      
+      const metaEquipo &#x3D; this.metas.find(m &#x3D;&gt; m.nombre &#x3D;&#x3D;&#x3D; codigo);
+      valorActual.meta &#x3D; metaEquipo ? metaEquipo.objetivo : 0;
+
+      equiposMap.set(codigo, valorActual);
+    });
+
+    const equiposOrdenados &#x3D; Array.from(equiposMap.entries())
+      .sort((a, b) &#x3D;&gt; a[0].localeCompare(b[0]));
+
+    // Creamos las anotaciones para mostrar la suma total
+    equiposOrdenados.forEach(([codigo, valores]) &#x3D;&gt; {
+      const total &#x3D; valores.taladros + valores.rimados;
+      annotations.push({
+        x: codigo,
+        y: total,
+        label: {
+          borderColor: &#x27;transparent&#x27;,
+          style: {
+            color: &#x27;#000&#x27;,
+            background: &#x27;transparent&#x27;,
+            fontSize: &#x27;12px&#x27;,
+            fontWeight: &#x27;bold&#x27;
+          },
+          text: total.toString(),
+          offsetY: -10
+        }
+      });
+    });
+
+    return {
+      series: [
+        {
+          name: &quot;Taladros&quot;,
+          type: &quot;bar&quot;,
+          data: equiposOrdenados.map(([_, valores]) &#x3D;&gt; valores.taladros)
+        },
+        {
+          name: &quot;Rimados&quot;,
+          type: &quot;bar&quot;,
+          data: equiposOrdenados.map(([_, valores]) &#x3D;&gt; valores.rimados)
+        },
+        {
+          name: &quot;Meta&quot;,
+          type: &quot;line&quot;,
+          data: equiposOrdenados.map(([_, valores]) &#x3D;&gt; valores.meta)
+        }
+      ],
+      categories: equiposOrdenados.map(([equipo, _]) &#x3D;&gt; equipo),
+      annotations: annotations
+    };
+  }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;apx-chart
+  [series]&#x3D;&quot;chartOptions.series!&quot;
+  [chart]&#x3D;&quot;chartOptions.chart!&quot;
+  [dataLabels]&#x3D;&quot;chartOptions.dataLabels!&quot;
+  [plotOptions]&#x3D;&quot;chartOptions.plotOptions!&quot;
+  [yaxis]&#x3D;&quot;chartOptions.yaxis!&quot;
+  [fill]&#x3D;&quot;chartOptions.fill!&quot;
+  [stroke]&#x3D;&quot;chartOptions.stroke!&quot;
+  [tooltip]&#x3D;&quot;chartOptions.tooltip!&quot;
+  [xaxis]&#x3D;&quot;chartOptions.xaxis!&quot;
+&gt;&lt;/apx-chart&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><apx-chart  [series]="chartOptions.series!"  [chart]="chartOptions.chart!"  [dataLabels]="chartOptions.dataLabels!"  [plotOptions]="chartOptions.plotOptions!"  [yaxis]="chartOptions.yaxis!"  [fill]="chartOptions.fill!"  [stroke]="chartOptions.stroke!"  [tooltip]="chartOptions.tooltip!"  [xaxis]="chartOptions.xaxis!"></apx-chart></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BarrasMetroPerforadosLaborComponent', 'selector': 'app-barras-metro-perforados-labor'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'CrearDataComponent', 'selector': 'app-crear-data'},{'name': 'CreatePlanAvanceComponent', 'selector': 'app-create-plan-avance'},{'name': 'CreatePlanMetrajeComponent', 'selector': 'app-create-plan-metraje'},{'name': 'CreatePlanProduccionComponent', 'selector': 'app-create-plan-produccion'},{'name': 'DialogEditMetaComponent', 'selector': 'app-dialog-edit-meta'},{'name': 'DialogEditMetaComponent', 'selector': 'app-dialog-edit-meta'},{'name': 'DialogEditMetaComponent', 'selector': 'app-dialog-edit-meta'},{'name': 'DialogMetaComponent', 'selector': 'app-dialog-meta'},{'name': 'DialogMetaComponent', 'selector': 'app-dialog-meta'},{'name': 'DialogMetaComponent', 'selector': 'app-dialog-meta'},{'name': 'DisponibilidadMecanicaEquipoComponent', 'selector': 'app-disponibilidad-mecanica-equipo'},{'name': 'DisponibilidadMecanicaEquipoComponent', 'selector': 'app-disponibilidad-mecanica-equipo'},{'name': 'DisponibilidadMecanicaEquipoComponent', 'selector': 'app-disponibilidad-mecanica-equipo'},{'name': 'DisponibilidadMecanicaGeneralComponent', 'selector': 'app-disponibilidad-mecanica-general'},{'name': 'DisponibilidadMecanicaGeneralComponent', 'selector': 'app-disponibilidad-mecanica-general'},{'name': 'DisponibilidadMecanicaGeneralComponent', 'selector': 'app-disponibilidad-mecanica-general'},{'name': 'EditarOperacionesDialogComponent', 'selector': 'app-editar-operaciones-dialog'},{'name': 'EditPlanAvanceComponent', 'selector': 'app-edit-plan-avance'},{'name': 'EditPlanMetrajeComponent', 'selector': 'app-edit-plan-metraje'},{'name': 'EditPlanProduccionComponent', 'selector': 'app-edit-plan-produccion'},{'name': 'EstadoFormComponent', 'selector': 'app-estado-form'},{'name': 'EstadoFormEditarComponent', 'selector': 'app-estado-form-editar'},{'name': 'EstadosComponent', 'selector': 'app-estados'},{'name': 'ExplosivosComponent', 'selector': 'app-explosivos'},{'name': 'GraficoBarrasAgrupadaComponent', 'selector': 'app-grafico-barras-agrupada'},{'name': 'GraficoBarrasAgrupadaNumLaborComponent', 'selector': 'app-grafico-barras-agrupada-num-labor'},{'name': 'GraficoBarrasComponent', 'selector': 'app-grafico-barras'},{'name': 'GraficoBarrasMetrosLaborComponent', 'selector': 'app-grafico-barras-metros-labor'},{'name': 'GraficoEstadosComponent', 'selector': 'app-grafico-estados'},{'name': 'GraficoEstadosComponent', 'selector': 'app-grafico-estados'},{'name': 'GraficoEstadosComponent', 'selector': 'app-grafico-estados'},{'name': 'GraficoHorometrosComponent', 'selector': 'app-grafico-horometros'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorizontalMetaPrincipalComponent', 'selector': 'app-horizontal-meta-principal'},{'name': 'HorometrosComponent', 'selector': 'app-horometros'},{'name': 'HorometrosComponent', 'selector': 'app-horometros'},{'name': 'LargoMetaPrincipalComponent', 'selector': 'app-largo-meta-principal'},{'name': 'LoadingDialogComponent', 'selector': 'app-loading-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LongitudDePerforacionComponent', 'selector': 'app-longitud-de-perforacion'},{'name': 'MallaInstaladaEquipoComponent', 'selector': 'app-malla-instalada-equipo'},{'name': 'MallaInstaladaLaborComponent', 'selector': 'app-malla-instalada-labor'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'MetasComponent', 'selector': 'app-metas'},{'name': 'MetrosPerforadosEquipoComponent', 'selector': 'app-metros-perforados-equipo'},{'name': 'MetrosPerforadosEquipoComponent', 'selector': 'app-metros-perforados-equipo'},{'name': 'MetrosPerforadosLaborComponent', 'selector': 'app-metros-perforados-labor'},{'name': 'MetrosPerforadosLaborComponent', 'selector': 'app-metros-perforados-labor'},{'name': 'MostrarGraficosComponent', 'selector': 'app-mostrar-graficos'},{'name': 'OpcionesDialogComponent', 'selector': 'app-opciones-dialog'},{'name': 'OperacionesDialogComponent', 'selector': 'app-operaciones-dialog'},{'name': 'PlanDetallesDialogComponent', 'selector': 'app-plan-detalles-dialog'},{'name': 'PlanMensualListComponent', 'selector': 'app-plan-mensual-list'},{'name': 'PlanMetrajeDetallesDialogComponent', 'selector': 'app-plan-metraje-detalles-dialog'},{'name': 'PlanMetrajeListComponent', 'selector': 'app-plan-metraje-list'},{'name': 'PlanProduccionDetallesDialogComponent', 'selector': 'app-plan-produccion-detalles-dialog'},{'name': 'PlanProduccionListComponent', 'selector': 'app-plan-produccion-list'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'PromedioDeEstadosGeneralComponent', 'selector': 'app-promedio-de-estados-general'},{'name': 'PromedioDeEstadosGeneralComponent', 'selector': 'app-promedio-de-estados-general'},{'name': 'PromedioDeEstadosGeneralComponent', 'selector': 'app-promedio-de-estados-general'},{'name': 'PromedioMayasComponent', 'selector': 'app-promedio-mayas'},{'name': 'PromedioNTaladroComponent', 'selector': 'app-promedio-n-taladro'},{'name': 'PromedioTaladrosComponent', 'selector': 'app-promedio-taladros'},{'name': 'PromMetrosPerforadosSeccionComponent', 'selector': 'app-prom-metros-perforados-seccion'},{'name': 'PromNumTaladroSeccionComponent', 'selector': 'app-prom-num-taladro-seccion'},{'name': 'PromNumTaladroTipoLaborComponent', 'selector': 'app-prom-num-taladro-tipo-labor'},{'name': 'RendimientoDePerforacionesComponent', 'selector': 'app-rendimiento-de-perforaciones'},{'name': 'RendimientoDePerforacionesComponent', 'selector': 'app-rendimiento-de-perforaciones'},{'name': 'RendimientoDePerforacionesComponent', 'selector': 'app-rendimiento-de-perforaciones'},{'name': 'RendimientoPromedioComponent', 'selector': 'app-rendimiento-promedio'},{'name': 'RendimientoPromedioComponent', 'selector': 'app-rendimiento-promedio'},{'name': 'RendimientoPromedioComponent', 'selector': 'app-rendimiento-promedio'},{'name': 'SeleccionProcesoEstatosDialogComponent', 'selector': 'app-seleccion-proceso-estatos-dialog'},{'name': 'SostenimientoGraficosComponent', 'selector': 'app-sostenimiento-graficos'},{'name': 'SostenimientoMetaPrincipalComponent', 'selector': 'app-sostenimiento-meta-principal'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'TaladroHorizontalGraficaComponent', 'selector': 'app-taladro-horizontal-grafica'},{'name': 'TaladroLargoGraficaComponent', 'selector': 'app-taladro-largo-grafica'},{'name': 'UsuarioComponent', 'selector': 'app-usuario'},{'name': 'UsuarioDialogComponent', 'selector': 'app-usuario-dialog'},{'name': 'UsuariosComponent', 'selector': 'app-usuarios'},{'name': 'UtilizacionEquipoComponent', 'selector': 'app-utilizacion-equipo'},{'name': 'UtilizacionEquipoComponent', 'selector': 'app-utilizacion-equipo'},{'name': 'UtilizacionEquipoComponent', 'selector': 'app-utilizacion-equipo'},{'name': 'UtilizacionGeneralComponent', 'selector': 'app-utilizacion-general'},{'name': 'UtilizacionGeneralComponent', 'selector': 'app-utilizacion-general'},{'name': 'UtilizacionGeneralComponent', 'selector': 'app-utilizacion-general'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'GraficoBarrasAgrupadaComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GraficoBarrasAgrupadaComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

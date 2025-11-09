@@ -1,0 +1,1657 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>I-MINER documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">I-MINER documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  UsuarioComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/Components/Usuario/usuario/usuario.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-usuario</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>ReactiveFormsModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./usuario.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./usuario.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#datosUsuario" >datosUsuario</a>
+                            </li>
+                            <li>
+                                <a href="#editando" >editando</a>
+                            </li>
+                            <li>
+                                <a href="#formularioUsuario" >formularioUsuario</a>
+                            </li>
+                            <li>
+                                <a href="#mensajeExito" >mensajeExito</a>
+                            </li>
+                            <li>
+                                <a href="#mostrarContrasena" >mostrarContrasena</a>
+                            </li>
+                            <li>
+                                <a href="#mostrarFirmaGrande" >mostrarFirmaGrande</a>
+                            </li>
+                            <li>
+                                <a href="#usuario" >usuario</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cambiarFirma" >cambiarFirma</a>
+                            </li>
+                            <li>
+                                <a href="#cargarPerfil" >cargarPerfil</a>
+                            </li>
+                            <li>
+                                <a href="#Edicion" >Edicion</a>
+                            </li>
+                            <li>
+                                <a href="#eliminarFirma" >eliminarFirma</a>
+                            </li>
+                            <li>
+                                <a href="#guardarCambios" >guardarCambios</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#obtenerError" >obtenerError</a>
+                            </li>
+                            <li>
+                                <a href="#toggleContrasena" >toggleContrasena</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: FormBuilder, usuarioService: <a href="../injectables/UsuarioService.html" target="_self">UsuarioService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>usuarioService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UsuarioService.html" target="_self" >UsuarioService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cambiarFirma"></a>
+                    <span class="name">
+                        <span ><b>cambiarFirma</b></span>
+                        <a href="#cambiarFirma"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cambiarFirma()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="111"
+                                    class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:111</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarPerfil"></a>
+                    <span class="name">
+                        <span ><b>cargarPerfil</b></span>
+                        <a href="#cargarPerfil"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cargarPerfil()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="153"
+                                    class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:153</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Edicion"></a>
+                    <span class="name">
+                        <span ><b>Edicion</b></span>
+                        <a href="#Edicion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>Edicion()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eliminarFirma"></a>
+                    <span class="name">
+                        <span ><b>eliminarFirma</b></span>
+                        <a href="#eliminarFirma"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>eliminarFirma()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="145"
+                                    class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:145</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guardarCambios"></a>
+                    <span class="name">
+                        <span ><b>guardarCambios</b></span>
+                        <a href="#guardarCambios"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>guardarCambios()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="obtenerError"></a>
+                    <span class="name">
+                        <span ><b>obtenerError</b></span>
+                        <a href="#obtenerError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>obtenerError(controlName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>controlName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleContrasena"></a>
+                    <span class="name">
+                        <span ><b>toggleContrasena</b></span>
+                        <a href="#toggleContrasena"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleContrasena()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:107</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="datosUsuario"></a>
+                    <span class="name">
+                        <span ><b>datosUsuario</b></span>
+                        <a href="#datosUsuario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    id: undefined as number | undefined,
+    fotoPerfil: &#x27;assets/usuario.png&#x27;,
+    nombre: &#x27;&#x27;,
+    apellidos: &#x27;&#x27;,
+    cargo: &#x27;&#x27;,
+    empresa: &#x27;&#x27;,
+    guardia: &#x27;&#x27;,
+    equipoAutorizado: &#x27;&#x27;,
+    correo: &#x27;&#x27;,
+    firma: &#x27;&#x27;,
+    contraseña: &#x27;&#x27;
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:17</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editando"></a>
+                    <span class="name">
+                        <span ><b>editando</b></span>
+                        <a href="#editando"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formularioUsuario"></a>
+                    <span class="name">
+                        <span ><b>formularioUsuario</b></span>
+                        <a href="#formularioUsuario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mensajeExito"></a>
+                    <span class="name">
+                        <span ><b>mensajeExito</b></span>
+                        <a href="#mensajeExito"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mostrarContrasena"></a>
+                    <span class="name">
+                        <span ><b>mostrarContrasena</b></span>
+                        <a href="#mostrarContrasena"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mostrarFirmaGrande"></a>
+                    <span class="name">
+                        <span ><b>mostrarFirmaGrande</b></span>
+                        <a href="#mostrarFirmaGrande"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="usuario"></a>
+                    <span class="name">
+                        <span ><b>usuario</b></span>
+                        <a href="#usuario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Usuario.html" target="_self" >Usuario | null</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/Components/Usuario/usuario/usuario.component.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from &#x27;@angular/forms&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { Usuario } from &#x27;../../../models/Usuario&#x27;;
+import { UsuarioService } from &#x27;../../../services/usuario.service&#x27;;
+
+@Component({
+  selector: &#x27;app-usuario&#x27;,
+  standalone: true,
+  templateUrl: &#x27;./usuario.component.html&#x27;,
+  styleUrls: [&#x27;./usuario.component.css&#x27;],
+  imports: [CommonModule, ReactiveFormsModule]
+})
+
+export class UsuarioComponent implements OnInit{
+  usuario: Usuario | null &#x3D; null;
+  datosUsuario &#x3D; {
+    id: undefined as number | undefined,
+    fotoPerfil: &#x27;assets/usuario.png&#x27;,
+    nombre: &#x27;&#x27;,
+    apellidos: &#x27;&#x27;,
+    cargo: &#x27;&#x27;,
+    empresa: &#x27;&#x27;,
+    guardia: &#x27;&#x27;,
+    equipoAutorizado: &#x27;&#x27;,
+    correo: &#x27;&#x27;,
+    firma: &#x27;&#x27;,
+    contraseña: &#x27;&#x27;
+  };
+  mostrarFirmaGrande: boolean &#x3D; false;
+  editando &#x3D; false;
+  formularioUsuario: FormGroup;
+  mostrarContrasena &#x3D; false;
+  mensajeExito &#x3D; false;
+  constructor(private fb: FormBuilder, private usuarioService: UsuarioService) {
+    this.formularioUsuario &#x3D; this.fb.group({
+      nombre: [&#x27;&#x27;, [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
+      apellidos: [&#x27;&#x27;, [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
+      cargo: [&#x27;&#x27;, [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
+      empresa: [&#x27;&#x27;, [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
+      guardia: [&#x27;&#x27;, [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
+      equipoAutorizado: [&#x27;&#x27;, [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]+$/)]],
+      correo: [&#x27;&#x27;, [Validators.required, Validators.email]],
+      contraseña: [&#x27;&#x27;, [Validators.required, Validators.minLength(6), Validators.pattern(/^(?&#x3D;.*[a-z])(?&#x3D;.*[A-Z])(?&#x3D;.*\d).{6,}$/)]]
+    });
+  }
+
+  ngOnInit(): void {
+    this.cargarPerfil();
+  }
+
+  obtenerError(controlName: string): string {
+    const control &#x3D; this.formularioUsuario.get(controlName);
+
+    if (control?.hasError(&#x27;required&#x27;)) {
+      return &#x27;Este campo es obligatorio.&#x27;;
+    }
+
+    if (control?.hasError(&#x27;pattern&#x27;)) {
+      if ([&#x27;nombre&#x27;, &#x27;apellidos&#x27;, &#x27;cargo&#x27;, &#x27;empresa&#x27;, &#x27;guardia&#x27;, &#x27;equipoAutorizado&#x27;].includes(controlName)) {
+        return &#x27;Solo se permiten letras y espacios.&#x27;;
+      }
+      if (controlName &#x3D;&#x3D;&#x3D; &#x27;contraseña&#x27;) {
+        return &#x27;Debe contener al menos 6 caracteres, una mayúscula, una minúscula y un número.&#x27;;
+      }
+    }
+
+    if (controlName &#x3D;&#x3D;&#x3D; &#x27;correo&#x27; &amp;&amp; control?.hasError(&#x27;email&#x27;)) {
+      return &#x27;El correo debe tener un formato válido (ej. usuario@dominio.com).&#x27;;
+    }
+
+    return &#x27;&#x27;;
+  }
+
+  Edicion() {
+    this.formularioUsuario.patchValue({
+      nombre: this.datosUsuario.nombre,
+      apellidos: this.datosUsuario.apellidos,
+      cargo: this.datosUsuario.cargo,
+      empresa: this.datosUsuario.empresa,
+      guardia: this.datosUsuario.guardia,
+      equipoAutorizado: this.datosUsuario.equipoAutorizado,
+      correo: this.datosUsuario.correo,
+      contraseña: &#x27;&#x27; // No pasar la contraseña por seguridad
+    });
+
+    this.editando &#x3D; !this.editando;
+  }
+
+  guardarCambios() {
+    if (this.formularioUsuario.valid) {
+      
+      
+  
+      // Actualizar los datos sin perder otros atributos
+      Object.assign(this.datosUsuario, this.formularioUsuario.value);
+      
+      this.mensajeExito &#x3D; true;
+      setTimeout(() &#x3D;&gt; this.mensajeExito &#x3D; false, 3000);
+      this.Edicion();
+    }else {
+      this.formularioUsuario.markAllAsTouched(); // Resalta errores si el formulario es inválido
+      
+    }
+}
+
+toggleContrasena() {
+  this.mostrarContrasena &#x3D; !this.mostrarContrasena;
+}
+
+cambiarFirma() {
+  
+
+  const input &#x3D; document.createElement(&#x27;input&#x27;);
+  input.type &#x3D; &#x27;file&#x27;;
+  input.accept &#x3D; &#x27;image/*&#x27;;
+
+  input.onchange &#x3D; (event: any) &#x3D;&gt; {
+    const file &#x3D; event.target.files[0];
+
+    if (file) {
+      // **Enviar la imagen al servidor**
+      const formData &#x3D; new FormData();
+      formData.append(&#x27;firma&#x27;, file);
+
+      this.usuarioService.actualizarFirma(this.datosUsuario.id ?? 0, formData).subscribe({
+        next: (response) &#x3D;&gt; {
+          
+
+          // **Volver a cargar los datos del usuario para obtener la firma actualizada**
+          this.cargarPerfil();
+        },
+        error: (err) &#x3D;&gt; {
+          console.error(&quot;Error al actualizar la firma:&quot;, err);
+        }
+      });
+    }
+  };
+
+  input.click();
+}
+
+
+
+eliminarFirma() {
+  // Lógica para eliminar la firma
+  
+  const imgFirma &#x3D; document.querySelector(&#x27;.firma&#x27;) as HTMLImageElement;
+  if (imgFirma) {
+      imgFirma.src &#x3D; &#x27;&#x27;; // Elimina la imagen
+  }
+}
+cargarPerfil(): void {
+    this.usuarioService.obtenerPerfil().subscribe({
+      next: (data: Usuario) &#x3D;&gt; {
+        this.datosUsuario &#x3D; {
+          id: data.id,
+          fotoPerfil: data.firma ? data.firma : &#x27;assets/usuario.png&#x27;, // Si tiene firma, se usa como foto
+          nombre: data.nombres || &#x27;&#x27;,
+          apellidos: data.apellidos || &#x27;&#x27;,
+          cargo: data.cargo || &#x27;&#x27;,
+          empresa: data.empresa || &#x27;&#x27;,
+          guardia: data.guardia || &#x27;&#x27;,
+          equipoAutorizado: data.autorizado_equipo || &#x27;&#x27;,
+          correo: data.correo || &#x27;&#x27;,
+          firma: data.firma || &#x27;&#x27;,
+          contraseña: data.password || &#x27;&#x27;,
+        };
+      },
+      error: (err) &#x3D;&gt; {
+        console.error(&#x27;Error al obtener perfil:&#x27;, err);
+      }
+    });
+  }
+}
+
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;contenedor-perfil&quot;&gt;
+    &lt;!-- Encabezado azul --&gt;
+    &lt;div class&#x3D;&quot;encabezado-perfil-azul&quot;&gt;&lt;/div&gt;
+    
+    &lt;div class&#x3D;&quot;info-perfil&quot;&gt;
+        &lt;div class&#x3D;&quot;imagenes-perfil&quot;&gt;
+            &lt;img src&#x3D;&quot;usuario/user1.png&quot; alt&#x3D;&quot;Foto de perfil&quot; class&#x3D;&quot;foto-perfil&quot;&gt;
+            &lt;img [src]&#x3D;&quot;datosUsuario.firma ? datosUsuario.firma : &#x27;usuario/firma.png&#x27;&quot; 
+     alt&#x3D;&quot;Firma&quot; 
+     class&#x3D;&quot;firma&quot; 
+     (click)&#x3D;&quot;mostrarFirmaGrande &#x3D; true&quot;&gt;   
+
+        &lt;/div&gt;
+        
+        &lt;div class&#x3D;&quot;info-texto&quot;&gt;
+            &lt;h2&gt;{{ datosUsuario.nombre }} {{ datosUsuario.apellidos }}&lt;/h2&gt;
+            &lt;p&gt;{{ datosUsuario.cargo }}&lt;/p&gt;
+        &lt;/div&gt;
+        
+        &lt;button class&#x3D;&quot;boton-editar&quot; (click)&#x3D;&quot;Edicion()&quot;&gt;Editar&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;modal-firma&quot; *ngIf&#x3D;&quot;mostrarFirmaGrande&quot; (click)&#x3D;&quot;mostrarFirmaGrande &#x3D; false&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-contenido&quot;&gt;
+        &lt;img [src]&#x3D;&quot;datosUsuario.firma ? datosUsuario.firma : &#x27;usuario/firma.png&#x27;&quot; 
+             alt&#x3D;&quot;Firma grande&quot; 
+             class&#x3D;&quot;firma-grande&quot;&gt;
+        &lt;div class&#x3D;&quot;opciones-firma&quot;&gt;
+            &lt;button (click)&#x3D;&quot;cambiarFirma()&quot;&gt;Cambiar firma&lt;/button&gt;
+            &lt;button (click)&#x3D;&quot;eliminarFirma()&quot;&gt;Eliminar firma&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+ 
+
+&lt;!-- Información detallada --&gt;
+&lt;div class&#x3D;&quot;contenedor-detalles-perfil&quot;&gt;
+    &lt;div class&#x3D;&quot;detalles-perfil&quot;&gt;
+        &lt;div class&#x3D;&quot;detalle&quot;&gt;
+            &lt;strong&gt;Nombre&lt;/strong&gt;
+            &lt;span&gt;{{ datosUsuario.nombre }}&lt;/span&gt;
+            &lt;hr&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;detalle&quot;&gt;
+            &lt;strong&gt;Apellidos&lt;/strong&gt;
+            &lt;span&gt;{{ datosUsuario.apellidos }}&lt;/span&gt;
+            &lt;hr&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;detalle&quot;&gt;
+            &lt;strong&gt;Cargo&lt;/strong&gt;
+            &lt;span&gt;{{ datosUsuario.cargo }}&lt;/span&gt;
+            &lt;hr&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;detalle&quot;&gt;
+            &lt;strong&gt;Empresa&lt;/strong&gt;
+            &lt;span&gt;{{ datosUsuario.empresa }}&lt;/span&gt;
+            &lt;hr&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;detalle&quot;&gt;
+            &lt;strong&gt;Guardia&lt;/strong&gt;
+            &lt;span&gt;{{ datosUsuario.guardia }}&lt;/span&gt;
+            &lt;hr&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;detalle&quot;&gt;
+            &lt;strong&gt;Equipo Autorizado&lt;/strong&gt;
+            &lt;span&gt;{{ datosUsuario.equipoAutorizado }}&lt;/span&gt;
+            &lt;hr&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;detalle&quot;&gt;
+            &lt;strong&gt;Correo&lt;/strong&gt;
+            &lt;span&gt;{{ datosUsuario.correo }}&lt;/span&gt;
+            &lt;hr&gt;
+        &lt;/div&gt;
+
+       
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;ventana-modal&quot; *ngIf&#x3D;&quot;editando&quot;&gt;
+    &lt;div class&#x3D;&quot;contenido-modal&quot;&gt;
+        &lt;h3&gt;Editar Perfil&lt;/h3&gt;
+        &lt;form [formGroup]&#x3D;&quot;formularioUsuario&quot; (ngSubmit)&#x3D;&quot;guardarCambios()&quot;&gt;
+            
+            &lt;label&gt;Nombre&lt;/label&gt;
+            &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;nombre&quot;&gt;
+            &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;formularioUsuario.get(&#x27;nombre&#x27;)?.touched&quot;&gt;
+                {{ obtenerError(&#x27;nombre&#x27;) }}
+            &lt;/div&gt;
+
+            &lt;label&gt;Apellidos&lt;/label&gt;
+            &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;apellidos&quot;&gt;
+            &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;formularioUsuario.get(&#x27;apellidos&#x27;)?.touched&quot;&gt;
+                {{ obtenerError(&#x27;apellidos&#x27;) }}
+            &lt;/div&gt;
+
+            &lt;label&gt;Cargo&lt;/label&gt;
+            &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;cargo&quot;&gt;
+            &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;formularioUsuario.get(&#x27;cargo&#x27;)?.touched&quot;&gt;
+                {{ obtenerError(&#x27;cargo&#x27;) }}
+            &lt;/div&gt;
+
+            &lt;label&gt;Empresa&lt;/label&gt;
+            &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;empresa&quot;&gt;
+            &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;formularioUsuario.get(&#x27;empresa&#x27;)?.touched&quot;&gt;
+                {{ obtenerError(&#x27;empresa&#x27;) }}
+            &lt;/div&gt;
+
+            &lt;label&gt;Guardia&lt;/label&gt;
+            &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;guardia&quot;&gt;
+            &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;formularioUsuario.get(&#x27;guardia&#x27;)?.touched&quot;&gt;
+                {{ obtenerError(&#x27;guardia&#x27;) }}
+            &lt;/div&gt;
+
+            &lt;label&gt;Equipo Autorizado&lt;/label&gt;
+            &lt;input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;equipoAutorizado&quot;&gt;
+            &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;formularioUsuario.get(&#x27;equipoAutorizado&#x27;)?.touched&quot;&gt;
+                {{ obtenerError(&#x27;equipoAutorizado&#x27;) }}
+            &lt;/div&gt;
+
+            &lt;label&gt;Correo&lt;/label&gt;
+            &lt;input type&#x3D;&quot;email&quot; formControlName&#x3D;&quot;correo&quot;&gt;
+            &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;formularioUsuario.get(&#x27;correo&#x27;)?.touched&quot;&gt;
+                {{ obtenerError(&#x27;correo&#x27;) }}
+            &lt;/div&gt;
+
+            &lt;label&gt;Contraseña&lt;/label&gt;
+            &lt;div class&#x3D;&quot;input-contenedor&quot;&gt;
+                &lt;input [type]&#x3D;&quot;mostrarContrasena ? &#x27;text&#x27; : &#x27;password&#x27;&quot; formControlName&#x3D;&quot;contraseña&quot;&gt;
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;toggleContrasena()&quot;&gt;
+                    👁️
+                &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;error&quot; *ngIf&#x3D;&quot;formularioUsuario.get(&#x27;contraseña&#x27;)?.touched&quot;&gt;
+                {{ obtenerError(&#x27;contraseña&#x27;) }}
+
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;botones-modal&quot;&gt;
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;guardarCambios()&quot;&gt;Guardar&lt;/button&gt;
+
+                &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;Edicion()&quot;&gt;Cancelar&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;modal-exito&quot; *ngIf&#x3D;&quot;mensajeExito&quot;&gt;
+    &lt;div class&#x3D;&quot;modal-content-exito&quot;&gt;
+        &lt;p&gt;✅ Cambios guardados correctamente.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./usuario.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.contenedor-perfil {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    position: relative;
+}
+
+.encabezado-perfil-azul {
+    width: 100%;
+    height: 100px;
+    background: #0056b3;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: relative;
+}
+
+.info-perfil {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espaciado entre elementos */
+    padding: 20px;
+    position: relative;
+    margin-top: -50px; /* Para centrar la imagen entre los dos rectángulos */
+}
+
+.info-perfil img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid white;
+}
+
+.info-texto {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column; /* Asegura que el nombre y cargo estén en columna */
+}
+
+.info-texto h2 {
+    margin: 0;
+    font-size: 22px;
+    color: black;
+}
+
+.info-texto p {
+    margin: 5px 0 0;
+    color: black;
+}
+
+/* Asegurar que el botón se alinee a la izquierda */
+.boton-editar {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: auto; /* Mueve el botón a la derecha */
+}
+.boton-editar:hover {
+    background: #287cd6;
+}
+
+/* Contenedor de detalles */
+.contenedor-detalles-perfil {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.detalle {
+    padding: 10px 0;
+}
+
+.detalle strong {
+    font-size: 14px;
+    color: #004F9C;
+    text-transform: uppercase;
+    display: block;
+}
+
+.detalle span {
+    font-size: 16px;
+    color: #222;
+    display: block;
+    margin-top: 5px;
+}
+
+.detalle hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #ccc;
+    margin-top: 8px;
+}
+
+/* MODAL */
+.ventana-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenido del modal */
+.contenido-modal {
+    background: #fff;
+    padding: 25px;
+    width: 500px;
+    max-width: 90%;
+    border-radius: 8px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* Título del modal */
+.contenido-modal h3 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+/* Formulario dentro del modal */
+.contenido-modal form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Etiquetas de los campos */
+.contenido-modal label {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 14px;
+    color:#222;
+}
+
+/* Campos de entrada */
+.contenido-modal input {
+    width: 97%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 13px;
+    outline: none;
+}
+
+/* Botones del modal */
+.botones-modal {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Botón Guardar */
+.botones-modal button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Estilo del botón Guardar */
+.botones-modal button[type&#x3D;&quot;submit&quot;] {
+    background: #0056b3;
+    color: white;
+}
+
+.botones-modal button[type&#x3D;&quot;submit&quot;]:hover {
+    background: #287cd6;
+}
+
+/* Estilo del botón Cancelar */
+.botones-modal button[type&#x3D;&quot;button&quot;] {
+    background: #dc3545;
+    color: white;
+}
+
+.botones-modal button[type&#x3D;&quot;button&quot;]:hover {
+    background: #c82333;
+}
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.modal-exito {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeOut 3s ease-in-out forwards;
+}
+
+.modal-content-exito {
+    text-align: center;
+    font-size: 1rem;
+    color: green;
+}
+
+.input-contenedor {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-contenedor input {
+    flex: 1;
+    padding: 10px;
+    padding-right: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.input-contenedor button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    font-size: 18px;
+    color: #555;
+    transition: color 0.3s;
+}
+
+.input-contenedor button:hover {
+    color: #000;
+}
+
+.firma {
+    width: 150px; /* Ancho de la firma */
+    height: 50px; /* Alto de la firma */
+    background-color: white; /* Fondo blanco */
+    padding: 5px; /* Espacio interno para que la firma no esté pegada al borde */
+    border: 1px solid #ccc; /* Borde opcional */
+    border-radius: 5px; /* Bordes redondeados opcionales */
+    object-fit: contain; /* Asegura que la imagen se ajuste dentro del contenedor */
+}
+
+/* Estilos para el modal */
+.modal-firma {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-contenido {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.firma-grande {
+    max-width: 90%;
+    max-height: 80vh;
+    margin-bottom: 20px;
+}
+
+.opciones-firma button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.opciones-firma button:hover {
+    background-color: darkblue;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="contenedor-perfil">    <!-- Encabezado azul -->    <div class="encabezado-perfil-azul"></div>        <div class="info-perfil">        <div class="imagenes-perfil">            <img src="usuario/user1.png" alt="Foto de perfil" class="foto-perfil">            <img [src]="datosUsuario.firma ? datosUsuario.firma : \'usuario/firma.png\'"      alt="Firma"      class="firma"      (click)="mostrarFirmaGrande = true">           </div>                <div class="info-texto">            <h2>{{ datosUsuario.nombre }} {{ datosUsuario.apellidos }}</h2>            <p>{{ datosUsuario.cargo }}</p>        </div>                <button class="boton-editar" (click)="Edicion()">Editar</button>    </div></div><div class="modal-firma" *ngIf="mostrarFirmaGrande" (click)="mostrarFirmaGrande = false">    <div class="modal-contenido">        <img [src]="datosUsuario.firma ? datosUsuario.firma : \'usuario/firma.png\'"              alt="Firma grande"              class="firma-grande">        <div class="opciones-firma">            <button (click)="cambiarFirma()">Cambiar firma</button>            <button (click)="eliminarFirma()">Eliminar firma</button>        </div>    </div></div> <!-- Información detallada --><div class="contenedor-detalles-perfil">    <div class="detalles-perfil">        <div class="detalle">            <strong>Nombre</strong>            <span>{{ datosUsuario.nombre }}</span>            <hr>        </div>        <div class="detalle">            <strong>Apellidos</strong>            <span>{{ datosUsuario.apellidos }}</span>            <hr>        </div>        <div class="detalle">            <strong>Cargo</strong>            <span>{{ datosUsuario.cargo }}</span>            <hr>        </div>        <div class="detalle">            <strong>Empresa</strong>            <span>{{ datosUsuario.empresa }}</span>            <hr>        </div>        <div class="detalle">            <strong>Guardia</strong>            <span>{{ datosUsuario.guardia }}</span>            <hr>        </div>        <div class="detalle">            <strong>Equipo Autorizado</strong>            <span>{{ datosUsuario.equipoAutorizado }}</span>            <hr>        </div>        <div class="detalle">            <strong>Correo</strong>            <span>{{ datosUsuario.correo }}</span>            <hr>        </div>           </div></div><div class="ventana-modal" *ngIf="editando">    <div class="contenido-modal">        <h3>Editar Perfil</h3>        <form [formGroup]="formularioUsuario" (ngSubmit)="guardarCambios()">                        <label>Nombre</label>            <input type="text" formControlName="nombre">            <div class="error" *ngIf="formularioUsuario.get(\'nombre\')?.touched">                {{ obtenerError(\'nombre\') }}            </div>            <label>Apellidos</label>            <input type="text" formControlName="apellidos">            <div class="error" *ngIf="formularioUsuario.get(\'apellidos\')?.touched">                {{ obtenerError(\'apellidos\') }}            </div>            <label>Cargo</label>            <input type="text" formControlName="cargo">            <div class="error" *ngIf="formularioUsuario.get(\'cargo\')?.touched">                {{ obtenerError(\'cargo\') }}            </div>            <label>Empresa</label>            <input type="text" formControlName="empresa">            <div class="error" *ngIf="formularioUsuario.get(\'empresa\')?.touched">                {{ obtenerError(\'empresa\') }}            </div>            <label>Guardia</label>            <input type="text" formControlName="guardia">            <div class="error" *ngIf="formularioUsuario.get(\'guardia\')?.touched">                {{ obtenerError(\'guardia\') }}            </div>            <label>Equipo Autorizado</label>            <input type="text" formControlName="equipoAutorizado">            <div class="error" *ngIf="formularioUsuario.get(\'equipoAutorizado\')?.touched">                {{ obtenerError(\'equipoAutorizado\') }}            </div>            <label>Correo</label>            <input type="email" formControlName="correo">            <div class="error" *ngIf="formularioUsuario.get(\'correo\')?.touched">                {{ obtenerError(\'correo\') }}            </div>            <label>Contraseña</label>            <div class="input-contenedor">                <input [type]="mostrarContrasena ? \'text\' : \'password\'" formControlName="contraseña">                <button type="button" (click)="toggleContrasena()">                    👁️                </button>            </div>            <div class="error" *ngIf="formularioUsuario.get(\'contraseña\')?.touched">                {{ obtenerError(\'contraseña\') }}            </div>            <div class="botones-modal">                <button type="button" (click)="guardarCambios()">Guardar</button>                <button type="button" (click)="Edicion()">Cancelar</button>            </div>        </form>    </div></div><div class="modal-exito" *ngIf="mensajeExito">    <div class="modal-content-exito">        <p>✅ Cambios guardados correctamente.</p>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BarrasMetroPerforadosLaborComponent', 'selector': 'app-barras-metro-perforados-labor'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'CrearDataComponent', 'selector': 'app-crear-data'},{'name': 'CreatePlanAvanceComponent', 'selector': 'app-create-plan-avance'},{'name': 'CreatePlanMetrajeComponent', 'selector': 'app-create-plan-metraje'},{'name': 'CreatePlanProduccionComponent', 'selector': 'app-create-plan-produccion'},{'name': 'DialogEditMetaComponent', 'selector': 'app-dialog-edit-meta'},{'name': 'DialogEditMetaComponent', 'selector': 'app-dialog-edit-meta'},{'name': 'DialogEditMetaComponent', 'selector': 'app-dialog-edit-meta'},{'name': 'DialogMetaComponent', 'selector': 'app-dialog-meta'},{'name': 'DialogMetaComponent', 'selector': 'app-dialog-meta'},{'name': 'DialogMetaComponent', 'selector': 'app-dialog-meta'},{'name': 'DisponibilidadMecanicaEquipoComponent', 'selector': 'app-disponibilidad-mecanica-equipo'},{'name': 'DisponibilidadMecanicaEquipoComponent', 'selector': 'app-disponibilidad-mecanica-equipo'},{'name': 'DisponibilidadMecanicaEquipoComponent', 'selector': 'app-disponibilidad-mecanica-equipo'},{'name': 'DisponibilidadMecanicaGeneralComponent', 'selector': 'app-disponibilidad-mecanica-general'},{'name': 'DisponibilidadMecanicaGeneralComponent', 'selector': 'app-disponibilidad-mecanica-general'},{'name': 'DisponibilidadMecanicaGeneralComponent', 'selector': 'app-disponibilidad-mecanica-general'},{'name': 'EditarOperacionesDialogComponent', 'selector': 'app-editar-operaciones-dialog'},{'name': 'EditPlanAvanceComponent', 'selector': 'app-edit-plan-avance'},{'name': 'EditPlanMetrajeComponent', 'selector': 'app-edit-plan-metraje'},{'name': 'EditPlanProduccionComponent', 'selector': 'app-edit-plan-produccion'},{'name': 'EstadoFormComponent', 'selector': 'app-estado-form'},{'name': 'EstadoFormEditarComponent', 'selector': 'app-estado-form-editar'},{'name': 'EstadosComponent', 'selector': 'app-estados'},{'name': 'ExplosivosComponent', 'selector': 'app-explosivos'},{'name': 'GraficoBarrasAgrupadaComponent', 'selector': 'app-grafico-barras-agrupada'},{'name': 'GraficoBarrasAgrupadaNumLaborComponent', 'selector': 'app-grafico-barras-agrupada-num-labor'},{'name': 'GraficoBarrasComponent', 'selector': 'app-grafico-barras'},{'name': 'GraficoBarrasMetrosLaborComponent', 'selector': 'app-grafico-barras-metros-labor'},{'name': 'GraficoEstadosComponent', 'selector': 'app-grafico-estados'},{'name': 'GraficoEstadosComponent', 'selector': 'app-grafico-estados'},{'name': 'GraficoEstadosComponent', 'selector': 'app-grafico-estados'},{'name': 'GraficoHorometrosComponent', 'selector': 'app-grafico-horometros'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorizontalMetaPrincipalComponent', 'selector': 'app-horizontal-meta-principal'},{'name': 'HorometrosComponent', 'selector': 'app-horometros'},{'name': 'HorometrosComponent', 'selector': 'app-horometros'},{'name': 'LargoMetaPrincipalComponent', 'selector': 'app-largo-meta-principal'},{'name': 'LoadingDialogComponent', 'selector': 'app-loading-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LongitudDePerforacionComponent', 'selector': 'app-longitud-de-perforacion'},{'name': 'MallaInstaladaEquipoComponent', 'selector': 'app-malla-instalada-equipo'},{'name': 'MallaInstaladaLaborComponent', 'selector': 'app-malla-instalada-labor'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'MetasComponent', 'selector': 'app-metas'},{'name': 'MetrosPerforadosEquipoComponent', 'selector': 'app-metros-perforados-equipo'},{'name': 'MetrosPerforadosEquipoComponent', 'selector': 'app-metros-perforados-equipo'},{'name': 'MetrosPerforadosLaborComponent', 'selector': 'app-metros-perforados-labor'},{'name': 'MetrosPerforadosLaborComponent', 'selector': 'app-metros-perforados-labor'},{'name': 'MostrarGraficosComponent', 'selector': 'app-mostrar-graficos'},{'name': 'OpcionesDialogComponent', 'selector': 'app-opciones-dialog'},{'name': 'OperacionesDialogComponent', 'selector': 'app-operaciones-dialog'},{'name': 'PlanDetallesDialogComponent', 'selector': 'app-plan-detalles-dialog'},{'name': 'PlanMensualListComponent', 'selector': 'app-plan-mensual-list'},{'name': 'PlanMetrajeDetallesDialogComponent', 'selector': 'app-plan-metraje-detalles-dialog'},{'name': 'PlanMetrajeListComponent', 'selector': 'app-plan-metraje-list'},{'name': 'PlanProduccionDetallesDialogComponent', 'selector': 'app-plan-produccion-detalles-dialog'},{'name': 'PlanProduccionListComponent', 'selector': 'app-plan-produccion-list'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'PromedioDeEstadosGeneralComponent', 'selector': 'app-promedio-de-estados-general'},{'name': 'PromedioDeEstadosGeneralComponent', 'selector': 'app-promedio-de-estados-general'},{'name': 'PromedioDeEstadosGeneralComponent', 'selector': 'app-promedio-de-estados-general'},{'name': 'PromedioMayasComponent', 'selector': 'app-promedio-mayas'},{'name': 'PromedioNTaladroComponent', 'selector': 'app-promedio-n-taladro'},{'name': 'PromedioTaladrosComponent', 'selector': 'app-promedio-taladros'},{'name': 'PromMetrosPerforadosSeccionComponent', 'selector': 'app-prom-metros-perforados-seccion'},{'name': 'PromNumTaladroSeccionComponent', 'selector': 'app-prom-num-taladro-seccion'},{'name': 'PromNumTaladroTipoLaborComponent', 'selector': 'app-prom-num-taladro-tipo-labor'},{'name': 'RendimientoDePerforacionesComponent', 'selector': 'app-rendimiento-de-perforaciones'},{'name': 'RendimientoDePerforacionesComponent', 'selector': 'app-rendimiento-de-perforaciones'},{'name': 'RendimientoDePerforacionesComponent', 'selector': 'app-rendimiento-de-perforaciones'},{'name': 'RendimientoPromedioComponent', 'selector': 'app-rendimiento-promedio'},{'name': 'RendimientoPromedioComponent', 'selector': 'app-rendimiento-promedio'},{'name': 'RendimientoPromedioComponent', 'selector': 'app-rendimiento-promedio'},{'name': 'SeleccionProcesoEstatosDialogComponent', 'selector': 'app-seleccion-proceso-estatos-dialog'},{'name': 'SostenimientoGraficosComponent', 'selector': 'app-sostenimiento-graficos'},{'name': 'SostenimientoMetaPrincipalComponent', 'selector': 'app-sostenimiento-meta-principal'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'TaladroHorizontalGraficaComponent', 'selector': 'app-taladro-horizontal-grafica'},{'name': 'TaladroLargoGraficaComponent', 'selector': 'app-taladro-largo-grafica'},{'name': 'UsuarioComponent', 'selector': 'app-usuario'},{'name': 'UsuarioDialogComponent', 'selector': 'app-usuario-dialog'},{'name': 'UsuariosComponent', 'selector': 'app-usuarios'},{'name': 'UtilizacionEquipoComponent', 'selector': 'app-utilizacion-equipo'},{'name': 'UtilizacionEquipoComponent', 'selector': 'app-utilizacion-equipo'},{'name': 'UtilizacionEquipoComponent', 'selector': 'app-utilizacion-equipo'},{'name': 'UtilizacionGeneralComponent', 'selector': 'app-utilizacion-general'},{'name': 'UtilizacionGeneralComponent', 'selector': 'app-utilizacion-general'},{'name': 'UtilizacionGeneralComponent', 'selector': 'app-utilizacion-general'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'UsuarioComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'UsuarioComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

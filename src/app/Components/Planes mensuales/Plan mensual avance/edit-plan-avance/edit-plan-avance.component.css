@@ -1,0 +1,74 @@
+.dialog-container {
+    width: 400px;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    max-height: 70vh; /* Ajuste de altura máxima */
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .dialog-content {
+    overflow-y: auto; /* Permite el scroll */
+    flex-grow: 1; /* Expande el contenido */
+    max-height: 50vh; /* Altura máxima para el scroll */
+    padding-right: 5px; /* Reducción del borde derecho */
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px; /* Reducción del margen inferior */
+  }
+  
+  label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px; /* Menos separación */
+  }
+  
+  input, select {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    position: sticky;
+    bottom: 0;
+  }
+  
+  button {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .save-btn {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .cancel-btn {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  

@@ -1,0 +1,466 @@
+/* Contenedor principal */
+.form-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+.titulo h1 {
+  margin-bottom: 5px;
+  font-size: 32px;
+}
+
+.titulo p {
+  margin-top: 0;
+  font-size: 16px;
+  color: black;
+}
+.titu {
+  margin-top: 10px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px; /* Espacio entre el label y el input */
+}
+
+/* Estilo de pestañas */
+.tabs {
+  display: flex;
+  gap: 5px;
+  border-bottom: 2px;
+  padding-bottom: 0;
+}
+
+.tab-btn {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px 10px 0 0;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tab-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.tab-btn.active {
+  background-color: #cceaf388;
+  color: black;
+  border-bottom: none;
+}
+
+/* Iconos */
+.icon {
+  font-size: 1.2rem;
+}
+
+/* Contenido de las pestañas */
+.ventana {
+  background-color: #fff;
+  border-radius: 0px 8px 8px 8px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulario */
+.custom-form {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+/* Campos en fila */
+.form-row {
+  display: flex;
+     justify-content: center;
+      align-items: flex-start;
+     display: flex;
+     flex-wrap: wrap;
+  width: 100%;
+  padding: 20px 0;
+  box-sizing: border-box;
+   gap: 40px;
+}
+
+
+/* Estilos de los inputs */
+label {
+  font-weight: bold;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  justify-content: space-between;
+  font-size: 13.5px;
+  box-sizing: border-box;
+
+}
+.file-upload input{
+  flex: 1;
+  padding: 8px 5px; /* Ajustar el padding */
+  font-size: 12px;
+  border: none;
+  outline: none;
+  height: 100%;
+}
+/* Botón de carga de archivos */
+
+.file-upload {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  max-width: 300px; /* Igualar al input de año y mes */
+  width: 260px;
+  height: 34px;; /* Ajusta el tamaño según lo necesites */
+}
+
+.btn-upload {
+  background-color: #ccc;
+  color: #0000006c;
+  padding: 8px 10px;
+  border-right: 1px solid #999;
+  cursor: pointer;
+  font-size: 13.5px;
+  white-space: nowrap;
+}
+.btn-upload:hover {
+  background-color: #bbb;
+}
+
+.file-name {
+
+  padding: 8px;
+  border: none;
+  outline: none;
+  font-size: 13.5px;
+  background-color: #f9f9f9;
+}
+
+
+.form-groupu {
+  display: flex;
+  flex-direction: column;
+  width: 200px; /* Ajusta según lo que necesites */
+
+   min-width: 200px;
+}
+
+
+/* Botón de enviar */
+.btn-submit {
+  width:150px;
+  padding: 5px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  border: 1px solid #ccc;
+  margin-top: 10PX;
+  margin-bottom: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 13.5px;
+}
+
+.btn-submit:hover {
+background-color: #CCEAF3;
+
+}
+.btn-submit{
+ background-color: #cceaf388;
+}
+
+.button-container-wrapper {
+  display: flex;
+  flex-wrap: wrap;  /* Permite que los botones se distribuyan en varias filas */
+  gap: 10px;  /* Espacio entre los botones */
+  justify-content: center;
+
+}
+
+
+/* Primera fila: 4 botones */
+.button-container:nth-child(1),
+.button-container:nth-child(2),
+.button-container:nth-child(3),
+.button-container:nth-child(4) {
+  width: 18%;  /* 4 botones por fila */
+}
+
+/* Segunda fila: 3 botones */
+.button-container:nth-child(5),
+.button-container:nth-child(6),
+.button-container:nth-child(7) {
+  width: 20%;  /* 3 botones por fila */
+}
+
+/* Tercera fila: 2 botones */
+.button-container:nth-child(8),
+.button-container:nth-child(9) {
+  width: 30%;  /* 2 botones por fila */
+}
+
+/* Cuarta fila: 1 botón */
+.button-container:nth-child(10) {
+  width: 28%;  /* 1 botón ocupa toda la fila */
+}
+/* Estilo de cada botón */
+.button-container {
+  background-color: white;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 8px 60px;
+
+  font-size: 14px;
+
+  display: flex;
+  justify-content: center;  /* Centra el contenido horizontalmente */
+  align-items: center;  /* Centra el contenido verticalmente */
+  text-align: center;
+  gap: 10px;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.button-container:hover {
+  background-color: #bbb; /* Cambio de color al pasar el mouse */
+}
+
+/* Ajustes para el texto */
+.button-nombre {
+  margin: 0;
+}
+/* Ajustes para el ícono */
+.button-icon {
+  width: 20px; /* Ajusta el tamaño del ícono */
+  height: 20px;
+}
+
+
+
+/* Tabla */
+.table-container {
+    margin-top: 20px;
+    width: 90%;
+    margin-left: auto;
+  margin-right: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+  overflow: hidden;
+
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #CCEAF3;
+    color: black;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-icons {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.table-icons i {
+  cursor: pointer;
+  font-size: 1.2rem;
+
+}
+
+.action-icon {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  margin: 0 5px;
+  transition: transform 0.3s ease;
+
+}
+td:last-child {
+  white-space: nowrap; /* Evita que se expanda innecesariamente */
+  text-align: center;
+  width: 100px;
+
+}
+.action-icon:hover {
+  transform: scale(1.1); /* Efecto de aumento al pasar el ratón */
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal h2,
+.modal p,
+.modal label {
+  text-align: left;
+  display: block;
+  width: 100%;
+  margin-left: 0; /* Asegura que estén alineados a la izquierda */
+}
+/* modal */
+.modal {
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  width: 600px;
+  margin: auto;
+}
+
+.modal-content {
+  padding: 20px; /* Espaciado interno */
+  max-height: 80vh; /* Evita que el modal sea demasiado alto */
+  overflow-y: auto; /* Agrega scroll si es necesario */
+}
+
+.tabla-scroll {
+  max-height: 300px; /* Ajusta la altura máxima de la tabla */
+  overflow-y: auto; /* Habilita el desplazamiento vertical */
+  border: 1px solid #ccc; /* Opcional: Añade un borde para mejor visualización */
+  padding: 5px; /* Espaciado interno */
+}
+
+
+/* Botón de cerrar en la esquina superior derecha */
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color:
+  #555;
+}
+
+.close-icon:hover {
+  color: #000;
+}
+.subtitu{
+  margin-bottom: 15px;
+  padding:10px;
+}
+.subtitu h2 {
+  margin-bottom: 3px;
+  font-size: 24px;
+}
+
+.subtitu p {
+  margin-top: 0;
+  font-size: 14px;
+  color: black;
+}
+.forme{
+background-color: #ffffff;        /* fondo blanco */
+  padding: 2rem;                    /* espacio interno */
+  border-radius: 12px;              /* bordes redondeados */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* sombra suave */
+  max-width: 500px;
+    margin-bottom: 50px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+}
+
+/* Estilo del formulario con sombra */
+.form-group {
+   /* Ajusta según el tamaño del contenedor */
+  padding: 0 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+    flex: 1;
+    margin-top: 20px;
+    margin-bottom:20px;
+    width: 100%; /* ✅ Ocupa el ancho del contenedor */
+      display: flex;
+
+
+}
+.group-modal{
+  padding: 0 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-button-container {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+.form-input{
+outline: none;
+width: 100%;
+box-sizing: border-box;
+}
+
+
+
+.button-group {
+  display: flex;
+  gap: 10px; /* Espacio entre botones */
+  margin-top: 10px;
+  justify-content:center;
+  align-items: center;
+}
+.button-group button{
+background-color: #CCEAF3;
+border: none;
+height:30px;
+
+}
+
+.form-group label {
+  display: block;         /* fuerza que cada label esté en su propia línea */
+  margin-bottom: 8px;     /* espacio entre el label y el input */
+     /* opcional: para mejor visibilidad */
+       text-align: left;
+}

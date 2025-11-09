@@ -1,0 +1,27 @@
+<nav class="navbar">
+    <ul class="nav-list">
+      <li>
+        <a 
+          [class.active]="selectedComponent === 'horizontal'" 
+          (click)="selectComponent('horizontal')">Horizontal</a>
+      </li>
+      <li>
+        <a 
+          [class.active]="selectedComponent === 'sostenimiento'" 
+          (click)="selectComponent('sostenimiento')">Sostenimiento</a>
+      </li>
+      <li>
+        <a 
+          [class.active]="selectedComponent === 'largo'" 
+          (click)="selectComponent('largo')">Largo</a>
+      </li>
+    </ul>
+  </nav>
+  
+  <!-- AQUI MOSTRAMOS EL COMPONENTE SEGUN SELECCION -->
+  <div class="contenido">
+    <app-horizontal-meta-principal *ngIf="selectedComponent === 'horizontal'"></app-horizontal-meta-principal>
+    <app-sostenimiento-meta-principal *ngIf="selectedComponent === 'sostenimiento'"></app-sostenimiento-meta-principal>
+    <app-largo-meta-principal *ngIf="selectedComponent === 'largo'"></app-largo-meta-principal>
+  </div>
+  

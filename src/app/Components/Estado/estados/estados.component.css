@@ -1,0 +1,130 @@
+/* Estilos para el contenedor */
+.container {
+    width: 100%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para la cabecera de la tabla */
+  .table_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .table_header h2 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .table_header button {
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .table_header button:hover {
+    background-color: #007bff;
+  }
+  
+  .table_header select {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .input_search {
+    position: relative;
+  }
+  
+  .input_search input {
+    padding: 10px;
+    padding-left: 35px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 200px;
+  }
+  
+  .input_search i {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px;
+    color: #aaa;
+  }
+  
+  /* Estilos para la tabla */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  table th,
+  table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  table th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  table td {
+    background-color: white;
+    color: black;
+  }
+  
+  table th i {
+    margin-left: 5px;
+    cursor: pointer;
+    color: #888;
+  }
+  
+  table th i:hover {
+    color: #333;
+  }
+  
+  table td i {
+    margin-right: 10px;
+    cursor: pointer;
+    color: #007bff;
+  }
+  
+  table td i:hover {
+    color: #007bff;
+  }
+  
+  /* Estilos para el pie de la tabla */
+  .table_fotter {
+    text-align: right;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .table_fotter p {
+    margin: 0;
+  }
+  .icon-action {
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 0 5px;
+    color: #007bff; /* Color azul para editar */
+  }
+  
+  .icon-action.bi-trash {
+    color: #dc3545; /* Color rojo para eliminar */
+  }
+  
+  
+  

@@ -1,0 +1,20 @@
+<h2 mat-dialog-title class="dialog-title">
+  <!-- Botón de cierre -->
+  <button mat-icon-button class="close-button" (click)="dialogRef.close()">
+    <mat-icon>close</mat-icon>
+  </button>
+</h2>
+
+<mat-dialog-content class="dialog-content">
+  <mat-icon>add_circle</mat-icon> Selecciona una opción
+  <p>¿Cómo deseas ingresar el estado?</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center" class="dialog-actions">
+  <button mat-stroked-button color="primary" class="rounded-button" (click)="seleccionar('estado')">
+    <mat-icon>edit</mat-icon> Ingresar un Estado
+  </button>
+  <button mat-stroked-button color="accent" class="rounded-button" (click)="seleccionar('excel')">
+    <mat-icon>upload_file</mat-icon> Ingresar desde Excel
+  </button>
+</mat-dialog-actions>

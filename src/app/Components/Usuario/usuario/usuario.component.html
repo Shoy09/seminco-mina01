@@ -1,0 +1,159 @@
+<div class="contenedor-perfil">
+    <!-- Encabezado azul -->
+    <div class="encabezado-perfil-azul"></div>
+    
+    <div class="info-perfil">
+        <div class="imagenes-perfil">
+            <img src="usuario/user1.png" alt="Foto de perfil" class="foto-perfil">
+            <img [src]="datosUsuario.firma ? datosUsuario.firma : 'usuario/firma.png'" 
+     alt="Firma" 
+     class="firma" 
+     (click)="mostrarFirmaGrande = true">   
+
+        </div>
+        
+        <div class="info-texto">
+            <h2>{{ datosUsuario.nombre }} {{ datosUsuario.apellidos }}</h2>
+            <p>{{ datosUsuario.cargo }}</p>
+        </div>
+        
+        <button class="boton-editar" (click)="Edicion()">Editar</button>
+    </div>
+</div>
+
+<div class="modal-firma" *ngIf="mostrarFirmaGrande" (click)="mostrarFirmaGrande = false">
+    <div class="modal-contenido">
+        <img [src]="datosUsuario.firma ? datosUsuario.firma : 'usuario/firma.png'" 
+             alt="Firma grande" 
+             class="firma-grande">
+        <div class="opciones-firma">
+            <button (click)="cambiarFirma()">Cambiar firma</button>
+            <button (click)="eliminarFirma()">Eliminar firma</button>
+        </div>
+    </div>
+</div>
+
+ 
+
+<!-- Información detallada -->
+<div class="contenedor-detalles-perfil">
+    <div class="detalles-perfil">
+        <div class="detalle">
+            <strong>Nombre</strong>
+            <span>{{ datosUsuario.nombre }}</span>
+            <hr>
+        </div>
+
+        <div class="detalle">
+            <strong>Apellidos</strong>
+            <span>{{ datosUsuario.apellidos }}</span>
+            <hr>
+        </div>
+
+        <div class="detalle">
+            <strong>Cargo</strong>
+            <span>{{ datosUsuario.cargo }}</span>
+            <hr>
+        </div>
+
+        <div class="detalle">
+            <strong>Empresa</strong>
+            <span>{{ datosUsuario.empresa }}</span>
+            <hr>
+        </div>
+
+        <div class="detalle">
+            <strong>Guardia</strong>
+            <span>{{ datosUsuario.guardia }}</span>
+            <hr>
+        </div>
+
+        <div class="detalle">
+            <strong>Equipo Autorizado</strong>
+            <span>{{ datosUsuario.equipoAutorizado }}</span>
+            <hr>
+        </div>
+
+        <div class="detalle">
+            <strong>Correo</strong>
+            <span>{{ datosUsuario.correo }}</span>
+            <hr>
+        </div>
+
+       
+    </div>
+</div>
+
+<div class="ventana-modal" *ngIf="editando">
+    <div class="contenido-modal">
+        <h3>Editar Perfil</h3>
+        <form [formGroup]="formularioUsuario" (ngSubmit)="guardarCambios()">
+            
+            <label>Nombre</label>
+            <input type="text" formControlName="nombre">
+            <div class="error" *ngIf="formularioUsuario.get('nombre')?.touched">
+                {{ obtenerError('nombre') }}
+            </div>
+
+            <label>Apellidos</label>
+            <input type="text" formControlName="apellidos">
+            <div class="error" *ngIf="formularioUsuario.get('apellidos')?.touched">
+                {{ obtenerError('apellidos') }}
+            </div>
+
+            <label>Cargo</label>
+            <input type="text" formControlName="cargo">
+            <div class="error" *ngIf="formularioUsuario.get('cargo')?.touched">
+                {{ obtenerError('cargo') }}
+            </div>
+
+            <label>Empresa</label>
+            <input type="text" formControlName="empresa">
+            <div class="error" *ngIf="formularioUsuario.get('empresa')?.touched">
+                {{ obtenerError('empresa') }}
+            </div>
+
+            <label>Guardia</label>
+            <input type="text" formControlName="guardia">
+            <div class="error" *ngIf="formularioUsuario.get('guardia')?.touched">
+                {{ obtenerError('guardia') }}
+            </div>
+
+            <label>Equipo Autorizado</label>
+            <input type="text" formControlName="equipoAutorizado">
+            <div class="error" *ngIf="formularioUsuario.get('equipoAutorizado')?.touched">
+                {{ obtenerError('equipoAutorizado') }}
+            </div>
+
+            <label>Correo</label>
+            <input type="email" formControlName="correo">
+            <div class="error" *ngIf="formularioUsuario.get('correo')?.touched">
+                {{ obtenerError('correo') }}
+            </div>
+
+            <label>Contraseña</label>
+            <div class="input-contenedor">
+                <input [type]="mostrarContrasena ? 'text' : 'password'" formControlName="contraseña">
+                <button type="button" (click)="toggleContrasena()">
+                    👁️
+                </button>
+            </div>
+            <div class="error" *ngIf="formularioUsuario.get('contraseña')?.touched">
+                {{ obtenerError('contraseña') }}
+
+            </div>
+
+            <div class="botones-modal">
+                <button type="button" (click)="guardarCambios()">Guardar</button>
+
+                <button type="button" (click)="Edicion()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-exito" *ngIf="mensajeExito">
+    <div class="modal-content-exito">
+        <p>✅ Cambios guardados correctamente.</p>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+
+
+.chart-title {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.chart-info {
+  margin-top: 5px;
+  font-size: 1em;
+}
+
+.meta-info, .promedio-info, .cumplimiento-info {
+  margin: 5px 0;
+}
+
+.label {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.value {
+  font-weight: normal;
+}
+
+.success {
+  color: #00aa00; /* Verde si cumple/supera la meta */
+}
+
+.danger {
+  color: #ff0000; /* Rojo si no cumple */
+}

@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Vista Previa del PDF</h2>
+<mat-dialog-content>
+  <iframe 
+    [src]="data.url | safeUrl" 
+    width="100%" 
+    height="600px" 
+    frameborder="0">
+  </iframe>
+</mat-dialog-content>

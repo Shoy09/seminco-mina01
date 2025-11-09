@@ -1,0 +1,61 @@
+
+  
+  .campos-dinamicos-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    gap: 15px; /* Espaciado entre los campos */
+  }
+  
+  .campo-item {
+    width: 100%; /* Asegura que los campos ocupen el mismo espacio */
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center; /* Centrar los botones */
+    gap: 20px; /* Espaciado entre los botones */
+    margin-top: 20px;
+  }
+  
+  
+  /* Estilos generales para los botones */
+  button {
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 25px; /* Bordes redondeados */
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  /* Botón Cancelar (rojo) */
+  button[color="warn"] {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+  }
+  
+  button[color="warn"]:hover {
+    background-color: #ff4c4c;
+    transform: scale(1.05);
+  }
+  
+  /* Botón Guardar (azul) */
+  button[color="primary"] {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+  }
+  
+  button[color="primary"]:hover {
+    background-color: #357bd8;
+    transform: scale(1.05);
+  }
+  
+  /* Deshabilitar botón Guardar si el formulario no es válido */
+  button[color="primary"]:disabled {
+    background-color: #b0c4de;
+    color: #ffffff;
+    cursor: not-allowed;
+    transform: none;
+  }
+  

@@ -1,0 +1,90 @@
+/* Ampliar tamaño del diálogo */
+:host ::ng-deep .mat-dialog-container {
+  width: 80vw !important;
+  max-width: 1000px !important;
+  border-radius: 12px;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh; /* Altura total del diálogo */
+}
+
+/* Encabezado fijo */
+.dialog-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky; /* Mantiene fijo el encabezado */
+  top: 0;
+  z-index: 10;
+  background-color: #f1f3f5;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #dee2e6;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* Contenedor con scroll */
+.dialog-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem 2rem;
+  background-color: #fff;
+  max-height: 75vh; /* permite desplazamiento interno */
+}
+
+/* Resto de estilos */
+.titulo-centrado {
+  text-align: center;
+  font-weight: 600;
+  color: #212529;
+  margin: 1rem 0;
+}
+
+.plan-card {
+  border-radius: 10px;
+  border: 1px solid #dee2e6;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.plan-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.campo {
+  flex: 1 1 300px;
+  max-width: 320px;
+}
+
+mat-expansion-panel {
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+mat-expansion-panel-header {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.boton-centrado {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+button {
+  min-width: 160px;
+  font-weight: 600;
+}
+
+.close-btn {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+}

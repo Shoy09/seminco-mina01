@@ -1,0 +1,85 @@
+<div class="dashboard-container">
+  <!-- Filtros superiores -->
+  <div class="filtros-container">
+    <label>
+      Desde:
+      <input type="date" [(ngModel)]="fechaDesde" />
+    </label>
+    <label>
+      Hasta:
+      <input type="date" [(ngModel)]="fechaHasta" />
+    </label>
+    <label>
+      Turno:
+      <select [(ngModel)]="turnoSeleccionado">
+        <option value="">Todos</option>
+        <option *ngFor="let turno of turnos" [value]="turno">
+          {{ turno }}
+        </option>
+      </select>
+    </label>
+    <button (click)="aplicarFiltrosLocales()">Filtrar</button>
+    <button (click)="quitarFiltros()">Quitar filtros</button>
+    <button (click)="exportarFiltrado()">Exportar a Excel</button>
+    <button (click)="exportarCompleto()" class="btn btn-success">
+      <i class="fas fa-file-excel"></i> Exportar a Excel completo
+    </button>
+    <button (click)="exportarPdf()">Exportar PDF</button>
+  </div>
+
+  <!-- Tarjetas con los gráficos -->
+  <div id="grafico1" class="graficos-container">
+      <div class="card">
+        <h3>REPORTE DE FACTOR DE AVANCE - Resumen semanal </h3>
+         <button class="info-btn" (click)="mostrarInfoGrafico1()">
+            <i class="fas fa-info-circle"></i> Ver Cálculos
+          </button>
+        <app-factor-avance-semana [datos]="datosOperaciones"></app-factor-avance-semana>
+      </div>
+  </div>
+  <div id="grafico2" class="graficos-container">
+      <div class="card">
+        <button class="info-btn" (click)="mostrarInfoGrafico2()">
+            <i class="fas fa-info-circle"></i> Ver Cálculos
+          </button>
+        <h3>REPORTE DE FACTOR DE POTENCIA - Resumen Semanal</h3>
+        <app-factor-avance-segundo-semana [datos]="datosOperaciones" [toneladas]="toneladas"></app-factor-avance-segundo-semana>
+      </div>
+  </div>
+  <div id="grafico3" class="graficos-container">
+      <div class="card">
+        <button class="info-btn" (click)="mostrarInfoGrafico3()">
+            <i class="fas fa-info-circle"></i> Ver Cálculos
+          </button>
+        <h3>REPORTE DE FACTOR DE AVANCE - Semana </h3>
+        <app-factor-avance-dias-semana [datos]="datosOperaciones"></app-factor-avance-dias-semana>
+      </div>
+  </div>
+  <div id="grafico4" class="graficos-container">
+      <div class="card">
+        <button class="info-btn" (click)="mostrarInfoGrafico4()">
+            <i class="fas fa-info-circle"></i> Ver Cálculos
+          </button>
+        <h3>REPORTE DE FACTOR DE POTENCIA - Semana</h3>
+        <app-factor-avance-segundo-dias-semana [datos]="datosOperaciones" [toneladas]="toneladas"></app-factor-avance-segundo-dias-semana>
+      </div>
+  </div>
+  <div id="grafico5" class="graficos-container">
+      <div class="card">
+        <button class="info-btn" (click)="mostrarInfoGrafico5()">
+            <i class="fas fa-info-circle"></i> Ver Cálculos
+          </button>
+        <h3>REPORTE DE FACTOR DE AVANCE - Fechas </h3>
+        <app-factor-avance [datos]="datosOperaciones"></app-factor-avance>
+      </div>
+  </div>
+  <div id="grafico6" class="graficos-container">
+      <div class="card">
+        <button class="info-btn" (click)="mostrarInfoGrafico6()">
+            <i class="fas fa-info-circle"></i> Ver Cálculos
+          </button>
+        <h3>REPORTE DE FACTOR DE POTENCIA - Fechas</h3>
+        <app-factor-avance-segundo [datos]="datosOperaciones" [toneladas]="toneladas"></app-factor-avance-segundo>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+.usuarios-container {
+    max-width: 1200px; /* Aumentamos el ancho máximo del contenedor */
+    margin: auto;
+    padding: 20px;
+    width: 95%; /* Permitimos que ocupe más espacio */
+}
+
+h2 {
+    text-align: center;
+    color: #3f51b5;
+}
+
+.usuarios-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+mat-form-field {
+    width: 300px;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-mdc-form-field {
+    margin-left: 10px;
+}
+
+mat-paginator {
+    margin-top: 15px;
+}
+
+.operacion-chip {
+    background-color: #e0e0e0;
+    border-radius: 12px;
+    padding: 2px 8px;
+    margin-right: 4px;
+    font-size: 13px;
+    display: inline-block;
+}
+
+/* Especificamos anchos para las columnas */
+.mat-column-codigo_dni {
+    width: 15%;
+}
+
+.mat-column-nombre {
+    width: 25%;
+}
+
+.mat-column-operaciones {
+    width: 35%; /* Aumentamos considerablemente el ancho de esta columna */
+    word-break: break-word; /* Para manejar texto largo */
+}
+
+.mat-column-rol {
+    width: 15%;
+}
+
+.mat-column-acciones {
+    width: 10%;
+    text-align: center;
+}

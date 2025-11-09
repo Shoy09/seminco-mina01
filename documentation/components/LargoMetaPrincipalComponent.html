@@ -1,0 +1,2184 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>I-MINER documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">I-MINER documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  LargoMetaPrincipalComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-largo-meta-principal</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>FormsModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./largo-meta-principal.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./largo-meta-principal.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#areasBase" >areasBase</a>
+                            </li>
+                            <li>
+                                <a href="#areasConMetas" >areasConMetas</a>
+                            </li>
+                            <li>
+                                <a href="#meses" >meses</a>
+                            </li>
+                            <li>
+                                <a href="#mesSeleccionado" >mesSeleccionado</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#todasLasMetas" >todasLasMetas</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#agregarMeta" >agregarMeta</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#agregarMetaVacia" >agregarMetaVacia</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#agregarNuevaMeta" >agregarNuevaMeta</a>
+                            </li>
+                            <li>
+                                <a href="#cambiarMes" >cambiarMes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#cargarMetasDesdeApi" >cargarMetasDesdeApi</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#crearMetaVacia" >crearMetaVacia</a>
+                            </li>
+                            <li>
+                                <a href="#editarMeta" >editarMeta</a>
+                            </li>
+                            <li>
+                                <a href="#eliminarMeta" >eliminarMeta</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#inicializarAreas" >inicializarAreas</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#leerArchivoExcel" >leerArchivoExcel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#mostrarResumenCarga" >mostrarResumenCarga</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#organizarMetasPorArea" >organizarMetasPorArea</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#procesarDatosExcel" >procesarDatosExcel</a>
+                            </li>
+                            <li>
+                                <a href="#subirMetas" >subirMetas</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(metaService: <a href="../injectables/MetaLargoService.html" target="_self">MetaLargoService</a>, dialog: MatDialog, _toastr: ToastrService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>metaService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MetaLargoService.html" target="_self" >MetaLargoService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_toastr</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="agregarMeta"></a>
+                    <span class="name">
+                        <span ><b>agregarMeta</b></span>
+                        <a href="#agregarMeta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>agregarMeta(areaIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="224"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:224</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>areaIndex</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="agregarMetaVacia"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>agregarMetaVacia</b></span>
+                        <a href="#agregarMetaVacia"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>agregarMetaVacia(areaIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="282"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:282</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>areaIndex</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="agregarNuevaMeta"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>agregarNuevaMeta</b></span>
+                        <a href="#agregarNuevaMeta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>agregarNuevaMeta(areaIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, mes: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, grafico: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, nombre: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, objetivo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="287"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:287</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>areaIndex</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>mes</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>grafico</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>nombre</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>objetivo</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cambiarMes"></a>
+                    <span class="name">
+                        <span ><b>cambiarMes</b></span>
+                        <a href="#cambiarMes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cambiarMes(mes: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>mes</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cargarMetasDesdeApi"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>cargarMetasDesdeApi</b></span>
+                        <a href="#cargarMetasDesdeApi"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cargarMetasDesdeApi()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="crearMetaVacia"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>crearMetaVacia</b></span>
+                        <a href="#crearMetaVacia"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>crearMetaVacia(grafico: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>grafico</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/Meta.html" target="_self" >Meta</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editarMeta"></a>
+                    <span class="name">
+                        <span ><b>editarMeta</b></span>
+                        <a href="#editarMeta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editarMeta(areaIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, metaIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="158"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:158</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>areaIndex</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>metaIndex</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eliminarMeta"></a>
+                    <span class="name">
+                        <span ><b>eliminarMeta</b></span>
+                        <a href="#eliminarMeta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>eliminarMeta(areaIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, metaIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>areaIndex</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>metaIndex</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="inicializarAreas"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>inicializarAreas</b></span>
+                        <a href="#inicializarAreas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>inicializarAreas()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="leerArchivoExcel"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>leerArchivoExcel</b></span>
+                        <a href="#leerArchivoExcel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>leerArchivoExcel(file: File)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="315"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:315</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>file</td>
+                                            <td>
+                                                        <code>File</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mostrarResumenCarga"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>mostrarResumenCarga</b></span>
+                        <a href="#mostrarResumenCarga"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>mostrarResumenCarga(total: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, exitosas: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, errores: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, omitidas: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="436"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:436</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>total</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>exitosas</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>errores</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>omitidas</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="organizarMetasPorArea"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>organizarMetasPorArea</b></span>
+                        <a href="#organizarMetasPorArea"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>organizarMetasPorArea()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="procesarDatosExcel"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>procesarDatosExcel</b></span>
+                        <a href="#procesarDatosExcel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>procesarDatosExcel(datos: any[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="354"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:354</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>datos</td>
+                                            <td>
+                                                        <code>any[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subirMetas"></a>
+                    <span class="name">
+                        <span ><b>subirMetas</b></span>
+                        <a href="#subirMetas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>subirMetas()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="292"
+                                    class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:292</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="areasBase"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>areasBase</b></span>
+                        <a href="#areasBase"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    &#x27;METROS PERFORADOS - EQUIPO&#x27;,
+    &#x27;METROS PERFORADOS - LABOR&#x27;,
+    &#x27;LONGITUD DE PERFORACION&#x27;,
+    &#x27;HOROMETROS&#x27;,
+    &#x27;ESTADOS DE EQUIPOS&#x27;,
+    &#x27;ESTADOS GENERAL&#x27;,
+    &#x27;DISPONIBILIDAD MECANICA - EQUIPO&#x27;,
+    &#x27;DISPONIBILIDAD MECANICA - GENERAL&#x27;,
+    &#x27;UTILIZACION - EQUIPO&#x27;,
+    &#x27;UTILIZACION - GENERAL&#x27;,
+    &#x27;RENDIMIENTO DE PERFORACION - EQUIPO&#x27;,
+    &#x27;PROMEDIO DE RENDIMIENTO&#x27;,
+    &#x27;SUMA DE METROS PERFORADOS&#x27; 
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="areasConMetas"></a>
+                    <span class="name">
+                        <span ><b>areasConMetas</b></span>
+                        <a href="#areasConMetas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="meses"></a>
+                    <span class="name">
+                        <span ><b>meses</b></span>
+                        <a href="#meses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    &#x27;Enero&#x27;, &#x27;Febrero&#x27;, &#x27;Marzo&#x27;, &#x27;Abril&#x27;, &#x27;Mayo&#x27;, &#x27;Junio&#x27;,
+    &#x27;Julio&#x27;, &#x27;Agosto&#x27;, &#x27;Septiembre&#x27;, &#x27;Octubre&#x27;, &#x27;Noviembre&#x27;, &#x27;Diciembre&#x27;
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mesSeleccionado"></a>
+                    <span class="name">
+                        <span ><b>mesSeleccionado</b></span>
+                        <a href="#mesSeleccionado"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="todasLasMetas"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>todasLasMetas</b></span>
+                        <a href="#todasLasMetas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Meta.html" target="_self" >Meta[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CommonModule } from &#x27;@angular/common&#x27;;
+import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { Meta } from &#x27;../../../../../models/meta.model&#x27;;
+import { MetaLargoService } from &#x27;../../../../../services/meta-largo.service&#x27;;
+import { DialogMetaComponent } from &#x27;../dialog-meta/dialog-meta.component&#x27;;
+import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { DialogEditMetaComponent } from &#x27;../dialog-edit-meta/dialog-edit-meta.component&#x27;;
+
+
+@Component({
+  selector: &#x27;app-largo-meta-principal&#x27;,
+  imports: [CommonModule, FormsModule],
+  templateUrl: &#x27;./largo-meta-principal.component.html&#x27;,
+  styleUrl: &#x27;./largo-meta-principal.component.css&#x27;
+})
+export class LargoMetaPrincipalComponent implements OnInit {
+  meses: string[] &#x3D; [
+    &#x27;Enero&#x27;, &#x27;Febrero&#x27;, &#x27;Marzo&#x27;, &#x27;Abril&#x27;, &#x27;Mayo&#x27;, &#x27;Junio&#x27;,
+    &#x27;Julio&#x27;, &#x27;Agosto&#x27;, &#x27;Septiembre&#x27;, &#x27;Octubre&#x27;, &#x27;Noviembre&#x27;, &#x27;Diciembre&#x27;
+  ];
+
+  mesSeleccionado: string &#x3D; &#x27;&#x27;;
+  areasConMetas: { nombre: string; periodo: string; metas: Meta[] }[] &#x3D; [];
+  private todasLasMetas: Meta[] &#x3D; [];
+  private areasBase: string[] &#x3D; [
+    &#x27;METROS PERFORADOS - EQUIPO&#x27;,
+    &#x27;METROS PERFORADOS - LABOR&#x27;,
+    &#x27;LONGITUD DE PERFORACION&#x27;,
+    &#x27;HOROMETROS&#x27;,
+    &#x27;ESTADOS DE EQUIPOS&#x27;,
+    &#x27;ESTADOS GENERAL&#x27;,
+    &#x27;DISPONIBILIDAD MECANICA - EQUIPO&#x27;,
+    &#x27;DISPONIBILIDAD MECANICA - GENERAL&#x27;,
+    &#x27;UTILIZACION - EQUIPO&#x27;,
+    &#x27;UTILIZACION - GENERAL&#x27;,
+    &#x27;RENDIMIENTO DE PERFORACION - EQUIPO&#x27;,
+    &#x27;PROMEDIO DE RENDIMIENTO&#x27;,
+    &#x27;SUMA DE METROS PERFORADOS&#x27; 
+  ];
+
+  constructor(private metaService: MetaLargoService, private dialog: MatDialog, private _toastr: ToastrService ) {} 
+
+  ngOnInit() {
+    const mesActual &#x3D; new Date().getMonth();
+    this.mesSeleccionado &#x3D; this.meses[mesActual];
+    this.cargarMetasDesdeApi();
+  }
+
+  private cargarMetasDesdeApi(): void {
+    this.metaService.getMetas().subscribe({
+      next: (metas: Meta[]) &#x3D;&gt; {
+        if (metas &amp;&amp; metas.length &gt; 0) {
+          this.todasLasMetas &#x3D; metas; // &lt;&lt;&lt; GUARDAMOS UNA COPIA
+          this.organizarMetasPorArea();
+        } else {
+          this.inicializarAreas();
+        }
+      },
+      error: (error) &#x3D;&gt; {
+        console.error(&#x27;Error al obtener las metas:&#x27;, error);
+        this.inicializarAreas();
+      }
+    });
+  }
+
+  private organizarMetasPorArea(): void {
+    // Primero agrupamos por grafico
+    const agrupadas: { [grafico: string]: Meta[] } &#x3D; {};
+
+    this.todasLasMetas.forEach(meta &#x3D;&gt; {
+      if (!agrupadas[meta.grafico]) {
+        agrupadas[meta.grafico] &#x3D; [];
+      }
+      agrupadas[meta.grafico].push(meta);
+    });
+
+    this.areasConMetas &#x3D; this.areasBase.map(areaNombre &#x3D;&gt; ({
+      nombre: areaNombre,
+      periodo: this.mesSeleccionado,
+      metas: agrupadas[areaNombre]?.filter(meta &#x3D;&gt;
+        meta.mes.toLowerCase() &#x3D;&#x3D;&#x3D; this.mesSeleccionado.toLowerCase()
+      ) || [this.crearMetaVacia(areaNombre)]
+    }));
+  }
+
+
+  cambiarMes(mes: string): void {
+    this.mesSeleccionado &#x3D; mes;
+    this.organizarMetasPorArea(); // &lt;&lt;&lt; cuando cambies el mes, solo reorganizas filtrando
+  }
+  
+
+  private inicializarAreas(): void {
+    this.areasConMetas &#x3D; this.areasBase.map(areaNombre &#x3D;&gt; ({
+      nombre: areaNombre,
+      periodo: this.mesSeleccionado,
+      metas: [this.crearMetaVacia(areaNombre)]
+    }));
+  }
+
+  private crearMetaVacia(grafico: string): Meta {
+    return {
+      mes: this.mesSeleccionado,
+      grafico: grafico,
+      nombre: &#x27;&#x27;,
+      objetivo: 0
+    };
+  }
+
+  eliminarMeta(areaIndex: number, metaIndex: number): void {
+    const meta &#x3D; this.areasConMetas[areaIndex].metas[metaIndex];
+    
+    // Verificar si la meta tiene un ID (existe en el backend)
+    if (meta.id) {
+      this.metaService.deleteMeta(meta.id).subscribe({
+        next: () &#x3D;&gt; {
+          // Eliminar la meta de la lista local
+          this.areasConMetas[areaIndex].metas.splice(metaIndex, 1);
+          
+          // Mostrar mensaje de éxito
+          this._toastr.success(&#x27;Meta eliminada correctamente&#x27;, &#x27;Éxito&#x27;, {
+            timeOut: 3000,
+            positionClass: &#x27;toast-top-right&#x27;
+          });
+  
+          // Si no quedan metas, agregar una vacía
+          if (this.areasConMetas[areaIndex].metas.length &#x3D;&#x3D;&#x3D; 0) {
+            this.agregarMetaVacia(areaIndex);
+          }
+        },
+        error: (error) &#x3D;&gt; {
+          console.error(&#x27;Error al eliminar la meta:&#x27;, error);
+          // Mostrar mensaje de error
+          this._toastr.error(&#x27;No se pudo eliminar la meta&#x27;, &#x27;Error&#x27;, {
+            timeOut: 3000,
+            positionClass: &#x27;toast-top-right&#x27;
+          });
+        }
+      });
+    } else {
+      // Si la meta no tiene ID (es una meta vacía), eliminamos localmente
+      this.areasConMetas[areaIndex].metas.splice(metaIndex, 1);
+      
+      // Mostrar mensaje informativo (no es necesario para el usuario, pero puedes agregarlo)
+      this._toastr.info(&#x27;Meta local eliminada&#x27;, &#x27;Información&#x27;, {
+        timeOut: 2000,
+        positionClass: &#x27;toast-top-right&#x27;
+      });
+  
+      if (this.areasConMetas[areaIndex].metas.length &#x3D;&#x3D;&#x3D; 0) {
+        this.agregarMetaVacia(areaIndex);
+      }
+    }
+  }
+
+    editarMeta(areaIndex: number, metaIndex: number): void {
+      const meta &#x3D; this.areasConMetas[areaIndex].metas[metaIndex];
+      
+      const dialogRef &#x3D; this.dialog.open(DialogEditMetaComponent, {
+        width: &#x27;400px&#x27;,
+        data: {
+          mes: meta.mes,
+          grafico: meta.grafico,
+          nombre: meta.nombre,
+          objetivo: meta.objetivo,
+          id: meta.id // Pasamos el ID si existe para la actualización
+        }
+      });
+    
+      dialogRef.afterClosed().subscribe(result &#x3D;&gt; {
+        if (result) {
+          // Si el usuario guardó los cambios
+          const metaActualizada: Meta &#x3D; {
+            id: meta.id, // Mantenemos el mismo ID
+            mes: result.mes,
+            grafico: result.grafico,
+            nombre: result.nombre,
+            objetivo: result.objetivo
+          };
+    
+          if (meta.id) {
+            // Si la meta ya existe en el backend, la actualizamos
+            this.metaService.updateMeta(meta.id, metaActualizada).subscribe({
+              next: (metaActualizada) &#x3D;&gt; {
+                this._toastr.success(&#x27;Meta actualizada correctamente&#x27;, &#x27;Éxito&#x27;, {
+                  timeOut: 3000,
+                  positionClass: &#x27;toast-top-right&#x27;
+                });
+                this.cargarMetasDesdeApi(); // Recargamos las metas
+              },
+              error: (error) &#x3D;&gt; {
+                console.error(&#x27;Error al actualizar la meta:&#x27;, error);
+                this._toastr.error(&#x27;No se pudo actualizar la meta&#x27;, &#x27;Error&#x27;, {
+                  timeOut: 3000,
+                  positionClass: &#x27;toast-top-right&#x27;
+                });
+              }
+            });
+          } else {
+            // Si es una meta nueva que aún no se ha guardado, la creamos
+            this.metaService.createMeta(metaActualizada).subscribe({
+              next: (metaCreada) &#x3D;&gt; {
+                this._toastr.success(&#x27;Meta guardada correctamente&#x27;, &#x27;Éxito&#x27;, {
+                  timeOut: 3000,
+                  positionClass: &#x27;toast-top-right&#x27;
+                });
+                this.cargarMetasDesdeApi(); // Recargamos las metas
+              },
+              error: (error) &#x3D;&gt; {
+                console.error(&#x27;Error al crear la meta:&#x27;, error);
+                this._toastr.error(&#x27;No se pudo guardar la meta&#x27;, &#x27;Error&#x27;, {
+                  timeOut: 3000,
+                  positionClass: &#x27;toast-top-right&#x27;
+                });
+              }
+            });
+          }
+        }
+      });
+    }
+
+  agregarMeta(areaIndex: number): void { 
+    const grafico &#x3D; this.areasConMetas[areaIndex].nombre;
+  
+    const dialogRef &#x3D; this.dialog.open(DialogMetaComponent, {
+      width: &#x27;400px&#x27;,
+      data: {
+        mes: this.mesSeleccionado,
+        grafico: grafico
+      }
+    });
+  
+    dialogRef.afterClosed().subscribe(result &#x3D;&gt; {
+      if (result) {
+        const nuevaMeta: Meta &#x3D; {
+          mes: result.mes,
+          grafico: result.grafico,
+          nombre: result.nombre,
+          objetivo: result.objetivo
+        };
+  
+        // Llamamos al MetaService para crear la meta
+        this.metaService.createMeta(nuevaMeta).subscribe({
+          next: (metaCreada) &#x3D;&gt; {
+            // Mostrar notificación de éxito
+            this._toastr.success(&#x27;Meta creada correctamente&#x27;, &#x27;Éxito&#x27;, {
+              timeOut: 3000,
+              positionClass: &#x27;toast-top-right&#x27;,
+              progressBar: true
+            });
+  
+            // Cerrar el diálogo (aunque después de afterClosed ya está cerrado)
+            dialogRef.close(); 
+  
+            // Recargar las metas para mostrar la nueva
+            this.cargarMetasDesdeApi();
+          },
+          error: (err) &#x3D;&gt; {
+            console.error(&#x27;Error al crear la meta:&#x27;, err);
+            
+            // Mostrar notificación de error
+            this._toastr.error(&#x27;No se pudo crear la meta&#x27;, &#x27;Error&#x27;, {
+              timeOut: 3000,
+              positionClass: &#x27;toast-top-right&#x27;,
+              progressBar: true
+            });
+          }
+        });
+      } else {
+        // Opcional: Mostrar mensaje si el usuario cerró el diálogo sin guardar
+        this._toastr.info(&#x27;Operación cancelada&#x27;, &#x27;Información&#x27;, {
+          timeOut: 2000,
+          positionClass: &#x27;toast-top-right&#x27;
+        });
+      }
+    });
+  }
+    
+
+  private agregarMetaVacia(areaIndex: number): void {
+    const grafico &#x3D; this.areasConMetas[areaIndex].nombre;
+    this.agregarNuevaMeta(areaIndex, this.mesSeleccionado, grafico, &#x27;&#x27;, 0);
+  }
+
+  private agregarNuevaMeta(areaIndex: number, mes: string, grafico: string, nombre: string, objetivo: number): void {
+    const nuevaMeta: Meta &#x3D; { mes, grafico, nombre, objetivo };
+    this.areasConMetas[areaIndex].metas.push(nuevaMeta);
+  }
+
+  subirMetas(): void {
+    const fileInput &#x3D; document.createElement(&#x27;input&#x27;);
+    fileInput.type &#x3D; &#x27;file&#x27;;
+    fileInput.accept &#x3D; &#x27;.xlsx, .xls, .csv&#x27;;
+    
+    fileInput.onchange &#x3D; (event: any) &#x3D;&gt; {
+      const file &#x3D; event.target.files[0];
+      if (file) {
+        // Mostrar notificación de carga
+        const toastRef &#x3D; this._toastr.info(&#x27;Procesando archivo...&#x27;, &#x27;Cargando&#x27;, {
+          disableTimeOut: true,
+          tapToDismiss: false
+        });
+        
+        this.leerArchivoExcel(file).finally(() &#x3D;&gt; {
+          this._toastr.clear(toastRef.toastId);
+        });
+      }
+    };
+    
+    fileInput.click();
+  }
+  
+  private async leerArchivoExcel(file: File): Promise&lt;void&gt; {
+    try {
+      const XLSX &#x3D; await import(&#x27;xlsx&#x27;);
+      const reader &#x3D; new FileReader();
+      
+      reader.onload &#x3D; (e: any) &#x3D;&gt; {
+        try {
+          const data &#x3D; new Uint8Array(e.target.result);
+          const workbook &#x3D; XLSX.read(data, { type: &#x27;array&#x27; });
+          const firstSheetName &#x3D; workbook.SheetNames[0];
+          const worksheet &#x3D; workbook.Sheets[firstSheetName];
+          const excelData &#x3D; XLSX.utils.sheet_to_json(worksheet);
+          
+          this.procesarDatosExcel(excelData);
+        } catch (error) {
+          console.error(&#x27;Error al procesar el archivo:&#x27;, error);
+          this._toastr.error(&#x27;Formato de archivo inválido&#x27;, &#x27;Error&#x27;, {
+            timeOut: 3000,
+            positionClass: &#x27;toast-top-right&#x27;
+          });
+        }
+      };
+      
+      reader.onerror &#x3D; () &#x3D;&gt; {
+        this._toastr.error(&#x27;Error al leer el archivo&#x27;, &#x27;Error&#x27;, {
+          timeOut: 3000
+        });
+      };
+      
+      reader.readAsArrayBuffer(file);
+    } catch (error) {
+      console.error(&#x27;Error al importar xlsx:&#x27;, error);
+      this._toastr.error(&#x27;Error al procesar el archivo&#x27;, &#x27;Error&#x27;, {
+        timeOut: 3000,
+        positionClass: &#x27;toast-top-right&#x27;
+      });
+    }
+  }
+  
+  private procesarDatosExcel(datos: any[]): void {
+    const metasParaCrear: Meta[] &#x3D; [];
+    let filasOmitidas &#x3D; 0;
+  
+    datos.forEach(fila &#x3D;&gt; {
+      const mes &#x3D; fila[&#x27;MES&#x27;]?.toString().trim() || this.mesSeleccionado;
+      const grafico &#x3D; fila[&#x27;GRAFICO&#x27;]?.toString().trim() || &#x27;&#x27;;
+      const nombre &#x3D; fila[&#x27;NOMBRE&#x27;]?.toString().trim() || &#x27;&#x27;;
+      const objetivo &#x3D; parseFloat(fila[&#x27;OBJETIVO&#x27;]) || 0;
+  
+      if (grafico &amp;&amp; nombre &amp;&amp; objetivo) {
+        const nuevaMeta: Meta &#x3D; {
+          mes,
+          grafico,
+          nombre,
+          objetivo
+        };
+        metasParaCrear.push(nuevaMeta);
+      } else {
+        filasOmitidas++;
+        console.warn(&#x27;Fila incompleta, se omitió:&#x27;, fila);
+      }
+    });
+  
+    if (metasParaCrear.length &gt; 0) {
+      const totalMetas &#x3D; metasParaCrear.length;
+      let metasCreadas &#x3D; 0;
+      let errores &#x3D; 0;
+  
+      // Notificación de progreso
+      const progressToast &#x3D; this._toastr.info(
+        &#x60;Procesando ${metasParaCrear.length} metas...&#x60;, 
+        &#x27;Cargando&#x27;, 
+        {
+          disableTimeOut: true,
+          tapToDismiss: false
+        }
+      );
+  
+      metasParaCrear.forEach(meta &#x3D;&gt; {
+        this.metaService.createMeta(meta).subscribe({
+          next: () &#x3D;&gt; {
+            metasCreadas++;
+            if (metasCreadas + errores &#x3D;&#x3D;&#x3D; totalMetas) {
+              this._toastr.clear(progressToast.toastId);
+              this.mostrarResumenCarga(totalMetas, metasCreadas, errores, filasOmitidas);
+              this.cargarMetasDesdeApi(); // Actualizar lista
+            }
+          },
+          error: (error) &#x3D;&gt; {
+            console.error(&#x27;Error al crear meta:&#x27;, error);
+            errores++;
+            if (metasCreadas + errores &#x3D;&#x3D;&#x3D; totalMetas) {
+              this._toastr.clear(progressToast.toastId);
+              this.mostrarResumenCarga(totalMetas, metasCreadas, errores, filasOmitidas);
+            }
+          }
+        });
+      });
+  
+    } else {
+      this._toastr.warning(
+        &#x27;No se encontraron metas válidas en el archivo&#x27;, 
+        &#x27;Advertencia&#x27;, 
+        {
+          timeOut: 3000,
+          positionClass: &#x27;toast-top-right&#x27;
+        }
+      );
+      
+      if (filasOmitidas &gt; 0) {
+        this._toastr.info(
+          &#x60;${filasOmitidas} filas omitidas por datos incompletos&#x60;, 
+          &#x27;Información&#x27;, 
+          {
+            timeOut: 4000
+          }
+        );
+      }
+    }
+  }
+  
+  private mostrarResumenCarga(total: number, exitosas: number, errores: number, omitidas: number): void {
+    if (errores &#x3D;&#x3D;&#x3D; 0) {
+      this._toastr.success(
+        &#x60;Se crearon ${exitosas}/${total} metas correctamente&#x60;, 
+        &#x27;Proceso completado&#x27;, 
+        {
+          timeOut: 4000,
+          enableHtml: true
+        }
+      );
+    } else {
+      this._toastr.error(
+        &#x60;Se crearon ${exitosas}/${total} metas (${errores} errores)&#x60;, 
+        &#x27;Proceso completado con errores&#x27;, 
+        {
+          timeOut: 5000,
+          enableHtml: true
+        }
+      );
+    }
+  
+    if (omitidas &gt; 0) {
+      this._toastr.info(
+        &#x60;${omitidas} filas omitidas por datos incompletos&#x60;, 
+        &#x27;Filas omitidas&#x27;, 
+        {
+          timeOut: 4000
+        }
+      );
+    }
+  }
+
+}   </code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;metas-container&quot;&gt;    
+    &lt;div class&#x3D;&quot;top-bar&quot;&gt;
+      &lt;div class&#x3D;&quot;month-selector&quot;&gt;
+        &lt;label for&#x3D;&quot;mes&quot;&gt;Mes:&lt;/label&gt;
+        &lt;select [(ngModel)]&#x3D;&quot;mesSeleccionado&quot; (change)&#x3D;&quot;cambiarMes(mesSeleccionado)&quot;&gt;
+          &lt;option *ngFor&#x3D;&quot;let mes of meses&quot; [value]&#x3D;&quot;mes&quot;&gt;{{ mes }}&lt;/option&gt;
+        &lt;/select&gt;      
+      &lt;/div&gt;
+  
+      &lt;button class&#x3D;&quot;btn-subir&quot; (click)&#x3D;&quot;subirMetas()&quot;&gt;Subir Metas&lt;/button&gt;
+    &lt;/div&gt;
+  
+    &lt;div class&#x3D;&quot;metas-grid&quot;&gt;
+      &lt;!-- Tarjeta por cada área --&gt;
+      &lt;div class&#x3D;&quot;meta-card&quot; *ngFor&#x3D;&quot;let area of areasConMetas; let areaIndex &#x3D; index&quot;&gt;
+        &lt;div class&#x3D;&quot;meta-header&quot;&gt;
+          &lt;h2&gt;{{area.nombre}}&lt;/h2&gt;
+          &lt;span class&#x3D;&quot;meta-period&quot;&gt;{{area.periodo}}&lt;/span&gt;
+        &lt;/div&gt;
+        
+        &lt;div class&#x3D;&quot;meta-list-container&quot;&gt;
+          &lt;div class&#x3D;&quot;meta-list&quot;&gt;
+            &lt;!-- Meta por cada objetivo del área --&gt;
+            &lt;div class&#x3D;&quot;meta-item&quot; *ngFor&#x3D;&quot;let meta of area.metas; let metaIndex &#x3D; index&quot;&gt;
+              &lt;div class&#x3D;&quot;meta-info&quot;&gt;
+                &lt;span class&#x3D;&quot;meta-name&quot;&gt;{{meta.nombre}}&lt;/span&gt;
+                &lt;span class&#x3D;&quot;meta-target&quot;&gt;{{meta.objetivo}}&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;meta-actions&quot;&gt;
+                &lt;button class&#x3D;&quot;btn-icon edit&quot; title&#x3D;&quot;Editar meta&quot; (click)&#x3D;&quot;editarMeta(areaIndex, metaIndex)&quot;&gt;
+                  &lt;span class&#x3D;&quot;icon-edit&quot;&gt;&lt;/span&gt;
+                &lt;/button&gt;
+                &lt;button class&#x3D;&quot;btn-icon delete&quot; title&#x3D;&quot;Eliminar meta&quot; (click)&#x3D;&quot;eliminarMeta(areaIndex, metaIndex)&quot;&gt;
+                  &lt;span class&#x3D;&quot;icon-delete&quot;&gt;&lt;/span&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+  
+        &lt;div class&#x3D;&quot;card-footer&quot;&gt;
+          &lt;button class&#x3D;&quot;btn btn-add&quot; (click)&#x3D;&quot;agregarMeta(areaIndex)&quot;&gt;
+            &lt;span class&#x3D;&quot;icon-plus&quot;&gt;&lt;/span&gt; Agregar Meta
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="metas-container">        <div class="top-bar">      <div class="month-selector">        <label for="mes">Mes:</label>        <select [(ngModel)]="mesSeleccionado" (change)="cambiarMes(mesSeleccionado)">          <option *ngFor="let mes of meses" [value]="mes">{{ mes }}</option>        </select>            </div>        <button class="btn-subir" (click)="subirMetas()">Subir Metas</button>    </div>      <div class="metas-grid">      <!-- Tarjeta por cada área -->      <div class="meta-card" *ngFor="let area of areasConMetas; let areaIndex = index">        <div class="meta-header">          <h2>{{area.nombre}}</h2>          <span class="meta-period">{{area.periodo}}</span>        </div>                <div class="meta-list-container">          <div class="meta-list">            <!-- Meta por cada objetivo del área -->            <div class="meta-item" *ngFor="let meta of area.metas; let metaIndex = index">              <div class="meta-info">                <span class="meta-name">{{meta.nombre}}</span>                <span class="meta-target">{{meta.objetivo}}</span>              </div>              <div class="meta-actions">                <button class="btn-icon edit" title="Editar meta" (click)="editarMeta(areaIndex, metaIndex)">                  <span class="icon-edit"></span>                </button>                <button class="btn-icon delete" title="Eliminar meta" (click)="eliminarMeta(areaIndex, metaIndex)">                  <span class="icon-delete"></span>                </button>              </div>            </div>          </div>        </div>          <div class="card-footer">          <button class="btn btn-add" (click)="agregarMeta(areaIndex)">            <span class="icon-plus"></span> Agregar Meta          </button>        </div>      </div>    </div>  </div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BarrasMetroPerforadosLaborComponent', 'selector': 'app-barras-metro-perforados-labor'},{'name': 'ConfirmDialogComponent', 'selector': 'app-confirm-dialog'},{'name': 'CrearDataComponent', 'selector': 'app-crear-data'},{'name': 'CreatePlanAvanceComponent', 'selector': 'app-create-plan-avance'},{'name': 'CreatePlanMetrajeComponent', 'selector': 'app-create-plan-metraje'},{'name': 'CreatePlanProduccionComponent', 'selector': 'app-create-plan-produccion'},{'name': 'DialogEditMetaComponent', 'selector': 'app-dialog-edit-meta'},{'name': 'DialogEditMetaComponent', 'selector': 'app-dialog-edit-meta'},{'name': 'DialogEditMetaComponent', 'selector': 'app-dialog-edit-meta'},{'name': 'DialogMetaComponent', 'selector': 'app-dialog-meta'},{'name': 'DialogMetaComponent', 'selector': 'app-dialog-meta'},{'name': 'DialogMetaComponent', 'selector': 'app-dialog-meta'},{'name': 'DisponibilidadMecanicaEquipoComponent', 'selector': 'app-disponibilidad-mecanica-equipo'},{'name': 'DisponibilidadMecanicaEquipoComponent', 'selector': 'app-disponibilidad-mecanica-equipo'},{'name': 'DisponibilidadMecanicaEquipoComponent', 'selector': 'app-disponibilidad-mecanica-equipo'},{'name': 'DisponibilidadMecanicaGeneralComponent', 'selector': 'app-disponibilidad-mecanica-general'},{'name': 'DisponibilidadMecanicaGeneralComponent', 'selector': 'app-disponibilidad-mecanica-general'},{'name': 'DisponibilidadMecanicaGeneralComponent', 'selector': 'app-disponibilidad-mecanica-general'},{'name': 'EditarOperacionesDialogComponent', 'selector': 'app-editar-operaciones-dialog'},{'name': 'EditPlanAvanceComponent', 'selector': 'app-edit-plan-avance'},{'name': 'EditPlanMetrajeComponent', 'selector': 'app-edit-plan-metraje'},{'name': 'EditPlanProduccionComponent', 'selector': 'app-edit-plan-produccion'},{'name': 'EstadoFormComponent', 'selector': 'app-estado-form'},{'name': 'EstadoFormEditarComponent', 'selector': 'app-estado-form-editar'},{'name': 'EstadosComponent', 'selector': 'app-estados'},{'name': 'ExplosivosComponent', 'selector': 'app-explosivos'},{'name': 'GraficoBarrasAgrupadaComponent', 'selector': 'app-grafico-barras-agrupada'},{'name': 'GraficoBarrasAgrupadaNumLaborComponent', 'selector': 'app-grafico-barras-agrupada-num-labor'},{'name': 'GraficoBarrasComponent', 'selector': 'app-grafico-barras'},{'name': 'GraficoBarrasMetrosLaborComponent', 'selector': 'app-grafico-barras-metros-labor'},{'name': 'GraficoEstadosComponent', 'selector': 'app-grafico-estados'},{'name': 'GraficoEstadosComponent', 'selector': 'app-grafico-estados'},{'name': 'GraficoEstadosComponent', 'selector': 'app-grafico-estados'},{'name': 'GraficoHorometrosComponent', 'selector': 'app-grafico-horometros'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'HorizontalMetaPrincipalComponent', 'selector': 'app-horizontal-meta-principal'},{'name': 'HorometrosComponent', 'selector': 'app-horometros'},{'name': 'HorometrosComponent', 'selector': 'app-horometros'},{'name': 'LargoMetaPrincipalComponent', 'selector': 'app-largo-meta-principal'},{'name': 'LoadingDialogComponent', 'selector': 'app-loading-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'LongitudDePerforacionComponent', 'selector': 'app-longitud-de-perforacion'},{'name': 'MallaInstaladaEquipoComponent', 'selector': 'app-malla-instalada-equipo'},{'name': 'MallaInstaladaLaborComponent', 'selector': 'app-malla-instalada-labor'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'MetasComponent', 'selector': 'app-metas'},{'name': 'MetrosPerforadosEquipoComponent', 'selector': 'app-metros-perforados-equipo'},{'name': 'MetrosPerforadosEquipoComponent', 'selector': 'app-metros-perforados-equipo'},{'name': 'MetrosPerforadosLaborComponent', 'selector': 'app-metros-perforados-labor'},{'name': 'MetrosPerforadosLaborComponent', 'selector': 'app-metros-perforados-labor'},{'name': 'MostrarGraficosComponent', 'selector': 'app-mostrar-graficos'},{'name': 'OpcionesDialogComponent', 'selector': 'app-opciones-dialog'},{'name': 'OperacionesDialogComponent', 'selector': 'app-operaciones-dialog'},{'name': 'PlanDetallesDialogComponent', 'selector': 'app-plan-detalles-dialog'},{'name': 'PlanMensualListComponent', 'selector': 'app-plan-mensual-list'},{'name': 'PlanMetrajeDetallesDialogComponent', 'selector': 'app-plan-metraje-detalles-dialog'},{'name': 'PlanMetrajeListComponent', 'selector': 'app-plan-metraje-list'},{'name': 'PlanProduccionDetallesDialogComponent', 'selector': 'app-plan-produccion-detalles-dialog'},{'name': 'PlanProduccionListComponent', 'selector': 'app-plan-produccion-list'},{'name': 'PrincipalComponent', 'selector': 'app-principal'},{'name': 'PromedioDeEstadosGeneralComponent', 'selector': 'app-promedio-de-estados-general'},{'name': 'PromedioDeEstadosGeneralComponent', 'selector': 'app-promedio-de-estados-general'},{'name': 'PromedioDeEstadosGeneralComponent', 'selector': 'app-promedio-de-estados-general'},{'name': 'PromedioMayasComponent', 'selector': 'app-promedio-mayas'},{'name': 'PromedioNTaladroComponent', 'selector': 'app-promedio-n-taladro'},{'name': 'PromedioTaladrosComponent', 'selector': 'app-promedio-taladros'},{'name': 'PromMetrosPerforadosSeccionComponent', 'selector': 'app-prom-metros-perforados-seccion'},{'name': 'PromNumTaladroSeccionComponent', 'selector': 'app-prom-num-taladro-seccion'},{'name': 'PromNumTaladroTipoLaborComponent', 'selector': 'app-prom-num-taladro-tipo-labor'},{'name': 'RendimientoDePerforacionesComponent', 'selector': 'app-rendimiento-de-perforaciones'},{'name': 'RendimientoDePerforacionesComponent', 'selector': 'app-rendimiento-de-perforaciones'},{'name': 'RendimientoDePerforacionesComponent', 'selector': 'app-rendimiento-de-perforaciones'},{'name': 'RendimientoPromedioComponent', 'selector': 'app-rendimiento-promedio'},{'name': 'RendimientoPromedioComponent', 'selector': 'app-rendimiento-promedio'},{'name': 'RendimientoPromedioComponent', 'selector': 'app-rendimiento-promedio'},{'name': 'SeleccionProcesoEstatosDialogComponent', 'selector': 'app-seleccion-proceso-estatos-dialog'},{'name': 'SostenimientoGraficosComponent', 'selector': 'app-sostenimiento-graficos'},{'name': 'SostenimientoMetaPrincipalComponent', 'selector': 'app-sostenimiento-meta-principal'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'SumaMetrosPerforadosComponent', 'selector': 'app-suma-metros-perforados'},{'name': 'TaladroHorizontalGraficaComponent', 'selector': 'app-taladro-horizontal-grafica'},{'name': 'TaladroLargoGraficaComponent', 'selector': 'app-taladro-largo-grafica'},{'name': 'UsuarioComponent', 'selector': 'app-usuario'},{'name': 'UsuarioDialogComponent', 'selector': 'app-usuario-dialog'},{'name': 'UsuariosComponent', 'selector': 'app-usuarios'},{'name': 'UtilizacionEquipoComponent', 'selector': 'app-utilizacion-equipo'},{'name': 'UtilizacionEquipoComponent', 'selector': 'app-utilizacion-equipo'},{'name': 'UtilizacionEquipoComponent', 'selector': 'app-utilizacion-equipo'},{'name': 'UtilizacionGeneralComponent', 'selector': 'app-utilizacion-general'},{'name': 'UtilizacionGeneralComponent', 'selector': 'app-utilizacion-general'},{'name': 'UtilizacionGeneralComponent', 'selector': 'app-utilizacion-general'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'LargoMetaPrincipalComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'LargoMetaPrincipalComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

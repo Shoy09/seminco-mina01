@@ -1,0 +1,441 @@
+
+
+@font-face {
+    font-family: 'Medium';
+    src: url('/fuentes/Medium.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Regular';
+    src: url('/fuentes/Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Semibold';
+    src: url('/fuentes/SemiBold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Bold';
+    src: url('/fuentes/Bold.ttf') format('truetype');
+  }
+  .layout-container {
+    display: grid;
+    grid-template-columns: 270px 1fr; /* Menú a la izquierda, contenido a la derecha */
+    height: 100vh;
+    }
+
+    /* Menú lateral */
+    .sidebar {
+      background-color: white;
+      color: black;
+      padding: 20px;
+      justify-content: flex-start;
+      box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1); /* Sombra que da profundidad */
+    }
+    .user{
+      background-color: #CCEAF3;
+
+      padding: 6px 15px ;
+      border-radius: 5px;
+      color:black;
+      display: flex;  /* alinear horizontalmente */
+    align-items: center;  /* Centrar verticalmente */
+    gap: 10px;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    }
+    .user-info {
+      display: flex;
+      flex-direction: column;  /* Alinear el user y rol verticalmente */
+      align-items: flex-start;  /* Alinear a la izquierda */
+      font-family: 'Bold';
+    }
+    .user-info p{
+      margin:0;
+      padding: 0;
+
+    }
+    .user-info .nombre{
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .user-info .rol{
+      font-size: 12px;
+    }
+    .logo-container {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 20px;
+
+    }
+    .logop{
+      max-width: 40px;
+
+    }
+    .logo {
+      max-width: 100px;
+      height: auto;
+    }
+    .logodow {
+      max-width: 12px;
+    }
+    .logosm{
+      max-width: 22px;
+    }
+    .menu {
+      list-style: none;
+      padding: 0;
+      cursor: pointer;
+      margin-top:50px;
+
+    }
+    .menuopc{
+      display: flex;  /* alinear horizontalmente */
+    align-items: center;  /* Centrar verticalmente */
+    justify-content: space-between;
+    gap: 10px;
+  border-radius: 5px;
+  padding: 3px 15px;
+  margin-bottom: 30px;
+  position: relative;
+  border-left: 5px solid #0056b3;
+    }
+    .menu-opci{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+    }
+    .menu-item {
+      background: none;
+
+      border: none;
+      color: black;
+      padding: 10px;
+      width: 100%;
+      text-align: left;
+      font-weight: bold;
+      font-size: 14px;
+      font-family: 'Bold';
+      cursor: pointer;
+
+    }
+
+    .menuopc:hover {
+      background:  #CCEAF3;;
+      color: black;
+      border-radius: 2px;
+    }
+    .menu-item:hover {
+      color: black;
+    }
+
+
+    .menuopc.active {
+      margin-bottom: 0;
+      border-bottom-left-radius: 0;
+
+      border-bottom-right-radius: 0;
+  }
+    .submenu {
+      list-style: none;
+      padding-left:0;
+      display: none;  /* Inicialmente no se muestra */
+      background-color: #d0e7f963;;  /* Fondo del submenú */
+      transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;  /* Animación */
+      max-height: 0; /* Inicia con altura 0 */
+      padding: 0;
+      border-radius: 5px;
+      text-align: left;
+      font-size: 14px;
+
+    }
+    .submenu.show {
+      display: block;  /* Se muestra cuando la clase 'show' está presente */
+      max-height: 570px;  /* Se expande */
+      padding: 10px ;  /* Añadimos relleno cuando se expande */
+      z-index: 10;
+      position: relative;
+    }
+    .submenu li {
+      padding: 10px;
+      cursor: pointer;
+
+      border-radius: 5px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .submenu li a {
+      color: black;
+      text-decoration: none;
+      display: block;
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      box-sizing: border-box;
+      position: relative;
+      font-family: 'Medium';
+    }
+    .submenu li:hover {
+      background: #CCEAF3; /* Cambiar el color del texto al pasar el ratón */
+
+
+      }
+
+  .submenu li.selected {
+
+    border-radius: 5px; /* Bordes redondeados en todo el ítem */
+    color: black; /* Asegura que el texto sea visible */
+  }
+
+  /* Asegura que el enlace dentro del ítem también se seleccione correctamente */
+  .submenu li a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .submenu li a.selected {
+    background-color: #bde4f0c4; /* Fondo de selección para el enlace */
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+  }
+
+
+
+  .submenu li::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border: 2px solid #888;
+    border-radius: 90%;
+    display: inline-block;
+    margin-right: 15px;
+
+  }
+  .menuopc.active {
+      background-color: #CCEAF3; /* Color de fondo cuando el menú está marcado */
+      border-left: 5px solid #0056b3; /* Resaltar con borde */
+    }
+    /* Barra superior */
+    /* Estilos para la barra superior mejorada */
+.top-bar {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  background-color: #0056b3;
+  padding: 15px;
+  height: 30px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-menu-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.user-icon {
+  width: 28px;  /* Reducido de 40px a 32px */
+  height: 28px; /* Reducido de 40px a 32px */
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: all 0.3s ease;
+  overflow: hidden; /* Para que la imagen se ajuste al círculo */
+}
+
+.user-icon:hover {
+  transform: scale(1.05);
+  border-color: #e0e0e0;
+}
+
+.user-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Para que la imagen cubra todo el círculo sin distorsionarse */
+  border-radius: 50%;
+}
+
+/* Estilos para el menú desplegable en la barra superior */
+.cerrar-sesion {
+  position: absolute;
+  top: 38px;  /* Ajustado de 50px a 42px para que quede más cerca del icono más pequeño */
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  padding: 8px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 160px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid #e0e0e0;
+}
+
+.cerrar-sesion .bcs {
+  background: none;
+  border: none;
+  padding: 10px 16px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.2s ease;
+  margin: 0;
+  font-family: 'Regular';
+}
+
+.cerrar-sesion .bcs:hover {
+  background-color: #f5f5f5;
+}
+
+.cerrar-sesion .bcs:first-child {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.notifications {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.bell-icon {
+  width: 20px;
+  cursor: pointer;
+  filter: brightness(0) invert(1); /* Hace la campana blanca */
+}
+
+    .home-item {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        gap: 50px;
+
+         /* Ajusta el valor según lo que necesites */
+      }
+
+    .notifications {
+      position: relative;
+    }
+
+    .bell-icon {
+      width: 15px;
+      cursor: pointer;
+    }
+
+  .content {
+    padding: 20px;
+  }
+  .sidebar.colapsado {
+    width: 60px;
+    /*padding-top: 300px;*/
+    padding-top: 650px;
+  }
+
+  .sidebar .menuopc {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+  .sidebar.colapsado .menuopc {
+    background-color: #CCEAF3;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 20px auto;
+    padding: 0;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  .sidebar.colapsado .menuopc img.logosm {
+    max-width: 20px;
+    margin: 0;
+  }
+  .sidebar.colapsado .menu-opci,
+  .sidebar.colapsado .submenu,
+  .sidebar.colapsado .logodow,
+  .sidebar.colapsado .logo-container,
+  .sidebar.colapsado .user {
+    display: none;
+  }
+
+  .floating-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 200px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color:  #1466c3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: left 0.3s;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+
+  .sidebar.colapsado ~ .floating-toggle {
+    left: 35px;
+  }
+
+  .floating-toggle img {
+    width: 18px;
+    height: 18px;
+  }
+
+
+  .layout-container.colapsado {
+    grid-template-columns: 100px 1fr;
+  }
+
+.cerrar-sesion {
+  margin-left: 0px; /* para alinear con el contenido del usuario */
+
+    background-color: rgba(240, 240, 240, 0.95); /* fondo claro, estilo menú */
+    padding: 10px 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* efecto flotante */
+    display: flex;
+    flex-direction: column;
+    gap: 2px; /* espacio entre botones */
+
+}
+.cerrar-sesion .bcs{
+      /* Quitar espacio arriba */
+    margin-bottom: 4px;
+    cursor: pointer;
+      padding: 8px 12px;
+      color: #333;
+      font-size: 14px;
+      text-align:center;
+      transition: background-color 0.1s;
+       border: 1.5px solid #ccc; /* esquinas redondeadas */
+       border-radius:4px;
+}
+
+.cerrar-sesion .bcs:hover {
+  background-color: #e0e0e0;
+}

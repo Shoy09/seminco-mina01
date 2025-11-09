@@ -1,0 +1,86 @@
+:host ::ng-deep .mat-dialog-container {
+  width: 80vw !important;
+  max-width: 1000px !important;
+  border-radius: 12px;
+  padding: 0 !important;
+}
+
+/* Encabezado fijo con botón de cierre */
+.dialog-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #f1f3f5;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #dee2e6;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.close-btn {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+}
+
+/* Contenido desplazable con márgenes */
+.dialog-content {
+  padding: 1.5rem 2rem;
+  background-color: #fff;
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Título centrado */
+.titulo-centrado {
+  text-align: center;
+  font-weight: 600;
+  color: #212529;
+  margin: 1rem 0;
+}
+
+/* Card del plan */
+.plan-card {
+  border-radius: 10px;
+  border: 1px solid #dee2e6;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Campos */
+.plan-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.campo {
+  flex: 1 1 300px;
+  max-width: 320px;
+}
+
+/* Subplanes */
+mat-expansion-panel {
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+mat-expansion-panel-header {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+/* Botones */
+.boton-agregar,
+.boton-centrado {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}

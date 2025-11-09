@@ -1,0 +1,112 @@
+<h2 mat-dialog-title>Ingresar Plan Mensual</h2>
+<div mat-dialog-content class="dialog-content">
+    <form [formGroup]="planForm">
+        <!-- Campos Fijos -->
+        <mat-form-field appearance="outline">
+            <mat-label>Año</mat-label>
+            <input matInput type="number" formControlName="anio">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Mes</mat-label>
+            <input matInput type="text" formControlName="mes">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Tipo de Minado</mat-label>
+            <input matInput type="text" formControlName="minado_tipo">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Empresa</mat-label>
+            <input matInput type="text" formControlName="empresa">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Zona</mat-label>
+            <input matInput type="text" formControlName="zona">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Área</mat-label>
+            <input matInput type="text" formControlName="area">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Tipo de Mineral</mat-label>
+            <input matInput type="text" formControlName="tipo_mineral">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Fase</mat-label>
+            <input matInput type="text" formControlName="fase">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Estructura/Veta</mat-label>
+            <input matInput type="text" formControlName="estructura_veta">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Nivel</mat-label>
+            <input matInput type="text" formControlName="nivel">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Tipo de Labor</mat-label>
+            <input matInput type="text" formControlName="tipo_labor">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Labor</mat-label>
+            <input matInput type="text" formControlName="labor">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Ala</mat-label>
+            <input matInput type="text" formControlName="ala">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Avance (m)</mat-label>
+            <input matInput type="number" formControlName="avance_m">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Ancho (m)</mat-label>
+            <input matInput type="number" formControlName="ancho_m">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Alto (m)</mat-label>
+            <input matInput type="number" formControlName="alto_m">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>TMS</mat-label>
+            <input matInput type="number" formControlName="tms">
+        </mat-form-field>
+        
+
+        <mat-form-field appearance="outline">
+            <mat-label>Programado</mat-label>
+            <input matInput type="text" formControlName="programado" readonly>
+          </mat-form-field>          
+
+        <!-- Campos Dinámicos -->
+        <!-- Campos Dinámicos -->
+        <div class="campos-dinamicos-container">
+            <div *ngFor="let campo of camposDinamicos; let i = index" class="campo-item">
+                <mat-form-field appearance="outline">
+                    <mat-label>{{ campo }}</mat-label>
+                    <input matInput type="number" [formControlName]="campo">
+                </mat-form-field>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div mat-dialog-actions class="button-group">
+    <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
+    <button mat-button color="primary" (click)="guardar()" [disabled]="!planForm.valid">Guardar</button>
+</div>

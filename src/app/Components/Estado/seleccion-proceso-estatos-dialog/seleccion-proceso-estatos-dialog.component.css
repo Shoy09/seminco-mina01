@@ -1,0 +1,46 @@
+.contenedor-dialogo {
+  position: relative;
+  padding: 16px;
+}
+
+.boton-cerrar-x {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.titulo-dialogo-texto {
+  margin: 40px 0 4px 0; /* margen superior para que no quede pegado a la X */
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+mat-divider {
+  margin-bottom: 16px;
+}
+
+.contenedor-botones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom:20px;
+}
+
+.boton-proceso{
+ padding: 20px 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #cceaf388;
+  cursor: pointer;
+font-size:14px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  gap: 5px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+}

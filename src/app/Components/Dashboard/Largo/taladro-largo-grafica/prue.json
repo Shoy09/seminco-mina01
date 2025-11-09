@@ -1,0 +1,128 @@
+
+ [
+  {
+    "id": 472,
+    "turno": "NOCHE",
+    "equipo": "SIMBA",
+    "codigo": "S-3",
+    "empresa": "JRC",
+    "fecha": "2025-10-27",
+    "tipo_operacion": "PERFORACIÓN TALADROS LARGOS",
+    "estado": "cerrado",
+    "envio": 0,
+    "createdAt": "2025-10-28T00:49:23.000Z",
+    "updatedAt": "2025-10-28T00:49:23.000Z",
+    "estados": [
+      {
+        "id": 5037,
+        "operacion_id": 472,
+        "numero": 1,
+        "estado": "OPERATIVO",
+        "codigo": "125",
+        "hora_inicio": "19:00",
+        "hora_final": "07:00",
+        "createdAt": "2025-10-28T00:49:23.000Z",
+        "updatedAt": "2025-10-28T00:49:23.000Z"
+      }
+    ],
+    "perforaciones": [
+      {
+        "id": 269,
+        "zona": "HORIZONTE",
+        "tipo_labor": "TJ",
+        "labor": "90",
+        "veta": "VETA FASTIDIOSA",
+        "nivel": "370",
+        "tipo_perforacion": "PRODUCCIÓN",
+        "operacion_id": 472,
+        "createdAt": "2025-10-28T00:49:23.000Z",
+        "updatedAt": "2025-10-28T00:49:23.000Z",
+        "inter_perforaciones": [
+          {
+            "id": 277,
+            "codigo_actividad": "117",
+            "nivel": "370",
+            "tajo": "90",
+            "nbroca": 11,
+            "ntaladro": 11,
+            "nbarras": 11,
+            "longitud_perforacion": 11,
+            "angulo_perforacion": 11,
+            "nfilas_de_hasta": "11",
+            "detalles_trabajo_realizado": "medio",
+            "perforaciontaladrolargo_id": 269,
+            "createdAt": "2025-10-28T00:49:23.000Z",
+            "updatedAt": "2025-10-28T00:49:23.000Z"
+          },
+          {
+            "id": 276,
+            "codigo_actividad": "115",
+            "nivel": "370",
+            "tajo": "90",
+            "nbroca": 22,
+            "ntaladro": 22,
+            "nbarras": 22,
+            "longitud_perforacion": 22,
+            "angulo_perforacion": 22,
+            "nfilas_de_hasta": "22",
+            "detalles_trabajo_realizado": "bien",
+            "perforaciontaladrolargo_id": 269,
+            "createdAt": "2025-10-28T00:49:23.000Z",
+            "updatedAt": "2025-10-28T00:49:23.000Z"
+          },
+          {
+            "id": 275,
+            "codigo_actividad": "115",
+            "nivel": "370",
+            "tajo": "90",
+            "nbroca": 22,
+            "ntaladro": 22,
+            "nbarras": 12,
+            "longitud_perforacion": 32,
+            "angulo_perforacion": 12,
+            "nfilas_de_hasta": "23",
+            "detalles_trabajo_realizado": "bien",
+            "perforaciontaladrolargo_id": 269,
+            "createdAt": "2025-10-28T00:49:23.000Z",
+            "updatedAt": "2025-10-28T00:49:23.000Z"
+          }
+        ]
+      }
+    ],
+    "horometros": [
+      {
+        "id": 1827,
+        "operacion_id": 472,
+        "nombre": "Electrico",
+        "inicial": 12,
+        "final": 22,
+        "EstaOP": 0,
+        "EstaINOP": 0,
+        "createdAt": "2025-10-28T00:49:24.000Z",
+        "updatedAt": "2025-10-28T00:49:24.000Z"
+      },
+      {
+        "id": 1826,
+        "operacion_id": 472,
+        "nombre": "Percusion",
+        "inicial": 12,
+        "final": 22,
+        "EstaOP": 0,
+        "EstaINOP": 0,
+        "createdAt": "2025-10-28T00:49:24.000Z",
+        "updatedAt": "2025-10-28T00:49:24.000Z"
+      },
+      {
+        "id": 1825,
+        "operacion_id": 472,
+        "nombre": "Diesel",
+        "inicial": 12,
+        "final": 22,
+        "EstaOP": 0,
+        "EstaINOP": 0,
+        "createdAt": "2025-10-28T00:49:24.000Z",
+        "updatedAt": "2025-10-28T00:49:24.000Z"
+      }
+    ]
+  }
+]

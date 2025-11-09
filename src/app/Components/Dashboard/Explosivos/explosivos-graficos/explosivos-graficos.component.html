@@ -1,0 +1,31 @@
+<div class="dashboard-container">
+  <!-- Filtros superiores -->
+  <div class="filtros-container">
+    <label>
+      Desde:
+      <input type="date" [(ngModel)]="fechaDesde" />
+    </label>
+    <label>
+      Hasta:
+      <input type="date" [(ngModel)]="fechaHasta" />
+    </label>
+    <label>
+      Turno:
+      <select [(ngModel)]="turnoSeleccionado">
+        <option value="">Todos</option>
+        <option *ngFor="let turno of turnos" [value]="turno">
+          {{ turno }}
+        </option>
+      </select>
+    </label>
+    <button (click)="aplicarFiltrosLocales()">Filtrar</button>
+    <button (click)="quitarFiltros()">Quitar filtros</button>
+    <button (click)="exportarAExcelExplosivos()" class="btn btn-success">
+  <i class="fas fa-file-excel"></i> Exportar a Excel completo
+</button>
+<button (click)="exportarAExcelExplosivosfiltro()" class="btn btn-success">
+  <i class="fas fa-file-excel"></i> Exportar a Excel filtrados
+</button>
+  </div>
+
+</div>

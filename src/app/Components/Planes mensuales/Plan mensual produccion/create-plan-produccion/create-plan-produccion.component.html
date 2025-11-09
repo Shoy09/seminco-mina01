@@ -1,0 +1,159 @@
+<h2 mat-dialog-title>Ingresar Plan de Metraje</h2>
+
+<div mat-dialog-content class="dialog-content">
+    <form [formGroup]="planForm">
+        <!-- Campos Fijos -->
+        <mat-form-field appearance="outline">
+            <mat-label>Año</mat-label>
+            <input matInput type="number" formControlName="anio">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Mes</mat-label>
+            <input matInput type="text" formControlName="mes">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Semana</mat-label>
+            <input matInput type="text" formControlName="semana">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Mina</mat-label>
+            <input matInput type="text" formControlName="mina">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Zona</mat-label>
+            <input matInput type="text" formControlName="zona">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Área</mat-label>
+            <input matInput type="text" formControlName="area">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Fase</mat-label>
+            <input matInput type="text" formControlName="fase">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Tipo de Minado</mat-label>
+            <input matInput type="text" formControlName="minado_tipo">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Tipo de Labor</mat-label>
+            <input matInput type="text" formControlName="tipo_labor">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Tipo de Mineral</mat-label>
+            <input matInput type="text" formControlName="tipo_mineral">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Estructura/Veta</mat-label>
+            <input matInput type="text" formControlName="estructura_veta">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Nivel</mat-label>
+            <input matInput type="text" formControlName="nivel">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Block</mat-label>
+            <input matInput type="text" formControlName="block">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Labor</mat-label>
+            <input matInput type="text" formControlName="labor">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Ala</mat-label>
+            <input matInput type="text" formControlName="ala">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Ancho Veta</mat-label>
+            <input matInput type="number" formControlName="ancho_veta">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Ancho Minado (Semana)</mat-label>
+            <input matInput type="number" formControlName="ancho_minado_sem">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Ancho Minado (Mes)</mat-label>
+            <input matInput type="number" formControlName="ancho_minado_mes">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Ag (g/t)</mat-label>
+            <input matInput type="number" formControlName="ag_gr">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>% Cu</mat-label>
+            <input matInput type="number" formControlName="porcentaje_cu">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>% Pb</mat-label>
+            <input matInput type="number" formControlName="porcentaje_pb">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>% Zn</mat-label>
+            <input matInput type="number" formControlName="porcentaje_zn">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>VPT Actual</mat-label>
+            <input matInput type="number" formControlName="vpt_act">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>VPT Final</mat-label>
+            <input matInput type="number" formControlName="vpt_final">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Cut-Off 1</mat-label>
+            <input matInput type="number" formControlName="cut_off_1">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Cut-Off 2</mat-label>
+            <input matInput type="number" formControlName="cut_off_2">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Programado</mat-label>
+            <mat-select formControlName="programado">
+                <mat-option value="Programado">Programado</mat-option>
+                <mat-option value="No Programado">No Programado</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Campos Dinámicos -->
+        <div class="campos-dinamicos-container">
+            <div *ngFor="let campo of camposDinamicos" class="campo-item">
+                <mat-form-field appearance="outline">
+                    <mat-label>{{ campo }}</mat-label>
+                    <input matInput type="number" [formControlName]="campo">
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div mat-dialog-actions class="button-group">
+    <button mat-button color="warn" (click)="cancelar()">Cancelar</button>
+    <button mat-button color="primary" (click)="guardar()" [disabled]="!planForm.valid">Guardar</button>
+</div>

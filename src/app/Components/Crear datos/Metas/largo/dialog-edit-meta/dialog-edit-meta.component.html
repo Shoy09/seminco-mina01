@@ -1,0 +1,33 @@
+<div class="dialog-container">
+    <h2 class="dialog-title">Editar Meta</h2>
+  
+    <div class="dialog-content">
+      <form>
+        <div class="form-group">
+          <label for="mes">Mes:</label>
+          <input type="text" id="mes" [(ngModel)]="metaData.mes" name="mes" readonly>
+        </div>
+  
+        <div class="form-group">
+          <label for="grafico">Área:</label>
+          <input type="text" id="grafico" [(ngModel)]="metaData.grafico" name="grafico" readonly>
+        </div>
+  
+        <div class="form-group">
+          <label for="nombre">Nombre de la Meta:</label>
+          <input type="text" id="nombre" [(ngModel)]="metaData.nombre" name="nombre" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="objetivo">Objetivo:</label>
+          <input type="number" id="objetivo" [(ngModel)]="metaData.objetivo" name="objetivo" required>
+        </div>
+      </form>
+    </div>
+  
+    <div class="dialog-actions">
+      <button class="btn btn-cancel" (click)="cancelar()">Cancelar</button>
+      <button class="btn btn-save" (click)="guardarCambios()">Guardar</button>
+    </div>
+  </div>
+  

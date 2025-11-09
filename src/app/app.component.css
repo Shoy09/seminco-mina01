@@ -1,0 +1,43 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: white !important; /* Fondo blanco */
+  color: black !important; /* Texto negro */
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: white !important;
+}
+
+router-outlet + * {
+  flex: 1;
+  width: 100%;
+}
+
+/* Asegurar que los diálogos de Material tengan fondo blanco */
+::ng-deep .mat-dialog-container {
+  background-color: white !important;
+  color: black !important;
+}
+
+/* Asegurar que los botones tengan colores correctos */
+.mat-button, .mat-raised-button {
+  color: black !important;
+}
+
+/* Para que las tarjetas de Material mantengan fondo blanco */
+.mat-card {
+  background-color: white !important;
+  color: black !important;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

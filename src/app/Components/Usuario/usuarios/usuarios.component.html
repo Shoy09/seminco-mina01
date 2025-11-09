@@ -1,0 +1,92 @@
+<div class="usuarios-container">
+  <h2>Lista de Usuarios</h2>
+
+  <div class="usuarios-actions">
+    <button mat-raised-button color="primary" (click)="abrirDialogoCrear()">
+      Nuevo Usuario
+    </button>
+  
+    <button mat-raised-button color="warn" class="btn-masivo" (click)="seleccionarArchivo()">
+      Ingreso masivo
+    </button>
+    
+    <!-- Input de tipo file oculto -->
+    <input type="file" id="fileInput" (change)="cargarArchivo($event)" hidden>
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar Usuario</mat-label>
+      <input matInput (keyup)="aplicarFiltro($event)" placeholder="Ingrese nombre, correo o DNI">
+    </mat-form-field>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <!-- DNI -->
+    <ng-container matColumnDef="codigo_dni">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> DNI </th>
+      <td mat-cell *matCellDef="let usuario">{{ usuario.codigo_dni }}</td>
+    </ng-container>
+
+    <!-- Nombre -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+      <td mat-cell *matCellDef="let usuario">{{ usuario.nombres }} {{ usuario.apellidos }}</td>
+    </ng-container>
+
+<!-- Operaciones Autorizadas -->
+<ng-container matColumnDef="operaciones">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header> Operaciones </th>
+  <td mat-cell *matCellDef="let usuario">
+    <ng-container *ngIf="usuario.operaciones_autorizadas">
+      <!-- Muestra hasta 2 operaciones -->
+      <span *ngFor="let key of obtenerPrimerasOperaciones(usuario.operaciones_autorizadas)" class="operacion-chip">
+        {{ key }}
+      </span>
+
+      <!-- Muestra el icono si hay más de 2
+      <ng-container *ngIf="Object.keys(usuario.operaciones_autorizadas).length > 2">
+        <button mat-icon-button color="primary" (click)="abrirDialogoOperaciones(usuario.operaciones_autorizadas)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </ng-container> -->
+    </ng-container>
+
+    <!-- SIEMPRE muestra el ícono de editar -->
+    <button mat-icon-button color="accent" (click)="abrirDialogoEdicion(usuario.id, usuario.operaciones_autorizadas)">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </td>
+</ng-container>
+
+
+
+
+    
+    <!-- rol -->
+    <ng-container matColumnDef="rol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
+      <td mat-cell *matCellDef="let usuario">{{ usuario.rol }}</td>
+    </ng-container>
+
+    <!-- Acciones -->
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let usuario">
+        <!-- <button mat-icon-button color="accent" (click)="abrirDialogoEditar(usuario)">
+          <mat-icon>edit</mat-icon>
+        </button> -->
+        <button mat-icon-button color="warn" (click)="eliminarUsuario(usuario.id!)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Header y filas -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+  <!-- Paginador -->
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

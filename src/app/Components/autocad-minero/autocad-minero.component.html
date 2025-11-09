@@ -1,0 +1,109 @@
+<div class="autocad-container">
+  <div class="canvas-container">
+    <canvas
+      #canvas
+      width="800"
+      height="600"
+      (mousedown)="onMouseDown($event)"
+      (mousemove)="onMouseMove($event)"
+      (mouseup)="onMouseUp()"
+      (wheel)="onWheel($event)"
+    ></canvas>
+    
+    <div class="estado-vista">
+      Zoom: {{zoom.toFixed(2)}}x | 
+      Vista: ({{offsetX.toFixed(0)}}, {{offsetY.toFixed(0)}})
+    </div>
+  </div>
+
+  <div class="panel-controls">
+    <div class="control-group">
+      <h3>🏗️ Nueva Labor Minera</h3>
+      
+      <div class="form-group">
+        <label>Tipo de Labor:</label>
+        <select [(ngModel)]="laborSeleccionada">
+          <option *ngFor="let tipo of tiposLabor" [value]="tipo.value">
+            {{tipo.label}}
+          </option>
+        </select>
+        <div class="color-indicator" [style.background]="getColorLabor()"></div>
+      </div>
+
+      <div class="form-group">
+        <label>Nombre:</label>
+        <input type="text" [(ngModel)]="nombreLabor" placeholder="Ej: Galería Principal">
+      </div>
+
+      <div class="button-group">
+        <button class="btn-iniciar" (click)="iniciarLabor()" [disabled]="laborActual">
+          Iniciar Labor
+        </button>
+        <button class="btn-finalizar" (click)="finalizarLabor()" [disabled]="!laborActual">
+          Finalizar Labor
+        </button>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <h3>📍 Coordenadas</h3>
+      <div class="coordenadas-inputs">
+        <input type="number" [(ngModel)]="coordX" placeholder="X (m)" step="0.1">
+        <input type="number" [(ngModel)]="coordY" placeholder="Y (m)" step="0.1">
+        <button class="btn-agregar" (click)="agregarPunto()" [disabled]="!laborActual">
+          Agregar Punto
+        </button>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <h3>📐 Mediciones</h3>
+      <div class="mediciones">
+        <p><strong>Distancia total:</strong> {{distanciaTotal}} m</p>
+        <p><strong>Pendiente:</strong> {{pendiente}} %</p>
+        <p><strong>Puntos en labor actual:</strong> {{getPuntosLaborActual()}}</p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <h3>⚙️ Configuración</h3>
+      <div class="configuraciones">
+        <label>
+          <input type="checkbox" [(ngModel)]="mostrarGrid" (change)="redibujar()"> Mostrar Grid
+        </label>
+        <label>
+          <input type="checkbox" [(ngModel)]="mostrarCoordenadas" (change)="redibujar()"> 
+          Mostrar Coordenadas
+        </label>
+        <label>
+          Snap Grid: 
+          <select [(ngModel)]="snapGrid">
+            <option value="1">1 m</option>
+            <option value="5">5 m</option>
+            <option value="10">10 m</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <h3>📊 Labores Existentes</h3>
+      <div class="lista-labores">
+        <div *ngFor="let labor of labores" class="labor-item" [style.border-left-color]="labor.color">
+          <strong>{{labor.nombre}}</strong> ({{labor.tipo}})
+          <br>
+          <small>{{labor.puntos.length}} puntos - {{labor.puntos[0].x}},{{labor.puntos[0].y}}</small>
+        </div>
+        <div *ngIf="labores.length === 0" class="sin-labores">
+          No hay labores creadas
+        </div>
+      </div>
+    </div>
+
+    <div class="button-group-actions">
+      <button class="btn-centrar" (click)="centrarVista()">Centrar Vista</button>
+      <button class="btn-exportar" (click)="exportarDatos()">Exportar Datos</button>
+      <button class="btn-limpiar" (click)="limpiarTodo()">Limpiar Todo</button>
+    </div>
+  </div>
+</div>

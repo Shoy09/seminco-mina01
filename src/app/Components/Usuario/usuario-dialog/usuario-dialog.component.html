@@ -1,0 +1,99 @@
+<mat-card class="usuario-card">
+  <h2 mat-dialog-title class="titulo-dialogo">{{ editMode ? 'Editar Usuario' : 'Nuevo Usuario' }}</h2>
+
+  <mat-dialog-content>
+    <form [formGroup]="usuarioForm">
+
+      <div class="input-group">
+        <mat-form-field appearance="outline">
+          <mat-label>DNI</mat-label>
+          <input matInput formControlName="codigo_dni">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombres">
+        </mat-form-field>
+      </div>
+
+      <div class="input-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Apellidos</mat-label>
+          <input matInput formControlName="apellidos">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Correo</mat-label>
+          <input matInput formControlName="correo" type="email">
+        </mat-form-field>
+      </div>
+
+      <div class="input-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Cargo</mat-label>
+          <input matInput formControlName="cargo">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Empresa</mat-label>
+          <input matInput formControlName="empresa">
+        </mat-form-field>
+      </div>
+
+      <div class="input-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Guardia</mat-label>
+          <input matInput formControlName="guardia">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Autorizado Equipo</mat-label>
+          <input matInput formControlName="autorizado_equipo">
+        </mat-form-field>
+      </div>
+
+      <div class="input-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Rol</mat-label>
+          <mat-select formControlName="rol">
+            <mat-option value="Admin">Admin</mat-option>
+            <mat-option value="Trabajador">Trabajador</mat-option>
+            <mat-option value="Master">Master</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="input-group">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Operaciones Autorizadas</mat-label>
+    <mat-select formControlName="operaciones_autorizadas" multiple>
+      <mat-option *ngFor="let op of operacionesDisponibles" [value]="op">{{ op }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+      
+
+      <!-- Campos de contraseña solo si es un nuevo usuario -->
+      <div *ngIf="!editMode">
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input matInput formControlName="password" type="password">
+          <mat-error *ngIf="usuarioForm.get('password')?.invalid">Debe tener al menos 6 caracteres</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Confirmar Contraseña</mat-label>
+          <input matInput formControlName="confirmPassword" type="password">
+          <mat-error *ngIf="usuarioForm.hasError('noCoincide')">Las contraseñas no coinciden</mat-error>
+        </mat-form-field>
+      </div>
+
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" [disabled]="usuarioForm.invalid" (click)="guardar()">Guardar</button>
+  </mat-dialog-actions>
+</mat-card>

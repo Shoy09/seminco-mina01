@@ -1,0 +1,68 @@
+<div class="layout-container" [ngClass]="{ 'colapsado': menuColapsado }">
+    <!-- Menú lateral -->
+    <aside class="sidebar" [class.colapsado]="menuColapsado">
+      <div class="logo-container">
+        <img src="login/logo1.png" alt="Logo de la empresa" class="logo">
+      </div>
+      <div class="user" *ngIf="!menuColapsado">
+        <img src="lp.svg" alt="Logo de la empresa" class="logop">
+        <div class="user-info">
+          <p class="nombre"></p>
+          <p class="rol">Administrador</p>
+        </div>
+        <!-- Eliminamos el toggleCerrarSesion del menú lateral -->
+      </div>
+
+      <ul class="menu">
+        <li *ngFor="let menu of menus; let i = index">
+          <div class="menuopc"
+               [ngClass]="{'show': menuOpenIndex === i, 'active': menuOpenIndex === i, 'home-item': menu.title === 'Home'}"
+               (click)="AbrirCerrar(i, menu)">
+            <img [src]="menu.icon" alt="Icono" class="logosm">
+            <div class="menu-opci">
+              <button class="menu-item">{{ menu.title }}</button>
+            </div>
+            <img *ngIf="menu.title !== 'Home'" src="down.svg" alt="Flecha" class="logodow">
+          </div>
+
+          <ul [ngClass]="{'submenu': true, 'show': menuOpenIndex === i && menu.title !== 'Home'}">
+            <li *ngFor="let subItem of menu.subItems" (click)="selectSubItem(i, subItem)">
+              <a [routerLink]="['/Dashboard', subItem.path]" routerLinkActive="selected">
+                {{ subItem.title }}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Botón flotante para colapsar/expandir -->
+    <div class="floating-toggle" (click)="toggleMenu()">
+      <img [src]="menuColapsado ? 'flecha.png' : 'flechai.png '" alt="Flecha">
+    </div>
+    
+    <div class="main-container">
+      <!-- Barra superior -->
+      <header class="top-bar">
+        <div class="top-bar-right">
+          <div class="notifications">
+            <img src="bell.png" alt="Notificaciones" class="bell-icon">
+          </div>
+          <div class="user-menu-container">
+  <div class="user-icon" (click)="toggleCerrarSesion()">
+    <img src="lp.svg" alt="Usuario" class="user-image">
+  </div>
+  <div class="cerrar-sesion" *ngIf="mostrarCerrarSesion">
+    <button class="bcs">Editar perfil</button>
+    <button (click)="cerrarSesion()" class="bcs">Cerrar sesión</button>
+  </div>
+</div>
+        </div>
+      </header>
+
+      <!-- Contenido de la página -->
+      <main class="content">
+          <ng-content></ng-content>
+      </main>
+    </div>
+</div>

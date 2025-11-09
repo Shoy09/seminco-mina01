@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Detalles del Plan Mensual</h2>
+<mat-dialog-content>
+  <table>
+    <tr><td><strong>Año:</strong></td><td>{{ plan.anio }}</td></tr>
+    <tr><td><strong>Mes:</strong></td><td>{{ plan.mes }}</td></tr>
+    <tr><td><strong>Minado/Tipo:</strong></td><td>{{ plan.minado_tipo }}</td></tr>
+    <tr><td><strong>Zona:</strong></td><td>{{ plan.zona }}</td></tr>
+    <tr><td><strong>Tipo Mineral:</strong></td><td>{{ plan.tipo_mineral }}</td></tr>
+    <tr><td><strong>Fase:</strong></td><td>{{ plan.fase }}</td></tr>
+    <tr><td><strong>Labor:</strong></td><td>{{ plan.labor }}</td></tr>
+    <tr><td><strong>Empresa:</strong></td><td>{{ plan.empresa }}</td></tr>
+    <tr><td><strong>Área:</strong></td><td>{{ plan.area }}</td></tr>
+    <tr><td><strong>Estructura/Veta:</strong></td><td>{{ plan.estructura_veta }}</td></tr>
+    <tr><td><strong>Nivel:</strong></td><td>{{ plan.nivel }}</td></tr>
+    <tr><td><strong>Tipo Labor:</strong></td><td>{{ plan.tipo_labor }}</td></tr>
+    <tr><td><strong>Ala:</strong></td><td>{{ plan.ala }}</td></tr>
+    <tr><td><strong>Avance (m):</strong></td><td>{{ plan.avance_m }}</td></tr>
+    <tr><td><strong>Ancho (m):</strong></td><td>{{ plan.ancho_m }}</td></tr>
+    <tr><td><strong>Alto (m):</strong></td><td>{{ plan.alto_m }}</td></tr>
+    <tr><td><strong>TMS:</strong></td><td>{{ plan.tms }}</td></tr>
+    <tr><td><strong>Programacion:</strong></td><td>{{ plan.programado }}</td></tr>
+
+    <!-- Iterar sobre los campos agrupados -->
+    <tr *ngFor="let grupo of obtenerCamposAgrupados()">
+      <td *ngIf="grupo.keyA"><strong>{{ grupo.displayA }}:</strong></td>
+      <td *ngIf="grupo.keyA">{{ plan[grupo.keyA] }}</td>
+      <td *ngIf="grupo.keyB"><strong>{{ grupo.displayB }}:</strong></td>
+      <td *ngIf="grupo.keyB">{{ plan[grupo.keyB] }}</td>
+    </tr>
+  </table>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cerrarDialogo()">Cerrar</button>
+</mat-dialog-actions>

@@ -1,0 +1,64 @@
+<h2 mat-dialog-title class="dialog-title">
+  {{ isEdit ? 'Editar semana' : 'Agregar semana' }}
+</h2>
+
+<div class="empresa-info" *ngIf="data.empresa">
+  <mat-chip>
+    <mat-icon>business</mat-icon>
+    {{ data.empresa.nombre }} (ID: {{ data.empresa.id }})
+  </mat-chip>
+</div>
+
+<form [formGroup]="semanaForm" (ngSubmit)="onSubmit()" class="form-container">
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Número de semana</mat-label>
+      <input matInput type="number" formControlName="numero_semana">
+      <mat-error *ngIf="semanaForm.get('numero_semana')?.hasError('required')">
+        Este campo es requerido
+      </mat-error>
+      <mat-error *ngIf="semanaForm.get('numero_semana')?.hasError('min') || 
+                        semanaForm.get('numero_semana')?.hasError('max')">
+        Debe ser entre 1 y 53
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Año</mat-label>
+      <input matInput type="number" formControlName="anio">
+      <mat-error *ngIf="semanaForm.get('anio')?.hasError('required')">
+        Este campo es requerido
+      </mat-error>
+      <mat-error *ngIf="semanaForm.get('anio')?.hasError('min')">
+        Año mínimo: 2000
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Rango de fechas</mat-label>
+      <mat-date-range-input [rangePicker]="picker" formGroupName="rangoFechas">
+        <input matStartDate placeholder="Fecha inicio" formControlName="start">
+        <input matEndDate placeholder="Fecha fin" formControlName="end">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+      <mat-error *ngIf="semanaForm.get('rangoFechas.start')?.hasError('required') ||
+                        semanaForm.get('rangoFechas.end')?.hasError('required')">
+        Ambas fechas son requeridas
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="semanaForm.invalid">
+      <mat-icon>{{ isEdit ? 'save' : 'add' }}</mat-icon>
+      {{ isEdit ? 'Actualizar' : 'Guardar' }}
+    </button>
+    <button mat-stroked-button color="warn" type="button" (click)="onCancel()">
+      <mat-icon>cancel</mat-icon>
+      Cancelar
+    </button>
+  </div>
+</form>

@@ -1,0 +1,111 @@
+<div class="dialog-header">
+  <h2 class="titulo-centrado mb-4">Crear Plan de Mantenimiento</h2>
+  <button mat-icon-button (click)="cancelar()" class="close-btn">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="dialog-content"> <!-- NUEVO contenedor para scroll y padding -->
+
+  <mat-card class="mb-4 p-3 shadow-sm plan-card">
+    <h4 class="mb-3">Datos del Plan</h4>
+    <div class="plan-header">
+      <mat-form-field appearance="outline" class="campo">
+        <mat-label>Zona</mat-label>
+        <input matInput [(ngModel)]="plan.zona" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="campo">
+        <mat-label>Código de Equipo</mat-label>
+        <input matInput [(ngModel)]="plan.cod_equipo" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="campo">
+        <mat-label>Equipo</mat-label>
+        <input matInput [(ngModel)]="plan.equipo" />
+      </mat-form-field>
+    </div>
+  </mat-card>
+
+  <div class="boton-agregar text-center mb-3">
+    <button mat-raised-button color="accent" (click)="agregarSubplan()">
+      <mat-icon>add</mat-icon> Agregar Subplan
+    </button>
+  </div>
+
+  <mat-accordion multi>
+    <mat-expansion-panel *ngFor="let sub of subplanes; let i = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Subplan #{{ i + 1 }} - {{ sub.sistema || 'Nuevo subplan' }}
+        </mat-panel-title>
+        <mat-panel-description>
+          Frecuencia: {{ sub.frecuencia || 'N/A' }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="p-3">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Sistema</mat-label>
+              <input matInput [(ngModel)]="sub.sistema" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Frecuencia</mat-label>
+              <input matInput [(ngModel)]="sub.frecuencia" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Horas de Parada</mat-label>
+              <input matInput type="number" [(ngModel)]="sub.h_parada" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-12">
+            <label class="fw-semibold">Días de mantenimiento:</label>
+            <div class="d-flex flex-wrap gap-3 mt-2">
+              <mat-checkbox [(ngModel)]="sub.lunes">Lunes</mat-checkbox>
+              <mat-checkbox [(ngModel)]="sub.martes">Martes</mat-checkbox>
+              <mat-checkbox [(ngModel)]="sub.miercoles">Miércoles</mat-checkbox>
+              <mat-checkbox [(ngModel)]="sub.jueves">Jueves</mat-checkbox>
+              <mat-checkbox [(ngModel)]="sub.viernes">Viernes</mat-checkbox>
+              <mat-checkbox [(ngModel)]="sub.sabado">Sábado</mat-checkbox>
+              <mat-checkbox [(ngModel)]="sub.domingo">Domingo</mat-checkbox>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-8">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Actividades</mat-label>
+              <textarea matInput rows="3" [(ngModel)]="sub.actividades"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Cumplimiento (%)</mat-label>
+              <input matInput type="number" [(ngModel)]="sub.cumplimiento" />
+            </mat-form-field>
+          </div>
+          <div class="col-md-1 d-flex align-items-center justify-content-end">
+            <button mat-icon-button color="warn" (click)="eliminarSubplan(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div class="boton-centrado">
+    <button mat-raised-button color="primary" (click)="guardarPlan()">Guardar Plan</button>
+  </div>
+
+</div> <!-- fin .dialog-content -->

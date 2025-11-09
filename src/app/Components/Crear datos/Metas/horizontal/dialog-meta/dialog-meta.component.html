@@ -1,0 +1,27 @@
+<h2>Agregar Meta</h2>
+
+<p><strong>Mes:</strong> {{ data.mes }}</p>
+<p><strong>Área:</strong> {{ data.grafico }}</p>
+
+<form>
+  
+  <div class="form-group">
+    <label>{{ etiquetaNombre }}:</label>
+    <input [(ngModel)]="nombre" name="nombre" />
+  </div>
+
+  <div class="form-group">
+    <label>{{ etiquetaObjetivo }}:</label>
+    <input
+      type="number"
+      [(ngModel)]="objetivo"
+      name="objetivo"
+      [placeholder]="placeholderObjetivo"
+    />
+  </div>
+
+  <div class="actions">
+    <button type="button" (click)="guardar()">Guardar</button>
+    <button type="button" (click)="cancelar()">Cancelar</button>
+  </div>
+</form>

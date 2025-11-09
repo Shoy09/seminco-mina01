@@ -1,0 +1,45 @@
+<div class="dialog-container">
+  <div class="dialog-header">
+    <h2>{{ data.titulo }}</h2>
+    <button class="close-btn" (click)="cerrar()">&times;</button>
+  </div>
+  
+  <div class="dialog-content">
+    <div class="descripcion-section">
+      <h3>Descripción</h3>
+      <p>{{ data.descripcion }}</p>
+    </div>
+
+    <div class="formula-section">
+      <h3>Fórmula de Cálculo</h3>
+      <div class="formula">{{ data.formula }}</div>
+    </div>
+
+    <div class="datos-section" *ngIf="data.datosMuestra && data.datosMuestra.length > 0">
+      <h3>Datos de Muestra</h3>
+      <table class="datos-table">
+        <thead>
+          <tr>
+            <th *ngFor="let columna of data.columnas">{{ columna }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fila of data.datosMuestra">
+            <td *ngFor="let valor of fila">{{ valor }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="observaciones-section" *ngIf="data.observaciones">
+      <h3>Observaciones</h3>
+      <ul>
+        <li *ngFor="let obs of data.observaciones">{{ obs }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="dialog-actions">
+    <button class="btn btn-secondary" (click)="cerrar()">Cerrar</button>
+  </div>
+</div>

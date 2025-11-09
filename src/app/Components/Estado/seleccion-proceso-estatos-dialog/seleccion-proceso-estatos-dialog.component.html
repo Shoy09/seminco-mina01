@@ -1,0 +1,17 @@
+<div class="contenedor-dialogo">
+  <button class="boton-cerrar-x" (click)="cerrarDialogo()" aria-label="Cerrar diálogo">✖</button>
+
+  <h2 mat-dialog-title class="titulo-dialogo-texto">Selecciona un Proceso</h2>
+
+  <mat-divider></mat-divider>
+
+  <div class="contenedor-botones">
+    <button *ngFor="let proceso of procesos"
+            (click)="seleccionarProceso(proceso)"
+            class="boton-proceso">
+      {{ proceso }}
+    </button>
+  </div>
+</div>
+
+

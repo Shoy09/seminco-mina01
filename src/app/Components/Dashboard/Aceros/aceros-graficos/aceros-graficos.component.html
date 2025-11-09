@@ -1,0 +1,154 @@
+<div class="dashboard-container">
+  <!-- Filtros superiores (igual que antes) -->
+  <div class="filtros-container">
+    <label>
+      Desde:
+      <input type="date" [(ngModel)]="fechaDesde" />
+    </label>
+    <label>
+      Hasta:
+      <input type="date" [(ngModel)]="fechaHasta" />
+    </label>
+    <label>
+      Turno:
+      <select [(ngModel)]="turnoSeleccionado">
+        <option value="">Todos</option>
+        <option *ngFor="let turno of turnos" [value]="turno">
+          {{ turno }}
+        </option>
+      </select>
+    </label>
+    <button (click)="aplicarFiltros()">Filtrar</button>
+    <button (click)="quitarFiltros()">Quitar filtros</button>
+    <button (click)="exportarAExcelExplosivos()" class="btn btn-success">
+      <i class="fas fa-file-excel"></i> Exportar a Excel completo
+    </button>
+    <button (click)="exportarAExcelExplosivosfiltro()" class="btn btn-success">
+      <i class="fas fa-file-excel"></i> Exportar a Excel filtrados
+    </button>
+  </div>
+
+  <!-- Tabla de diferencias -->
+  <div class="table-container">
+    <div class="table-responsive">
+      <table class="stock-table">
+        <thead>
+          <tr>
+            <th>Proceso</th>
+            <th>Tipo de Acero</th>
+            <th>Descripción</th>
+            <th class="text-center">Ingreso</th>
+            <th class="text-center">Salida</th>
+            <th class="text-center">Stock</th>
+            <th class="text-center">Último Ingreso</th>
+            <th class="text-center">Última Salida</th>
+            <th class="text-center">Ver</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let diff of diferencias" class="table-row">
+            <td class="proceso-cell">{{ diff.proceso }}</td>
+            <td class="tipo-acero-cell">{{ diff.tipo_acero }}</td>
+            <td class="descripcion-cell">{{ diff.descripcion }}</td>
+            <td class="text-center ingreso-cell">{{ diff.cantidadIngresos || 0 }}</td>
+            <td class="text-center salida-cell">{{ diff.cantidadSalidas || 0 }}</td>
+            <td class="text-center stock-cell" 
+                [class.stock-positivo]="diff.diferencia > 0" 
+                [class.stock-negativo]="diff.diferencia < 0"
+                [class.stock-cero]="diff.diferencia === 0">
+              {{ diff.diferencia }}
+            </td>
+            <td class="text-center ultimo-ingreso-cell">
+              <div *ngIf="diff.ultimoIngreso" class="ultimo-registro">
+                <div class="ultimo-fecha">{{ diff.ultimoIngreso.fecha | date:'dd/MM/yyyy' }}</div>
+                <div class="ultimo-turno">{{ diff.ultimoIngreso.turno }}</div>
+                <div class="ultimo-cantidad">+{{ diff.ultimoIngreso.cantidad }}</div>
+              </div>
+              <div *ngIf="!diff.ultimoIngreso" class="sin-registro">
+                Sin ingresos
+              </div>
+            </td>
+            <td class="text-center ultima-salida-cell">
+              <div *ngIf="diff.ultimaSalida" class="ultimo-registro">
+                <div class="ultimo-fecha">{{ diff.ultimaSalida.fecha | date:'dd/MM/yyyy' }}</div>
+                <div class="ultimo-turno">{{ diff.ultimaSalida.turno }}</div>
+                <div class="ultimo-cantidad">-{{ diff.ultimaSalida.cantidad }}</div>
+              </div>
+              <div *ngIf="!diff.ultimaSalida" class="sin-registro">
+                Sin salidas
+              </div>
+            </td>
+            <td class="text-center acciones-cell">
+              <button class="btn-ver" (click)="mostrarDetalles(diff)">
+                <i class="fas fa-eye"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mensaje cuando no hay datos -->
+    <div *ngIf="diferencias.length === 0" class="sin-datos">
+      No hay datos para mostrar con los filtros aplicados
+    </div>
+  </div>
+</div>
+
+<!-- Modal para detalles (se mantiene igual) -->
+<div *ngIf="itemSeleccionado" class="modal-overlay" (click)="cerrarModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Detalles - {{ itemSeleccionado.descripcion }}</h3>
+      <button class="btn-cerrar" (click)="cerrarModal()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <div class="modal-body">
+      <!-- Sección de Ingresos -->
+      <div class="seccion-ingresos">
+        <h4 class="titulo-seccion ingreso">
+          📥 INGRESOS (Total: {{ itemSeleccionado.cantidadIngresos }})
+        </h4>
+        <div class="detalles-lista">
+          <div *ngFor="let ingreso of itemSeleccionado.ingresos" class="detalle-item ingreso">
+            <div class="detalle-info">
+              <span class="detalle-fecha">{{ ingreso.fecha }}</span>
+              <span class="detalle-turno">Turno: {{ ingreso.turno }}</span>
+              <span class="detalle-cantidad">+{{ ingreso.cantidad }}</span>
+            </div>
+          </div>
+          <div *ngIf="itemSeleccionado.ingresos.length === 0" class="sin-datos-modal">
+            No hay ingresos registrados
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección de Salidas -->
+      <div class="seccion-salidas">
+        <h4 class="titulo-seccion salida">
+          📤 SALIDAS (Total: {{ itemSeleccionado.cantidadSalidas }})
+        </h4>
+        <div class="detalles-lista">
+          <div *ngFor="let salida of itemSeleccionado.salidas" class="detalle-item salida">
+            <div class="detalle-info">
+              <span class="detalle-fecha">{{ salida.fecha }}</span>
+              <span class="detalle-turno">Turno: {{ salida.turno }}</span>
+              <span class="detalle-equipo">Equipo: {{ salida.equipo }}</span>
+              <span class="detalle-operador">Operador: {{ salida.operador }}</span>
+              <span class="detalle-cantidad">-{{ salida.cantidad }}</span>
+            </div>
+          </div>
+          <div *ngIf="itemSeleccionado.salidas.length === 0" class="sin-datos-modal">
+            No hay salidas registradas
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="btn btn-primary" (click)="cerrarModal()">Cerrar</button>
+    </div>
+  </div>
+</div>

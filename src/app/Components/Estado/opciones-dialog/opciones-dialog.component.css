@@ -1,0 +1,52 @@
+.dialog-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.close-button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+cursor: pointer;
+}
+
+  .dialog-content {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  .dialog-actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px; /* Separación entre botones */
+    padding: 30px;
+  }
+
+.rounded-button {
+  display: flex;              /* Hace que los íconos y el texto estén uno al lado del otro */
+  align-items: center;        /* Centra verticalmente */
+  gap: 8px;                   /* Espacio entre ícono y texto */
+  border-radius: 10px !important;
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #cceaf388;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.rounded-button.active {
+  background-color: #cceaf388;
+  color: black;
+  border-bottom: none;
+}
+
+.rounded-button:hover {
+background-color: #e0e0e0;
+}
+  mat-icon {
+    margin-right: 5px;
+  }

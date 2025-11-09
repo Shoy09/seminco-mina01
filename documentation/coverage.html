@@ -1,0 +1,2432 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>I-MINER documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="./" class="navbar-brand">I-MINER documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content coverage">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Documentation coverage</li>
+</ol>
+
+<div>
+    <img src="./images/coverage-badge-documentation.svg">
+</div>
+
+<table class="table table-bordered coverage" id="coverage-table">
+    <thead class="coverage-header">
+        <tr>
+            <th>File</th>
+            <th>Type</th>
+            <th>Identifier</th>
+            <th style="text-align:right" class="statements" data-sort-default>Statements</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DialogEditMetaComponent.html">src/app/Components/Crear datos/Metas/horizontal/dialog-edit-meta/dialog-edit-meta.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DialogEditMetaComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DialogMetaComponent.html">src/app/Components/Crear datos/Metas/horizontal/dialog-meta/dialog-meta.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DialogMetaComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/12)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/HorizontalMetaPrincipalComponent.html">src/app/Components/Crear datos/Metas/horizontal/horizontal-meta-principal/horizontal-meta-principal.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>HorizontalMetaPrincipalComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/22)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DialogEditMetaComponent.html">src/app/Components/Crear datos/Metas/largo/dialog-edit-meta/dialog-edit-meta.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DialogEditMetaComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DialogMetaComponent.html">src/app/Components/Crear datos/Metas/largo/dialog-meta/dialog-meta.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DialogMetaComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/12)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/LargoMetaPrincipalComponent.html">src/app/Components/Crear datos/Metas/largo/largo-meta-principal/largo-meta-principal.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>LargoMetaPrincipalComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/22)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/MetasComponent.html">src/app/Components/Crear datos/Metas/metas/metas.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>MetasComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DialogEditMetaComponent.html">src/app/Components/Crear datos/Metas/sostenimiento/dialog-edit-meta/dialog-edit-meta.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DialogEditMetaComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DialogMetaComponent.html">src/app/Components/Crear datos/Metas/sostenimiento/dialog-meta/dialog-meta.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DialogMetaComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/12)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SostenimientoMetaPrincipalComponent.html">src/app/Components/Crear datos/Metas/sostenimiento/sostenimiento-meta-principal/sostenimiento-meta-principal.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SostenimientoMetaPrincipalComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/22)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/CrearDataComponent.html">src/app/Components/Crear datos/crear-data/crear-data.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>CrearDataComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/26)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ExplosivosComponent.html">src/app/Components/Crear datos/explosivos/explosivos.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ExplosivosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/18)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/BarrasMetroPerforadosLaborComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/barras-metro-perforados-labor/barras-metro-perforados-labor.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>BarrasMetroPerforadosLaborComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/barras-metro-perforados-labor/barras-metro-perforados-labor.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DisponibilidadMecanicaEquipoComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/disponibilidad-mecanica-equipo/disponibilidad-mecanica-equipo.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DisponibilidadMecanicaEquipoComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/14)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/disponibilidad-mecanica-equipo/disponibilidad-mecanica-equipo.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DisponibilidadMecanicaGeneralComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/disponibilidad-mecanica-general/disponibilidad-mecanica-general.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DisponibilidadMecanicaGeneralComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/disponibilidad-mecanica-general/disponibilidad-mecanica-general.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/GraficoBarrasAgrupadaNumLaborComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada-num-labor/grafico-barras-agrupada-num-labor.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>GraficoBarrasAgrupadaNumLaborComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/13)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada-num-labor/grafico-barras-agrupada-num-labor.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#DataDisplayOption">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada-num-labor/grafico-barras-agrupada-num-labor.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>DataDisplayOption</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/GraficoBarrasAgrupadaComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada/grafico-barras-agrupada.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>GraficoBarrasAgrupadaComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-agrupada/grafico-barras-agrupada.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/GraficoBarrasMetrosLaborComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-metros-labor/grafico-barras-metros-labor.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>GraficoBarrasMetrosLaborComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras-metros-labor/grafico-barras-metros-labor.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/GraficoBarrasComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras/grafico-barras.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>GraficoBarrasComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/grafico-barras/grafico-barras.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/GraficoEstadosComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/grafico-estados/grafico-estados.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>GraficoEstadosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/grafico-estados/grafico-estados.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/GraficoHorometrosComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/grafico-horometros/grafico-horometros.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>GraficoHorometrosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/grafico-horometros/grafico-horometros.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PromMetrosPerforadosSeccionComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/prom-metros-perforados-seccion/prom-metros-perforados-seccion.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PromMetrosPerforadosSeccionComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PromNumTaladroSeccionComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/prom-num-taladro-seccion/prom-num-taladro-seccion.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PromNumTaladroSeccionComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PromNumTaladroTipoLaborComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/prom-num-taladro-tipo-labor/prom-num-taladro-tipo-labor.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PromNumTaladroTipoLaborComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/prom-num-taladro-tipo-labor/prom-num-taladro-tipo-labor.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PromedioDeEstadosGeneralComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/promedio-de-estados-general/promedio-de-estados-general.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PromedioDeEstadosGeneralComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/12)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/promedio-de-estados-general/promedio-de-estados-general.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PromedioTaladrosComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/promedio-taladros/promedio-taladros.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PromedioTaladrosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/RendimientoDePerforacionesComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/rendimiento-de-perforaciones/rendimiento-de-perforaciones.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>RendimientoDePerforacionesComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/18)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/rendimiento-de-perforaciones/rendimiento-de-perforaciones.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/RendimientoPromedioComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/rendimiento-promedio/rendimiento-promedio.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>RendimientoPromedioComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/20)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/rendimiento-promedio/rendimiento-promedio.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SumaMetrosPerforadosComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/suma-metros-perforados/prueba.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SumaMetrosPerforadosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/17)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/suma-metros-perforados/prueba.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SumaMetrosPerforadosComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/suma-metros-perforados/suma-metros-perforados.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SumaMetrosPerforadosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/17)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/suma-metros-perforados/suma-metros-perforados.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/UtilizacionEquipoComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/utilizacion-equipo/utilizacion-equipo.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>UtilizacionEquipoComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/14)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/utilizacion-equipo/utilizacion-equipo.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/UtilizacionGeneralComponent.html">src/app/Components/Dashboard/Horizontal/Graficos/utilizacion-general/utilizacion-general.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>UtilizacionGeneralComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Horizontal/Graficos/utilizacion-general/utilizacion-general.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TaladroHorizontalGraficaComponent.html">src/app/Components/Dashboard/Horizontal/taladro-horizontal-grafica/taladro-horizontal-grafica.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TaladroHorizontalGraficaComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/46)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DisponibilidadMecanicaEquipoComponent.html">src/app/Components/Dashboard/Largo/Graficos/disponibilidad-mecanica-equipo/disponibilidad-mecanica-equipo.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DisponibilidadMecanicaEquipoComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/14)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Largo/Graficos/disponibilidad-mecanica-equipo/disponibilidad-mecanica-equipo.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DisponibilidadMecanicaGeneralComponent.html">src/app/Components/Dashboard/Largo/Graficos/disponibilidad-mecanica-general/disponibilidad-mecanica-general.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DisponibilidadMecanicaGeneralComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Largo/Graficos/disponibilidad-mecanica-general/disponibilidad-mecanica-general.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/GraficoEstadosComponent.html">src/app/Components/Dashboard/Largo/Graficos/grafico-estados/grafico-estados.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>GraficoEstadosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/12)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Largo/Graficos/grafico-estados/grafico-estados.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/HorometrosComponent.html">src/app/Components/Dashboard/Largo/Graficos/horometros/horometros.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>HorometrosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Largo/Graficos/horometros/horometros.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/LongitudDePerforacionComponent.html">src/app/Components/Dashboard/Largo/Graficos/longitud-de-perforacion/longitud-de-perforacion.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>LongitudDePerforacionComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Largo/Graficos/longitud-de-perforacion/longitud-de-perforacion.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/MetrosPerforadosEquipoComponent.html">src/app/Components/Dashboard/Largo/Graficos/metros-perforados-equipo/metros-perforados-equipo.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>MetrosPerforadosEquipoComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Largo/Graficos/metros-perforados-equipo/metros-perforados-equipo.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/MetrosPerforadosLaborComponent.html">src/app/Components/Dashboard/Largo/Graficos/metros-perforados-labor/metros-perforados-labor.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>MetrosPerforadosLaborComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Largo/Graficos/metros-perforados-labor/metros-perforados-labor.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PromedioDeEstadosGeneralComponent.html">src/app/Components/Dashboard/Largo/Graficos/promedio-de-estados-general/promedio-de-estados-general.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PromedioDeEstadosGeneralComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/12)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Largo/Graficos/promedio-de-estados-general/promedio-de-estados-general.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/RendimientoDePerforacionesComponent.html">src/app/Components/Dashboard/Largo/Graficos/rendimiento-de-perforaciones/rendimiento-de-perforaciones.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>RendimientoDePerforacionesComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/16)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Largo/Graficos/rendimiento-de-perforaciones/rendimiento-de-perforaciones.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/RendimientoPromedioComponent.html">src/app/Components/Dashboard/Largo/Graficos/rendimiento-promedio/rendimiento-promedio.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>RendimientoPromedioComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/20)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Largo/Graficos/rendimiento-promedio/rendimiento-promedio.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SumaMetrosPerforadosComponent.html">src/app/Components/Dashboard/Largo/Graficos/suma-metros-perforados/suma-metros-perforados.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SumaMetrosPerforadosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Largo/Graficos/suma-metros-perforados/suma-metros-perforados.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/UtilizacionEquipoComponent.html">src/app/Components/Dashboard/Largo/Graficos/utilizacion-equipo/utilizacion-equipo.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>UtilizacionEquipoComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/14)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Largo/Graficos/utilizacion-equipo/utilizacion-equipo.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/UtilizacionGeneralComponent.html">src/app/Components/Dashboard/Largo/Graficos/utilizacion-general/utilizacion-general.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>UtilizacionGeneralComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Largo/Graficos/utilizacion-general/utilizacion-general.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/TaladroLargoGraficaComponent.html">src/app/Components/Dashboard/Largo/taladro-largo-grafica/taladro-largo-grafica.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>TaladroLargoGraficaComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/36)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DisponibilidadMecanicaEquipoComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/disponibilidad-mecanica-equipo/disponibilidad-mecanica-equipo.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DisponibilidadMecanicaEquipoComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/14)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/disponibilidad-mecanica-equipo/disponibilidad-mecanica-equipo.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/DisponibilidadMecanicaGeneralComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/disponibilidad-mecanica-general/disponibilidad-mecanica-general.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>DisponibilidadMecanicaGeneralComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/disponibilidad-mecanica-general/disponibilidad-mecanica-general.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/GraficoEstadosComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/grafico-estados/grafico-estados.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>GraficoEstadosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/grafico-estados/grafico-estados.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/HorometrosComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/horometros/horometros.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>HorometrosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/horometros/horometros.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/MallaInstaladaEquipoComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/malla-instalada-equipo/malla-instalada-equipo.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>MallaInstaladaEquipoComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/malla-instalada-equipo/malla-instalada-equipo.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/MallaInstaladaLaborComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/malla-instalada-labor/malla-instalada-labor.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>MallaInstaladaLaborComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/malla-instalada-labor/malla-instalada-labor.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/MetrosPerforadosEquipoComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/metros-perforados-equipo/metros-perforados-equipo.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>MetrosPerforadosEquipoComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/metros-perforados-equipo/metros-perforados-equipo.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/MetrosPerforadosLaborComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/metros-perforados-labor/metros-perforados-labor.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>MetrosPerforadosLaborComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/metros-perforados-labor/metros-perforados-labor.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PromedioDeEstadosGeneralComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/promedio-de-estados-general/promedio-de-estados-general.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PromedioDeEstadosGeneralComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/12)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/promedio-de-estados-general/promedio-de-estados-general.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PromedioMayasComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/promedio-mayas/promedio-mayas.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PromedioMayasComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/promedio-mayas/promedio-mayas.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PromedioNTaladroComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/promedio-n-taladro/promedio-n-taladro.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PromedioNTaladroComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/promedio-n-taladro/promedio-n-taladro.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/RendimientoDePerforacionesComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/rendimiento-de-perforaciones/rendimiento-de-perforaciones.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>RendimientoDePerforacionesComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/16)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/rendimiento-de-perforaciones/rendimiento-de-perforaciones.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/RendimientoPromedioComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/rendimiento-promedio/rendimiento-promedio.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>RendimientoPromedioComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/20)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/rendimiento-promedio/rendimiento-promedio.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SumaMetrosPerforadosComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/suma-metros-perforados/suma-metros-perforados.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SumaMetrosPerforadosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/suma-metros-perforados/suma-metros-perforados.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/UtilizacionEquipoComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/utilizacion-equipo/utilizacion-equipo.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>UtilizacionEquipoComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/14)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/utilizacion-equipo/utilizacion-equipo.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/UtilizacionGeneralComponent.html">src/app/Components/Dashboard/Sostenimiento/Graficos/utilizacion-general/utilizacion-general.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>UtilizacionGeneralComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/typealiases.html#ChartOptions">src/app/Components/Dashboard/Sostenimiento/Graficos/utilizacion-general/utilizacion-general.component.ts</a>
+            </td>
+            <td>type alias</td>
+            <td>ChartOptions</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SostenimientoGraficosComponent.html">src/app/Components/Dashboard/Sostenimiento/sostenimiento-graficos/sostenimiento-graficos.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SostenimientoGraficosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/40)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/MostrarGraficosComponent.html">src/app/Components/Dato Movil/mostrar-graficos/mostrar-graficos.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>MostrarGraficosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/19)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/ConfirmDialogComponent.html">src/app/Components/Estado/confirm-dialog/confirm-dialog.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ConfirmDialogComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/EstadoFormEditarComponent.html">src/app/Components/Estado/estado-form-editar/estado-form-editar.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>EstadoFormEditarComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/8)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/EstadoFormComponent.html">src/app/Components/Estado/estado-form/estado-form.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>EstadoFormComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/8)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/EstadosComponent.html">src/app/Components/Estado/estados/estados.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>EstadosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/12)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/OpcionesDialogComponent.html">src/app/Components/Estado/opciones-dialog/opciones-dialog.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>OpcionesDialogComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SeleccionProcesoEstatosDialogComponent.html">src/app/Components/Estado/seleccion-proceso-estatos-dialog/seleccion-proceso-estatos-dialog.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SeleccionProcesoEstatosDialogComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/CreatePlanAvanceComponent.html">src/app/Components/Planes mensuales/Plan mensual avance/create-plan-avance/create-plan-avance.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>CreatePlanAvanceComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/9)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/EditPlanAvanceComponent.html">src/app/Components/Planes mensuales/Plan mensual avance/edit-plan-avance/edit-plan-avance.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>EditPlanAvanceComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PlanDetallesDialogComponent.html">src/app/Components/Planes mensuales/Plan mensual avance/plan-detalles-dialog/plan-detalles-dialog.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PlanDetallesDialogComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PlanMensualListComponent.html">src/app/Components/Planes mensuales/Plan mensual avance/plan-mensual-list/plan-mensual-list.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PlanMensualListComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/24)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/CreatePlanMetrajeComponent.html">src/app/Components/Planes mensuales/Plan mensual metraje/create-plan-metraje/create-plan-metraje.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>CreatePlanMetrajeComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/9)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/EditPlanMetrajeComponent.html">src/app/Components/Planes mensuales/Plan mensual metraje/edit-plan-metraje/edit-plan-metraje.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>EditPlanMetrajeComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PlanMetrajeDetallesDialogComponent.html">src/app/Components/Planes mensuales/Plan mensual metraje/plan-metraje-detalles-dialog/plan-metraje-detalles-dialog.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PlanMetrajeDetallesDialogComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PlanMetrajeListComponent.html">src/app/Components/Planes mensuales/Plan mensual metraje/plan-metraje-list/plan-metraje-list.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PlanMetrajeListComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/24)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/CreatePlanProduccionComponent.html">src/app/Components/Planes mensuales/Plan mensual produccion/create-plan-produccion/create-plan-produccion.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>CreatePlanProduccionComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/9)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/EditPlanProduccionComponent.html">src/app/Components/Planes mensuales/Plan mensual produccion/edit-plan-produccion/edit-plan-produccion.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>EditPlanProduccionComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PlanProduccionDetallesDialogComponent.html">src/app/Components/Planes mensuales/Plan mensual produccion/plan-produccion-detalles-dialog/plan-produccion-detalles-dialog.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PlanProduccionDetallesDialogComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PlanProduccionListComponent.html">src/app/Components/Planes mensuales/Plan mensual produccion/plan-produccion-list/plan-produccion-list.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PlanProduccionListComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/24)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/HomeComponent.html">src/app/Components/Principales/home/home.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>HomeComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/LoginComponent.html">src/app/Components/Principales/login/login.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>LoginComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/8)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/MenuComponent.html">src/app/Components/Principales/menu/menu.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>MenuComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/PrincipalComponent.html">src/app/Components/Principales/principal/principal.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>PrincipalComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/LoadingDialogComponent.html">src/app/Components/Reutilizables/loading-dialog/loading-dialog.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>LoadingDialogComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/EditarOperacionesDialogComponent.html">src/app/Components/Usuario/editar-operaciones-dialog/editar-operaciones-dialog.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>EditarOperacionesDialogComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/8)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/OperacionesDialogComponent.html">src/app/Components/Usuario/operaciones-dialog.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>OperacionesDialogComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/UsuarioDialogComponent.html">src/app/Components/Usuario/usuario-dialog/usuario-dialog.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>UsuarioDialogComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/UsuarioComponent.html">src/app/Components/Usuario/usuario/usuario.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>UsuarioComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/17)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/UsuariosComponent.html">src/app/Components/Usuario/usuarios/usuarios.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>UsuariosComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/23)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/AppComponent.html">src/app/app.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>AppComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/2)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/variables.html#appConfig">src/app/app.config.ts</a>
+            </td>
+            <td>variable</td>
+            <td>appConfig</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/Accesorio.html">src/app/models/Accesorio.ts</a>
+            </td>
+            <td>interface</td>
+            <td>Accesorio</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/Estado.html">src/app/models/Estado.ts</a>
+            </td>
+            <td>interface</td>
+            <td>Estado</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/Estado2.html">src/app/models/Estado.ts</a>
+            </td>
+            <td>interface</td>
+            <td>Estado2</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/Explosivo.html">src/app/models/Explosivo.ts</a>
+            </td>
+            <td>interface</td>
+            <td>Explosivo</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/ExplosivosUni.html">src/app/models/ExplosivosUni.ts</a>
+            </td>
+            <td>interface</td>
+            <td>ExplosivosUni</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/Usuario.html">src/app/models/Usuario.ts</a>
+            </td>
+            <td>interface</td>
+            <td>Usuario</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/16)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/DestinatarioCorreo.html">src/app/models/destinatario-correo.ts</a>
+            </td>
+            <td>interface</td>
+            <td>DestinatarioCorreo</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/Empresa.html">src/app/models/empresa.ts</a>
+            </td>
+            <td>interface</td>
+            <td>Empresa</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/Equipo.html">src/app/models/equipo.model.ts</a>
+            </td>
+            <td>interface</td>
+            <td>Equipo</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/12)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/FechasPlanMensual.html">src/app/models/fechas-plan-mensual.model.ts</a>
+            </td>
+            <td>interface</td>
+            <td>FechasPlanMensual</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/Meta.html">src/app/models/meta.model.ts</a>
+            </td>
+            <td>interface</td>
+            <td>Meta</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/NubeEstado.html">src/app/models/operaciones.models.ts</a>
+            </td>
+            <td>interface</td>
+            <td>NubeEstado</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/NubeHorometros.html">src/app/models/operaciones.models.ts</a>
+            </td>
+            <td>interface</td>
+            <td>NubeHorometros</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/NubeInterPerforacionHorizontal.html">src/app/models/operaciones.models.ts</a>
+            </td>
+            <td>interface</td>
+            <td>NubeInterPerforacionHorizontal</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/NubeInterPerforacionTaladroLargo.html">src/app/models/operaciones.models.ts</a>
+            </td>
+            <td>interface</td>
+            <td>NubeInterPerforacionTaladroLargo</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/16)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/NubeInterSostenimiento.html">src/app/models/operaciones.models.ts</a>
+            </td>
+            <td>interface</td>
+            <td>NubeInterSostenimiento</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/14)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/NubeOperacion.html">src/app/models/operaciones.models.ts</a>
+            </td>
+            <td>interface</td>
+            <td>NubeOperacion</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/17)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/NubePerforacionHorizontal.html">src/app/models/operaciones.models.ts</a>
+            </td>
+            <td>interface</td>
+            <td>NubePerforacionHorizontal</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/13)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/NubePerforacionTaladroLargo.html">src/app/models/operaciones.models.ts</a>
+            </td>
+            <td>interface</td>
+            <td>NubePerforacionTaladroLargo</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/13)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/NubeSostenimiento.html">src/app/models/operaciones.models.ts</a>
+            </td>
+            <td>interface</td>
+            <td>NubeSostenimiento</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/13)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/PlanMensual.html">src/app/models/plan-mensual.model.ts</a>
+            </td>
+            <td>interface</td>
+            <td>PlanMensual</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/20)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/PlanMetraje.html">src/app/models/plan_metraje.model.ts</a>
+            </td>
+            <td>interface</td>
+            <td>PlanMetraje</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/24)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/PlanProduccion.html">src/app/models/plan_produccion.model.ts</a>
+            </td>
+            <td>interface</td>
+            <td>PlanProduccion</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/29)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/TipoPerforacion.html">src/app/models/tipo-perforacion.model.ts</a>
+            </td>
+            <td>interface</td>
+            <td>TipoPerforacion</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/OperacionService.html">src/app/services/OperacionService .service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>OperacionService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/AccesorioService.html">src/app/services/accesorio.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>AccesorioService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/ApiService.html">src/app/services/api.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>ApiService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/8)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interceptors/AuthInterceptor.html">src/app/services/auth-interceptor.service.ts</a>
+            </td>
+            <td>interceptor</td>
+            <td>AuthInterceptor</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/AuthService.html">src/app/services/auth-service.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>AuthService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/DestinatarioCorreoService.html">src/app/services/destinatario-correo.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>DestinatarioCorreoService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/EmpresaService.html">src/app/services/empresa.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>EmpresaService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/EquipoService.html">src/app/services/equipo.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>EquipoService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/EstadoService.html">src/app/services/estado.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>EstadoService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/ExplosivoService.html">src/app/services/explosivo.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>ExplosivoService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/ExplosivosUniService.html">src/app/services/explosivos-uni.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>ExplosivosUniService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/FechasPlanMensualService.html">src/app/services/fechas-plan-mensual.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>FechasPlanMensualService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/MetaLargoService.html">src/app/services/meta-largo.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>MetaLargoService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/MetaSostenimientoService.html">src/app/services/meta-sostenimiento.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>MetaSostenimientoService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/MetaService.html">src/app/services/meta.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>MetaService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/PlanMensualService.html">src/app/services/plan-mensual.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>PlanMensualService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/PlanMetrajeService.html">src/app/services/plan-metraje.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>PlanMetrajeService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/PlanProduccionService.html">src/app/services/plan-produccion.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>PlanProduccionService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/TipoPerforacionService.html">src/app/services/tipo-perforacion.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>TipoPerforacionService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/10)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/UsuarioService.html">src/app/services/usuario.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>UsuarioService</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script src="js/libs/tablesort.min.js"></script>
+<script src="js/libs/tablesort.number.min.js"></script>
+<script>
+    new Tablesort(document.getElementById('coverage-table'));
+</script>
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'coverage';
+            var COMPODOC_CURRENT_PAGE_URL = 'coverage.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

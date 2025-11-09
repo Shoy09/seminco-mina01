@@ -1,0 +1,49 @@
+<div class="home-container">
+    <!-- Alerta superior -->
+    <div class="alert">
+      <p>
+        🚀 ¡No te tomará más de 2 minutos! Necesitamos de tu apoyo para seguir
+        mejorando, por favor, ayúdanos respondiendo la siguiente encuesta:
+        <a href="https://pe.gesti.pe/Encuestas?User=1010243" target="_blank"
+          >Responder Encuesta</a
+        >
+      </p>
+      <button class="close-alert" (click)="closeAlert()">✖</button>
+    </div>
+  
+    <!-- Sección de bienvenida -->
+    <h2>¡Bienvenido</h2>
+  
+    <!-- Configuraciones iniciales -->
+    <div class="config-container">
+      <h3 (click)="toggleConfiguraciones()" class="config-title">
+        ▼ CONFIGURACIONES INICIALES
+      </h3>
+      <div class="config-content" *ngIf="mostrarConfiguraciones">
+        <div class="config-card">
+          <span class="badge">1</span>
+          <p>Registra un producto para poder empezar a vender.</p>
+        </div>
+        <div class="config-card">
+          <span class="badge">2</span>
+          <p>No olvides darnos de alta en SUNAT para emitir tu CPE.</p>
+        </div>
+  
+        <h4>Configuraciones Básicas</h4>
+        <ul>
+          <li>❌ Falta Productos</li>
+        </ul>
+  
+        <h4>Configuraciones Opcionales</h4>
+        <ul>
+          <li>❌ Falta Stock</li>
+          <li>❌ Falta Logo de Empresa</li>
+          <li>❌ Falta Número de Cuenta de Detracción</li>
+          <li>❌ Falta Transportistas (opcional)</li>
+          <li>❌ Falta Choferes (opcional)</li>
+          <li>❌ Falta Representantes</li>
+        </ul>
+      </div>
+    </div>
+  </div> 
+  

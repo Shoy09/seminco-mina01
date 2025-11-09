@@ -1,0 +1,74 @@
+<div class="container mt-3">
+    <div class="row mb-3">
+      <div class="col-sm-3">
+        <label for="fechaInicio" class="form-label">Fecha Inicio</label>
+        <input type="date" id="fechaInicio" class="form-control form-control-sm" [(ngModel)]="fechaInicio">
+      </div>
+      <div class="col-sm-3">
+        <label for="fechaFin" class="form-label">Fecha Fin</label>
+        <input type="date" id="fechaFin" class="form-control form-control-sm" [(ngModel)]="fechaFin">
+      </div>
+      <div class="col-sm-3">
+        <label for="turno" class="form-label">Turno</label>
+        <select id="turno" class="form-select form-select-sm" [(ngModel)]="turnoSeleccionado">
+          <option value="">Todos</option>
+          <option value="DÍA">Día</option>
+          <option value="NOCHE">Noche</option>
+        </select>
+      </div>
+      <div class="col-sm-3 d-flex align-items-end">
+        <button class="btn btn-primary btn-sm w-100" (click)="aplicarFiltros()">Aplicar Filtros</button>
+      </div>
+    </div>
+
+    <!-- Sección Taladro Largo -->
+    <div class="card mb-3 p-2">
+      <div class="card-header bg-primary text-white p-2">
+        <h5 class="mb-0">Perforación Taladros Largos</h5>
+      </div>
+      <div class="card-body p-2">
+        <div class="row">
+          <div class="col-sm-6">
+            <canvas #graficoTaladro class="grafico-reducido"></canvas>
+          </div>
+          <div class="col-sm-6">
+            <canvas #graficoEstadosTaladro class="grafico-reducido"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección Perforación Horizontal -->
+    <div class="card mb-3 p-2">
+      <div class="card-header bg-success text-white p-2">
+        <h5 class="mb-0">Perforación Horizontal</h5>
+      </div>
+      <div class="card-body p-2">
+        <div class="row">
+          <div class="col-sm-6">
+            <canvas #graficoHorizontal class="grafico-reducido"></canvas>
+          </div>
+          <div class="col-sm-6">
+            <canvas #graficoEstadosHorizontal class="grafico-reducido"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección Sostenimiento -->
+    <div class="card mb-3 p-2">
+      <div class="card-header bg-info text-white p-2">
+        <h5 class="mb-0">Sostenimiento</h5>
+      </div>
+      <div class="card-body p-2">
+        <div class="row">
+          <div class="col-sm-6">
+            <canvas #graficoSostenimiento class="grafico-reducido"></canvas>
+          </div>
+          <div class="col-sm-6">
+            <canvas #graficoEstadosSostenimiento class="grafico-reducido"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

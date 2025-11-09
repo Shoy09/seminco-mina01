@@ -1,0 +1,71 @@
+.container {
+    background-color: #fff;
+    padding: 20px 40px 20px 20px; /* padding: top right bottom left */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  
+  h2 {
+    text-align: center;
+    color: #004494;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    color: #004494;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input:focus {
+    border-color: #004494;
+    outline: none;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"] {
+    background-color: #004494;
+    color: white;
+  }
+  
+  .cancel-btn {
+    background-color: red;
+    color: white;
+  }
+  
+  .mensaje {
+    text-align: center;
+    color: green;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  

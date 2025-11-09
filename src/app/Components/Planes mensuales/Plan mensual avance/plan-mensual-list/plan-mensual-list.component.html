@@ -1,0 +1,87 @@
+<div class="planes-container">
+    <h2>Lista de Planes Mensuales Avance</h2>
+
+    <div class="planes-actions">
+        <button mat-raised-button color="primary" (click)="abrirDialogoCrear()">Nuevo Plan Avance</button>
+
+        <button mat-raised-button color="warn" class="btn-masivo" (click)="seleccionarArchivo()">
+            Ingreso masivo
+        </button>
+
+        <!-- Input de tipo file oculto -->
+        <input type="file" id="fileInput" (change)="cargarArchivo($event)" hidden>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Buscar</mat-label>
+            <input matInput (keyup)="aplicarFiltro($event)" placeholder="Ingrese datos">
+        </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <ng-container matColumnDef="anio">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Año</th>
+            <td mat-cell *matCellDef="let plan">{{ plan.anio }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="mes">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mes</th>
+            <td mat-cell *matCellDef="let plan">{{ plan.mes }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="minado_tipo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Minado/Tipo</th>
+            <td mat-cell *matCellDef="let plan">{{ plan.minado_tipo }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="zona">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Zona</th>
+            <td mat-cell *matCellDef="let plan">{{ plan.zona }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipo_mineral">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo de Mineral</th>
+            <td mat-cell *matCellDef="let plan">{{ plan.tipo_mineral }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fase">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Fase</th>
+            <td mat-cell *matCellDef="let plan">{{ plan.fase }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipo_labor">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>tipo labor</th>
+            <td mat-cell *matCellDef="let plan">{{ plan.tipo_labor }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="labor">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Labor</th>
+            <td mat-cell *matCellDef="let plan">{{ plan.labor }}</td>
+        </ng-container>
+
+        <!-- Nueva columna para acciones -->
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let plan">
+                <div class="acciones-buttons">
+                    <button mat-icon-button color="primary" (click)="editarPlan(plan)">
+                        <mat-icon class="small-icon">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="eliminarPlan(plan)">
+                        <mat-icon class="small-icon">delete</mat-icon>
+                    </button>
+                    <button mat-icon-button color="accent" (click)="verPlan(plan)">
+                        <mat-icon class="small-icon">visibility</mat-icon>
+                    </button>
+                </div>
+            </td>
+        </ng-container>
+        
+
+        <!-- Header y filas -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- Paginador -->
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

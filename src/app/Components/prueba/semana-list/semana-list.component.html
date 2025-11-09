@@ -1,0 +1,80 @@
+<div class="container">
+  <!-- Encabezado con información de la empresa -->
+  <div class="header-section">
+    <h2>Semanas registradas</h2>
+    
+    <div class="empresa-info" *ngIf="empresaSeleccionada">
+      <mat-chip-listbox>
+        <mat-chip>
+          <mat-icon>business</mat-icon>
+          {{ getNombreEmpresa(empresaSeleccionada) }} (ID: {{ empresaSeleccionada }})
+        </mat-chip>
+      </mat-chip-listbox>
+    </div>
+  </div>
+
+  <!-- Controles superiores -->
+  <div class="actions-top">
+    <!-- Selector de empresa -->
+    <mat-form-field appearance="outline" *ngIf="empresas.length > 1">
+      <mat-label>Cambiar empresa</mat-label>
+      <mat-select [(value)]="empresaSeleccionada" (selectionChange)="onEmpresaChange()">
+        <mat-option *ngFor="let empresa of empresas" [value]="empresa.id">
+          {{ empresa.nombre }} (ID: {{ empresa.id }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Botones de acciones -->
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" (click)="openDialog()" *ngIf="semanas.length < 53">
+        <mat-icon>add</mat-icon> Agregar semana
+      </button>
+      <button mat-raised-button color="accent" (click)="seleccionarArchivo()">
+        <mat-icon>upload</mat-icon> Importar desde Excel
+      </button>
+      
+      <input type="file" id="fileInput" (change)="cargarArchivo($event)" accept=".xlsx, .xls" style="display: none;">
+    </div>
+  </div>
+
+  <!-- Tabla de semanas -->
+  <div class="table-container">
+    <table mat-table [dataSource]="semanas" class="mat-elevation-z8">
+      <ng-container matColumnDef="numero_semana">
+        <th mat-header-cell *matHeaderCellDef># Semana</th>
+        <td mat-cell *matCellDef="let semana">{{ semana.numero_semana }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="anio">
+        <th mat-header-cell *matHeaderCellDef>Año</th>
+        <td mat-cell *matCellDef="let semana">{{ semana.anio }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha_inicio">
+        <th mat-header-cell *matHeaderCellDef>Inicio</th>
+        <td mat-cell *matCellDef="let semana">{{ semana.fecha_inicio | date:'dd/MM/yyyy' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha_fin">
+        <th mat-header-cell *matHeaderCellDef>Fin</th>
+        <td mat-cell *matCellDef="let semana">{{ semana.fecha_fin | date:'dd/MM/yyyy' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let semana">
+          <button mat-icon-button color="accent" (click)="openDialog(semana)" matTooltip="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="eliminarSemana(semana.id)" matTooltip="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

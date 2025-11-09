@@ -1,0 +1,96 @@
+<div class="table-container p-3">
+  <div class="table-responsive rounded border">
+    <table mat-table [dataSource]="dataSource" class="table table-hover align-middle custom-table mb-0">
+      
+      <!-- ID -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef class="ps-4">ID</th>
+        <td mat-cell *matCellDef="let subplan" class="ps-4">{{ subplan.id }}</td>
+      </ng-container>
+
+      <!-- Sistema -->
+      <ng-container matColumnDef="sistema">
+        <th mat-header-cell *matHeaderCellDef class="px-3">Sistema</th>
+        <td mat-cell *matCellDef="let subplan" class="px-3">
+          <span class="badge sistema-badge">
+            {{ subplan.sistema }}
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- Frecuencia -->
+      <ng-container matColumnDef="frecuencia">
+        <th mat-header-cell *matHeaderCellDef class="px-3">Frecuencia</th>
+        <td mat-cell *matCellDef="let subplan" class="px-3">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-arrow-repeat me-1 text-muted"></i>
+            {{ subplan.frecuencia }}
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Horas de Parada -->
+      <ng-container matColumnDef="h_parada">
+        <th mat-header-cell *matHeaderCellDef class="px-3">H. Parada</th>
+        <td mat-cell *matCellDef="let subplan" class="px-3">
+          <span [class.text-danger]="subplan.h_parada > 8">
+            {{ subplan.h_parada || '-' }}
+            <span *ngIf="subplan.h_parada">h</span>
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- Días -->
+      <ng-container matColumnDef="dias">
+        <th mat-header-cell *matHeaderCellDef class="px-3">Días</th>
+        <td mat-cell *matCellDef="let subplan" class="px-3">
+          <div class="dias-container">
+            {{ getDias(subplan) }}
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Actividades -->
+      <ng-container matColumnDef="actividades">
+        <th mat-header-cell *matHeaderCellDef class="px-3">Actividades</th>
+        <td mat-cell *matCellDef="let subplan" class="px-3 actividades-cell">
+          <div class="actividades-text" [title]="subplan.actividades">
+            {{ subplan.actividades }}
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Cumplimiento -->
+      <ng-container matColumnDef="cumplimiento">
+        <th mat-header-cell *matHeaderCellDef class="text-center px-3">Cumplimiento</th>
+        <td mat-cell *matCellDef="let subplan" class="text-center px-3">
+          <div class="cumplimiento-indicator">
+            <div class="progress" style="height: 6px; width: 60px; margin: 0 auto 2px;">
+              <div class="progress-bar" 
+                   [ngClass]="{
+                     'bg-success': subplan.cumplimiento >= 80,
+                     'bg-warning': subplan.cumplimiento >= 50 && subplan.cumplimiento < 80,
+                     'bg-danger': subplan.cumplimiento < 50
+                   }"
+                   [style.width]="(subplan.cumplimiento || 0) + '%'">
+              </div>
+            </div>
+            <small class="text-muted">{{ subplan.cumplimiento != null ? subplan.cumplimiento + '%' : '0%' }}</small>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Filas -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="table-primary"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+          [class.table-warning]="row.cumplimiento < 50"
+          [class.table-info]="row.h_parada > 8"></tr>
+
+    </table>
+  </div>
+
+  <div *ngIf="dataSource.length === 0" class="empty-state text-center py-5 mt-3 rounded border">
+    <i class="bi bi-inbox display-4 text-muted mb-3"></i>
+    <p class="text-muted">No hay subplanes registrados para este plan.</p>
+  </div>
+</div>

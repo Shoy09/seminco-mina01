@@ -1,0 +1,125 @@
+<div class="dialog-container">
+    <h2>Editar Plan Metraje</h2>
+
+    <div class="dialog-content">
+        <form>
+            <div class="form-group">
+                <label>Año:</label>
+                <input type="number" [(ngModel)]="plan.anio" name="anio" readonly>
+            </div>
+
+            <div class="form-group">
+                <label>Mes:</label>
+                <input type="text" [(ngModel)]="plan.mes" name="mes" readonly>
+            </div>
+
+            <div class="form-group">
+                <label>Semana:</label>
+                <input type="text" [(ngModel)]="plan.semana" name="semana">
+            </div>
+
+            <div class="form-group">
+                <label>Mina:</label>
+                <input type="text" [(ngModel)]="plan.mina" name="mina">
+            </div>
+
+            <div class="form-group">
+                <label>Zona:</label>
+                <input type="text" [(ngModel)]="plan.zona" name="zona">
+            </div>
+
+            <div class="form-group">
+                <label>Área:</label>
+                <input type="text" [(ngModel)]="plan.area" name="area">
+            </div>
+
+            <div class="form-group">
+                <label>Fase:</label>
+                <input type="text" [(ngModel)]="plan.fase" name="fase">
+            </div>
+
+            <div class="form-group">
+                <label>Minado Tipo:</label>
+                <input type="text" [(ngModel)]="plan.minado_tipo" name="minado_tipo">
+            </div>
+
+            <div class="form-group">
+                <label>Tipo Labor:</label>
+                <input type="text" [(ngModel)]="plan.tipo_labor" name="tipo_labor">
+            </div>
+
+            <div class="form-group">
+                <label>Tipo Mineral:</label>
+                <input type="text" [(ngModel)]="plan.tipo_mineral" name="tipo_mineral">
+            </div>
+
+            <div class="form-group">
+                <label>Estructura Veta:</label>
+                <input type="text" [(ngModel)]="plan.estructura_veta" name="estructura_veta">
+            </div>
+
+            <div class="form-group">
+                <label>Nivel:</label>
+                <input type="text" [(ngModel)]="plan.nivel" name="nivel">
+            </div>
+
+            <div class="form-group">
+                <label>Block:</label>
+                <input type="text" [(ngModel)]="plan.block" name="block">
+            </div>
+
+            <div class="form-group">
+                <label>Labor:</label>
+                <input type="text" [(ngModel)]="plan.labor" name="labor">
+            </div>
+
+            <div class="form-group">
+                <label>Ala:</label>
+                <input type="text" [(ngModel)]="plan.ala" name="ala">
+            </div>
+
+            <div class="form-group">
+                <label>Ancho Veta:</label>
+                <input type="number" [(ngModel)]="plan.ancho_veta" name="ancho_veta">
+            </div>
+
+            <div class="form-group">
+                <label>Ancho Minado Semana:</label>
+                <input type="number" [(ngModel)]="plan.ancho_minado_sem" name="ancho_minado_sem">
+            </div>
+
+            <div class="form-group">
+                <label>Ancho Minado Mes:</label>
+                <input type="number" [(ngModel)]="plan.ancho_minado_mes" name="ancho_minado_mes">
+            </div>
+
+            <div class="form-group">
+                <label>Burden:</label>
+                <input type="number" [(ngModel)]="plan.burden" name="burden">
+            </div>
+
+            <div class="form-group">
+                <label>Espaciamiento:</label>
+                <input type="number" [(ngModel)]="plan.espaciamiento" name="espaciamiento">
+            </div>
+
+            <div class="form-group">
+                <label>Longitud Perforación:</label>
+                <input type="number" [(ngModel)]="plan.longitud_perforacion" name="longitud_perforacion">
+            </div>
+
+            <div class="form-group">
+                <label>Programado:</label>
+                <select [(ngModel)]="plan.programado" name="programado">
+                    <option value="Programado">Programado</option>
+                    <option value="No Programado">No Programado</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <div class="button-group">
+        <button class="save-btn" (click)="guardar()">Guardar</button>
+        <button class="cancel-btn" (click)="cancelar()">Cancelar</button>
+    </div>
+</div>

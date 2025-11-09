@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>Editar Estado</h2>
+  
+    <form [formGroup]="estadoForm" (ngSubmit)="guardarCambios()">
+      <div class="form-group">
+        <label for="estado_principal">Estado Principal</label>
+        <input id="estado_principal" formControlName="estado_principal" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="codigo">Código</label>
+        <input id="codigo" formControlName="codigo" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="tipo_estado">Tipo de Estado</label>
+        <input id="tipo_estado" formControlName="tipo_estado" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="categoria">Categoría</label>
+        <input id="categoria" formControlName="categoria" required />
+      </div>
+  
+      <div class="button-container">
+        <button type="submit" [disabled]="!estadoForm.valid">Guardar</button>
+        <button type="button" class="cancel-btn" (click)="cerrar()">Cancelar</button>
+      </div>
+    </form>
+</div>

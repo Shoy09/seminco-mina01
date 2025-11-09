@@ -1,0 +1,74 @@
+.planes-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #3f51b5;
+  }
+  
+  .planes-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px; /* Espaciado entre los botones */
+  }
+  
+  mat-form-field {
+    width: 300px;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    margin-left: 10px;
+  }
+  
+  mat-paginator {
+    margin-top: 15px;
+  }
+
+  .acciones-buttons {
+    display: flex;
+    gap: 5px; /* Espaciado entre los botones */
+    align-items: center; /* Asegura que los iconos estén bien alineados */
+    justify-content: center;
+}
+
+.acciones-buttons button {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Elimina el padding extra */
+    line-height: 1; /* Ajusta la altura de línea para evitar desajustes */
+}
+ /* Hacer el contenido del diálogo desplazable */
+.dialog-content {
+  padding: 1.5rem 2rem;
+  background-color: #fff;
+  max-height: 70vh; /* Limita la altura visible */
+  overflow-y: auto; /* Habilita scroll vertical */
+  overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+/* Evita que el encabezado se mueva */
+.dialog-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #f1f3f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #dee2e6;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}

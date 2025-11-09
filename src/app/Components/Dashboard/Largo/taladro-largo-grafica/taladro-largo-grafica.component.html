@@ -1,0 +1,135 @@
+<div class="dashboard-container">
+  <!-- Filtros superiores -->
+  <div class="filtros-container">
+    <label>
+      Desde:
+      <input type="date" [(ngModel)]="fechaDesde" />
+    </label>
+    <label>
+      Hasta:
+      <input type="date" [(ngModel)]="fechaHasta" />
+    </label>
+    <label>
+      Turno:
+      <select [(ngModel)]="turnoSeleccionado">
+        <option value="">TODOS</option>
+        <option *ngFor="let turno of turnos" [value]="turno">
+          {{ turno }}
+        </option>
+      </select>
+    </label>
+    <button (click)="aplicarFiltrosLocales()">Filtrar</button>
+    <button (click)="quitarFiltros()">Quitar filtros</button>
+    <button (click)="exportToExcelFiltro()">Exportar a Excel</button>
+    <button (click)="exportToExcel()" class="btn btn-success">
+  <i class="fas fa-file-excel"></i> Exportar a Excel completo
+</button>
+  </div>
+
+  <!-- Tarjetas con los gráficos -->
+  <div class="graficos-container">
+    <div class="special-row">
+      <div class="card">
+        <h3>PROMEDIO DE RENDIMIENTO</h3>
+        <app-rendimiento-promedio
+          [RendimientoPerforacion]="RendimientoPerforacion"
+          [metas]="metasPorGrafico['PROMEDIO DE RENDIMIENTO']"
+        ></app-rendimiento-promedio>
+      </div>
+
+      <div class="card">
+        <h3>SUMA DE METROS PERFORADOS</h3>
+        <app-suma-metros-perforados
+          [datos]="datosGraficobarrasapiladasLargo"
+          [metas]="metasPorGrafico['SUMA DE METROS PERFORADOS']"
+        ></app-suma-metros-perforados>
+      </div>
+
+      <div class="card">
+        <h3>DISPONIBILIDAD MECANICA - GENERAL</h3>
+        <app-disponibilidad-mecanica-general
+          [datos]="datosGraficoEstados"
+          [metas]="metasPorGrafico['DISPONIBILIDAD MECANICA - GENERAL']"
+        ></app-disponibilidad-mecanica-general>
+      </div>
+
+      <div class="card">
+        <h3>UTILIZACION - GENERAL</h3>
+        <app-utilizacion-general
+          [datos]="datosGraficoEstados"
+          [metas]="metasPorGrafico['UTILIZACION - GENERAL']"
+        ></app-utilizacion-general>
+      </div>
+    </div>
+    <div class="card">
+      <h3>METROS PERFORADOS - EQUIPO</h3>
+      <app-metros-perforados-equipo
+        [datos]="datosGraficobarrasapiladasLargo"
+        [metas]="metasPorGrafico['METROS PERFORADOS - EQUIPO']"
+      ></app-metros-perforados-equipo>
+    </div>
+
+    <div class="card">
+      <h3>METROS PERFORADOS - LABOR</h3>
+      <app-metros-perforados-labor
+        [datos]="datosGraficobarrasapiladasLargo"
+        [metas]="metasPorGrafico['METROS PERFORADOS - LABOR']"
+      ></app-metros-perforados-labor>
+    </div>
+
+    <div class="card">
+      <h3>LONGITUD DE PERFORACION</h3>
+      <app-longitud-de-perforacion
+        [datos]="datosGraficobarrasapiladasLargo"
+        [metas]="metasPorGrafico['LONGITUD DE PERFORACION']"
+      ></app-longitud-de-perforacion>
+    </div>
+
+    <div class="card">
+      <h3>HOROMETROS</h3>
+      <app-horometros
+        [datosHorometros]="datosHorometros"
+        [metas]="metasPorGrafico['HOROMETROS']"
+      ></app-horometros>
+    </div>
+    <div class="card">
+      <h3>ESTADOS</h3>
+      <app-grafico-estados
+        [datos]="datosGraficoEstados"
+        [metas]="metasPorGrafico['ESTADOS']"
+      ></app-grafico-estados>
+    </div>
+
+    <div class="card">
+      <h3>ESTADOS GENERAL</h3>
+      <app-promedio-de-estados-general
+        [datos]="datosGraficoEstados"
+        [metas]="metasPorGrafico['ESTADOS GENERAL']"
+      ></app-promedio-de-estados-general>
+    </div>
+
+    <div class="card">
+      <h3>DISPONIBILIDAD MECANICA - EQUIPO</h3>
+      <app-disponibilidad-mecanica-equipo
+        [datos]="datosGraficoEstados"
+        [metas]="metasPorGrafico['DISPONIBILIDAD MECANICA - EQUIPO']"
+      ></app-disponibilidad-mecanica-equipo>
+    </div>
+
+    <div class="card">
+      <h3>UTILIZACION - EQUIPO</h3>
+      <app-utilizacion-equipo
+        [datos]="datosGraficoEstados"
+        [metas]="metasPorGrafico['UTILIZACION - EQUIPO']"
+      ></app-utilizacion-equipo>
+    </div>
+
+    <div class="card">
+      <h3>RENDIMIENTO DE PERFORACION - EQUIPO</h3>
+      <app-rendimiento-de-perforaciones
+        [RendimientoPerforacion]="RendimientoPerforacion"
+        [metas]="metasPorGrafico['RENDIMIENTO DE PERFORACION - EQUIPO']"
+      ></app-rendimiento-de-perforaciones>
+    </div>
+  </div>
+</div>

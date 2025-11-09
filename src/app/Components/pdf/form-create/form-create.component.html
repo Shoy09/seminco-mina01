@@ -1,0 +1,64 @@
+<form [formGroup]="createForm" (ngSubmit)="onSubmit()" class="form-container">
+  <h2 class="form-title">REGISTRO DE PDF</h2>
+
+  <div class="form-group">
+    <label for="proceso">PROCESO:</label>
+    <select id="proceso" formControlName="proceso" required>
+      <option *ngFor="let proceso of procesos" [value]="proceso">
+        {{ proceso }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="mes">MES:</label>
+    <select id="mes" formControlName="mes" required>
+      <option *ngFor="let mes of meses" [value]="mes">
+        {{ mes }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="tipo_labor">TIPO DE LABOR:</label>
+    <select id="tipo_labor" formControlName="tipo_labor" required [disabled]="tiposLabor.length === 0">
+      <option *ngIf="tiposLabor.length === 0" value="" disabled selected>Seleccione un proceso válido</option>
+      <option *ngFor="let tipo of tiposLabor" [value]="tipo">
+        {{ tipo }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="labor">LABOR:</label>
+    <select id="labor" formControlName="labor" required [disabled]="labores.length === 0">
+      <option *ngIf="labores.length === 0" value="" disabled selected>Seleccione un tipo de labor</option>
+      <option *ngFor="let labor of labores" [value]="labor">
+        {{ labor }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="ala">ALA:</label>
+    <select id="ala" formControlName="ala" [disabled]="alas.length === 0">
+      <option value="">-- SELECCIONE O DEJE EN BLANCO --</option>
+      <option *ngFor="let ala of alas" [value]="ala">
+        {{ ala }}
+      </option>
+    </select>
+    <small class="optional-text">(Opcional)</small>
+  </div>
+
+  <div class="form-group">
+    <label for="pdf">SELECCIONA PDF:</label>
+    <input id="pdf" type="file" (change)="onFileSelected($event)" accept="application/pdf" required />
+    <small *ngIf="createForm.get('pdf')?.hasError('invalidType')" class="error-message">
+      Por favor seleccione un archivo PDF válido
+    </small>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" [disabled]="!createForm.valid">GUARDAR</button>
+  </div>
+</form>

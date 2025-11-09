@@ -1,0 +1,17 @@
+<div class="chart-container">
+  <apx-chart
+    #chart
+    [series]="chartOptions.series!"
+    [chart]="chartOptions.chart!"
+    [labels]="chartOptions.labels!"
+    [plotOptions]="chartOptions.plotOptions!"
+    [fill]="chartOptions.fill!"
+    [colors]="chartOptions.colors!"
+    [responsive]="chartOptions.responsive!"
+    [legend]="chartOptions.legend!">
+  </apx-chart>
+
+  <p>
+    Meta: {{ obtenerMeta() }}%
+  </p>
+</div>
