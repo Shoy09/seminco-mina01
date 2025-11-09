@@ -36,13 +36,13 @@
           <div class="form-group" *ngFor="let campo of modalContenido?.campos">
             <label>{{ campo.label }}</label>
             <div class="input-container">
-              
+
               <!-- Si es SELECT -->
               <ng-container *ngIf="campo.tipo === 'select'; else inputField">
-                <select 
-                  [(ngModel)]="nuevoDato[campo.nombre]" 
-                  [name]="campo.nombre" 
-                  required 
+                <select
+                  [(ngModel)]="nuevoDato[campo.nombre]"
+                  [name]="campo.nombre"
+                  required
                   class="form-input"
                   (change)="onCampoChange(campo.nombre)">
                   <option *ngFor="let opcion of campo.opciones" [value]="opcion">{{ opcion }}</option>
@@ -51,11 +51,11 @@
 
               <!-- Si es INPUT -->
               <ng-template #inputField>
-                <input 
-                  [type]="campo.tipo" 
-                  [(ngModel)]="nuevoDato[campo.nombre]" 
-                  [name]="campo.nombre" 
-                  required 
+                <input
+                  [type]="campo.tipo"
+                  [(ngModel)]="nuevoDato[campo.nombre]"
+                  [name]="campo.nombre"
+                  required
                   class="form-input">
               </ng-template>
             </div>
@@ -64,11 +64,11 @@
           <!-- BOTONES DEL FORMULARIO -->
           <div class="button-group">
             <ng-container *ngIf="!editando; else editButtons">
-              <button type="submit" class="btn-submit">Guardar</button>
+              <button type="submit" class="btn-submit">Guardar+</button>
               <button type="button" class="btn-submit" (click)="triggerFileInput()">
                 Importar Excel <img src="excel.png" class="side-image" />
               </button>
-              <input type="file" id="fileInput" style="display: none;" 
+              <input type="file" id="fileInput" style="display: none;"
                      (change)="procesarArchivoExcel($event)" accept=".xlsx, .xls" />
             </ng-container>
 
