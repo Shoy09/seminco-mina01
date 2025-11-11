@@ -1,0 +1,32 @@
+<h2 mat-dialog-title class="dialog-title">
+  📊 Diferencia entre Plan y Realidad
+</h2>
+
+<mat-dialog-content class="dialog-content">
+  <div class="info-section">
+    <p><strong>Labor:</strong> {{ labor || '-' }}</p>
+    <p><strong>Avance planificado (m):</strong> {{ data.avance_m || 0 }}</p>
+    <p><strong>Avance programado total (m):</strong> {{ sumaAvanceProgramado || 0 }}</p>
+    <p>
+      <strong>Faltante (m):</strong>
+      <span [ngClass]="{ 'faltante': faltanteAvance > 0, 'completo': faltanteAvance <= 0 }">
+        {{ faltanteAvance > 0 ? faltanteAvance : 0 }}
+      </span>
+    </p>
+  </div>
+
+  <div class="progress-section">
+    <p class="progress-label">Progreso general:</p>
+    <mat-progress-bar 
+      mode="determinate"
+      [value]="(sumaAvanceProgramado / (data.avance_m || 1)) * 100">
+    </mat-progress-bar>
+    <p class="progress-text">
+      {{ ((sumaAvanceProgramado / (data.avance_m || 1)) * 100) | number:'1.0-2' }}% completado
+    </p>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-stroked-button color="primary" (click)="cerrar()">Cerrar</button>
+</mat-dialog-actions>

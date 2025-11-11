@@ -91,6 +91,20 @@ turnos: string[] = ['DÍA', 'NOCHE'];
     this.cargarMetasDesdeApi();
   }
 
+private calcularFechaMina(fechaOriginal?: string, turno?: string): string {
+  if (!fechaOriginal) return '';
+
+  if (turno?.toLowerCase() === 'noche') {
+    const fecha = new Date(fechaOriginal as string); // Aseguramos que no sea undefined
+    fecha.setDate(fecha.getDate() + 1);
+    return fecha.toISOString().split('T')[0];
+  }
+
+  return fechaOriginal.split('T')[0];
+}
+
+
+
   private cargarMetasDesdeApi(): void {
     this.metaService.getMetas().subscribe({
       next: (metas: Meta[]) => {
@@ -230,7 +244,7 @@ private obtenerCantidadDias(fechaInicio: string, fechaFin: string): number {
   
   filtrarDatos(datos: NubeOperacion[], filtros: any): NubeOperacion[] {
     return datos.filter(operacion => {
-      const fechaOperacion = new Date(operacion.fecha);
+      const fechaOperacion = new Date(operacion.fecha_mina ?? '');
       const fechaDesde = filtros.fechaDesde ? new Date(filtros.fechaDesde) : null;
       const fechaHasta = filtros.fechaHasta ? new Date(filtros.fechaHasta) : null;
   
@@ -265,21 +279,27 @@ private obtenerCantidadDias(fechaInicio: string, fechaFin: string): number {
     this.prepararDatoRendimientoPerforacion();
   }
  
-  obtenerDatos(): void {
-    this.operacionService.getOperacionesHorizontal().subscribe({
-      next: (data) => {
-        this.datosOperacionesOriginal = data;
-        this.datosOperacionesExport = data;
-  
-        // Aplicar filtros por fecha actual y turno automáticamente
-        const filtros = {
-          fechaDesde: this.fechaDesde,
-          fechaHasta: this.fechaHasta,
-          turnoSeleccionado: this.turnoSeleccionado
-        };
-  
-        this.datosOperaciones = this.filtrarDatos(this.datosOperacionesOriginal, filtros);
-  
+obtenerDatos(): void {
+  this.operacionService.getOperacionesHorizontal().subscribe({
+    next: (data: NubeOperacion[]) => {
+      // 🟢 Agregar la columna calculada antes de guardar
+      const dataConFechaMina = data.map((op: NubeOperacion) => ({
+        ...op,
+        fecha_mina: this.calcularFechaMina(op.fecha, op.turno)
+      }));
+
+      this.datosOperacionesOriginal = dataConFechaMina;
+      this.datosOperacionesExport = dataConFechaMina;
+
+      // Aplicar filtros por fecha actual y turno automáticamente
+      const filtros = {
+        fechaDesde: this.fechaDesde,
+        fechaHasta: this.fechaHasta,
+        turnoSeleccionado: this.turnoSeleccionado
+      };
+
+      this.datosOperaciones = this.filtrarDatos(this.datosOperacionesOriginal, filtros);
+
         // Procesar datos para los gráficos
         this.prepararDatosGraficoBarrasApilada();
         this.prepararDatosGraficoBarrasAgrupada();
@@ -290,12 +310,13 @@ private obtenerCantidadDias(fechaInicio: string, fechaFin: string): number {
         this.prepararDatosHorometros();
         this.prepararDatosGraficoEstados();
         this.prepararDatoRendimientoPerforacion();
-      },
-      error: (err) => {
-        console.error('❌ Error al obtener datos:', err);
-      }
-    });
-  }
+    },
+    error: (err) => {
+      console.error('❌ Error al obtener datos:', err);
+    }
+  });
+}
+
 
   prepararDatosGraficoBarrasApilada(): void {
     this.datosGraficobarrasapiladas = this.datosOperaciones.flatMap(operacion => {

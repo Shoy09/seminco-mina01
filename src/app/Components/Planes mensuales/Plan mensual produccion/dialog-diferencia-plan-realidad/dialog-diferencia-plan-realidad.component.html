@@ -1,0 +1,32 @@
+<h2 mat-dialog-title class="dialog-title">
+  📦 Diferencia entre Plan y Realidad
+</h2>
+
+<mat-dialog-content class="dialog-content">
+  <div class="info-section">
+<p><strong>Labor:</strong> {{ laborCompleta }}</p>
+    <p><strong>Toneladas planificadas:</strong> {{ toneladas_plan || 0 }}</p>
+    <p><strong>Toneladas registradas:</strong> {{ sumaToneladas || 0 }}</p>
+    <p>
+      <strong>Faltante toneladas:</strong>
+      <span [ngClass]="{ 'faltante': faltanteToneladas > 0, 'completo': faltanteToneladas <= 0 }">
+        {{ faltanteToneladas > 0 ? faltanteToneladas : 0 }}
+      </span>
+    </p>
+  </div>
+
+  <div class="progress-section">
+    <p class="progress-label">Progreso general toneladas:</p>
+    <mat-progress-bar 
+      mode="determinate"
+      [value]="(sumaToneladas / (toneladas_plan || 1)) * 100">
+    </mat-progress-bar>
+    <p class="progress-text">
+      {{ ((sumaToneladas / (toneladas_plan || 1)) * 100) | number:'1.0-2' }}% completado
+    </p>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-stroked-button color="primary" (click)="cerrar()">Cerrar</button>
+</mat-dialog-actions>

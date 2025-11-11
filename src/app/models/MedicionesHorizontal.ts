@@ -18,4 +18,5 @@ export interface MedicionesHorizontal {
   remanente?: number;
   semana?: string | null;    // Nuevo campo agregado
   fechaAjustada?: string;
+  toneladas?: number;
 }

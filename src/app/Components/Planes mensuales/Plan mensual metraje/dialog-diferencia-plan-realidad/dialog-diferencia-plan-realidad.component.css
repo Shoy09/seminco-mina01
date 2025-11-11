@@ -1,0 +1,14 @@
+.info-section {
+  font-size: 15px;
+  line-height: 1.8;
+  padding: 10px 0;
+}
+
+mat-dialog-content {
+  min-width: 400px;
+}
+
+h2 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}

@@ -52,4 +52,17 @@ export class MedicionesHorizontalProgramadoService {
   getMedicionesActualizadas(): Observable<boolean> {
     return this.medicionesActualizadas.asObservable();
   }
+
+  //  Obtener mediciones por labor
+getMedicionesPorLabor(labor: string, mes?: string, anio?: number): Observable<MedicionesHorizontal[]> {
+  let url = `${this.baseUrl}/labor/${labor}`;
+  const query: string[] = [];
+  if (mes) query.push(`mes=${mes}`);
+  if (anio) query.push(`anio=${anio}`);
+  if (query.length) url += `?${query.join('&')}`;
+
+  return this.apiService.getDatos(url);
+}
+
+
 }

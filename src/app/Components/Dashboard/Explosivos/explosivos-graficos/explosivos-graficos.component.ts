@@ -87,22 +87,44 @@ cargarAccesorios(): void {
   );
 }
 
+private calcularFechaMinaDash(fechaOriginal?: string, turno?: string): string {
+  if (!fechaOriginal) return '';
+
+  try {
+    const fecha = new Date(fechaOriginal);
+
+    if (turno?.toLowerCase() === 'noche') {
+      fecha.setDate(fecha.getDate() + 1);
+    }
+
+    return fecha.toISOString().split('T')[0]; // Devuelve formato YYYY-MM-DD
+  } catch (e) {
+    console.warn('Error al calcular fecha mina:', e);
+    return fechaOriginal;
+  }
+}
+
+
 obtenerDatos(): void {
   this.explosivosService.getExplosivos().subscribe({
     next: (data) => {
-      // Normaliza la respuesta: si viene un objeto con .data, usa eso;
-      // si ya es array, úsalo; si es nulo/otro, convierte a array vacío.
-      const arrayData = Array.isArray(data) ? data : (data && Array.isArray((data as any).data) ? (data as any).data : []);
+      const arrayData = Array.isArray(data)
+        ? data
+        : (data && Array.isArray((data as any).data) ? (data as any).data : []);
 
       console.log('RAW response from getExplosivos():', data);
       console.log('Normalized arrayData:', arrayData);
 
-      this.datosExplosivosOriginal = arrayData;
-      // Haz una copia real (no referencia) para export/filtrado
-      this.datosExplosivosExport = arrayData.slice();
-      this.datosExplosivos = arrayData.slice();
+      // 🔹 Calcular fecha mina para cada registro
+      const datosConFechaMina = arrayData.map((item: NubeDatosTrabajoExploraciones) => ({
+        ...item,
+        fecha_mina: this.calcularFechaMinaDash(item.fecha, item.turno)
+      }));
 
-      // Aplicar filtros por fecha actual y turno automáticamente (si procede)
+      this.datosExplosivosOriginal = datosConFechaMina;
+      this.datosExplosivosExport = datosConFechaMina.slice();
+      this.datosExplosivos = datosConFechaMina.slice();
+
       const filtros = {
         fechaDesde: this.fechaDesde,
         fechaHasta: this.fechaHasta,
@@ -113,10 +135,11 @@ obtenerDatos(): void {
     },
     error: (err) => {
       console.error('❌ Error al obtener datos:', err);
-      this._toastr.error('Error al cargar los datos, token invalido', '❌ Error');
+      this._toastr.error('Error al cargar los datos, token inválido', '❌ Error');
     }
   });
 }
+
 
 
     quitarFiltros(): void {
@@ -163,7 +186,7 @@ obtenerDatos(): void {
   }
 
   return datos.filter(operacion => {
-    const fechaOperacion = new Date(operacion.fecha);
+    const fechaOperacion = new Date(operacion.fecha_mina ?? '');
     const fechaDesde = filtros.fechaDesde ? new Date(filtros.fechaDesde) : null;
     const fechaHasta = filtros.fechaHasta ? new Date(filtros.fechaHasta) : null;
 

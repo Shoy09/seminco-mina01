@@ -16,6 +16,7 @@ import { FechasPlanMensualService } from '../../../../services/fechas-plan-mensu
 import { PlanMensualService } from '../../../../services/plan-mensual.service';
 import { LoadingDialogComponent } from '../../../Reutilizables/loading-dialog/loading-dialog.component';
 import { CreatePlanAvanceComponent } from '../create-plan-avance/create-plan-avance.component';
+import { DialogDiferenciaPlanRealidadComponent } from '../dialog-diferencia-plan-realidad/dialog-diferencia-plan-realidad.component';
 
 @Component({
   selector: 'app-plan-mensual-list',
@@ -292,5 +293,20 @@ verPlan(plan: any): void {
     data: plan
   });
 }
+
+verDiferencias(plan: PlanMensual): void {
+  this.dialog.open(DialogDiferenciaPlanRealidadComponent, {
+    width: '600px',
+    data: {
+      tipo_labor: plan.tipo_labor,
+      labor: plan.labor,
+      ala: plan.ala,
+      avance_m: plan.avance_m,
+      mes: this.mes,      
+      anio: this.anio      
+    }
+  });
+}
+
    
 }

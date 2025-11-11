@@ -1,0 +1,63 @@
+.dialog-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.dialog-content {
+  min-width: 400px;
+  padding: 16px;
+  font-family: "Roboto", sans-serif;
+}
+
+.info-section {
+  background-color: #f9fafb;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+}
+
+.info-section p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #34495e;
+}
+
+.faltante {
+  color: #e67e22; /* naranja empresarial */
+  font-weight: 600;
+}
+
+.completo {
+  color: #27ae60; /* verde completado */
+  font-weight: 600;
+}
+
+.progress-section {
+  margin-top: 16px;
+}
+
+.progress-label {
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+mat-progress-bar {
+  height: 10px;
+  border-radius: 6px;
+}
+
+.progress-text {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #555;
+  text-align: right;
+}
+
+.dialog-actions {
+  margin-top: 10px;
+}

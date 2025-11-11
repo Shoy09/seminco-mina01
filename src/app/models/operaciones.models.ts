@@ -9,6 +9,7 @@ export interface NubeOperacion {
     tipo_operacion: string;
     estado: string;
     envio: number;
+    fecha_mina?: string;
     createdAt?: string;
     updatedAt?: string;
     
