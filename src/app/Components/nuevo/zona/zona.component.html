@@ -1,0 +1,44 @@
+<div class="zona-card" *ngFor="let z of zonasAgrupadas">
+  <div class="zona-header" (click)="toggleExpand(z.nombre)">
+    <h3>{{ z.nombre }}</h3>
+    <span class="icon" [class.rotar]="expandido[z.nombre]">⌄</span>
+  </div>
+
+  <div class="zona-contenido" *ngIf="expandido[z.nombre]">
+    <div *ngFor="let labor of z.labores" class="labor-item">
+      <div class="labor-titulo">{{ labor.labor }}</div>
+
+      <div class="barra">
+        <div class="ejecutado" [style.width.%]="getPorcentaje(labor.real, labor.programado)"></div>
+      </div>
+
+      <div class="medidas">
+        <span>{{ labor.real }} m</span>
+        <span>{{ labor.programado }} m</span>
+      </div>
+    </div>
+
+    <!-- 🟦 Cuadro resumen -->
+    <div class="resumen-card" *ngIf="z.labores.length > 0">
+      <h4>Cuadro Resumen</h4>
+
+      <ng-container *ngIf="calcularResumen(z.labores) as resumen">
+        <div class="resumen-row" *ngFor="let key of ['Ancho', 'Alto', 'Avance']">
+          <span class="label">{{ key }}:</span>
+          <span class="valor">
+            {{ resumen[key].real }} / {{ resumen[key].programado }} m
+            ({{ getPorcentaje(resumen[key].real, resumen[key].programado) | number:'1.0-0' }}%)
+          </span>
+        </div>
+
+        <!-- 🟩 Porcentaje general de cumplimiento del avance -->
+        <div class="resumen-total">
+          <strong>% Cumplimiento:</strong>
+          <span class="valor-destacado">
+            {{ getPorcentaje(resumen['Avance'].real, resumen['Avance'].programado) | number:'1.0-0' }}%
+          </span>
+        </div>z
+      </ng-container>
+    </div>
+  </div>
+</div>

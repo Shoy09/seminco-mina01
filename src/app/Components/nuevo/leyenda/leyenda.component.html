@@ -1,0 +1,9 @@
+<div class="leyenda-container">
+  <h3>Leyenda</h3>
+  <ul>
+    <li *ngFor="let item of items">
+      <span class="color" [style.background]="item.color"></span>
+      {{ item.nombre }}
+    </li>
+  </ul>
+</div>

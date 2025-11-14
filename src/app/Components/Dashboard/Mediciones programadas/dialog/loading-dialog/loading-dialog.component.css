@@ -1,0 +1,81 @@
+.dialog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+  padding: 30px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.dialog-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3f51b5, #ff4081);
+}
+
+.dialog-content {
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
+}
+
+.spinner-container {
+  margin-bottom: 20px;
+}
+
+.mensaje {
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.subtitulo {
+  font-size: 16px;
+  color: #7f8c8d;
+  margin-top: 0;
+  line-height: 1.4;
+}
+
+.icono {
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+}
+
+.success-animation {
+  animation: pulse 1.5s ease-in-out;
+}
+
+.error-animation {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+/* Efectos de hover para el contenedor */
+.dialog-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}

@@ -24,6 +24,7 @@ import { forkJoin } from 'rxjs';
 import { NubeDatosTrabajoExploraciones } from '../../../../../models/nube-datos-trabajo-exploraciones';
 import { ExplosivoService } from '../../../../../services/explosivo.service';
 import { Explosivo } from '../../../../../models/Explosivo';
+import { LoadingDialogComponent } from '../../dialog/loading-dialog/loading-dialog.component';
 
 
 @Component({
@@ -52,13 +53,19 @@ explosivos: Explosivo[] = [];
   turnoSeleccionado: string = '';
   turnos: string[] = ['Dia', 'Noche'];
  private dialog = inject(MatDialog);
- 
+ private dialogRef: any;
   toneladas: Tonelada[] = [];
 
   constructor(private explosivoService: ExplosivoService, private exploracionesService: NubeDatosTrabajoExploracionesService, private tipoPerforacionService: TipoPerforacionService, private pdfService: PdfExportService, private medicionService: MedicionesHorizontalProgramadoService,
   private excelService: ExcelMedicionesHorizontalService, private toneladasService: ToneladasService, private authService: AuthService ) {}
 
   ngOnInit(): void {
+    // Abrimos el dialog de carga
+  this.dialogRef = this.dialog.open(LoadingDialogComponent, {
+    disableClose: true,
+    data: { cargando: true, mensaje: "Cargando datos..." }
+  });
+  
     const fechaISO = this.obtenerFechaLocalISO();
     this.fechaDesde = fechaISO;
     this.fechaHasta = fechaISO;
@@ -395,11 +402,28 @@ private obtenerSemanasEntreFechas(fechaDesde: Date, fechaHasta: Date): number[] 
 
     this.datosOperaciones = this.filtrarDatos(this.datosOperacionesOriginal, filtros);
 
-    console.log("🎉 Datos combinados exitosamente:");
-    console.log("📊 Total datos operaciones:", this.datosOperaciones.length);
-    console.log("📈 Datos horizontales:", this.datosOperacionesOriginal.length - this.datosOperacionesExplo.length);
-    console.log("📉 Datos Tal Largo:", this.datosOperacionesExplo.length);
-  }
+    // -------- ACTUALIZAR DIALOG --------
+    this.dialogRef.componentInstance.data = {
+      cargando: false,
+      mensaje: "Datos cargados correctamente",
+      error: false
+    };
+
+    // Cerrarlo después de 2 segundos
+    setTimeout(() => {
+      this.dialogRef.close();
+    }, 2000);
+
+  } catch (error: unknown) {
+  console.error("Error procesando datos:", error);
+
+  this.dialogRef.componentInstance.data = {
+    cargando: false,
+    mensaje: "Ocurrió un error al procesar los datos",
+    error: true
+  };
+}
+
 
 
   obtenerToneladas(): void {

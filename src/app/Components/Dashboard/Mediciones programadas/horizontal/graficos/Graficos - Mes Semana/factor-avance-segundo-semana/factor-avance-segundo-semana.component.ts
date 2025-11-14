@@ -42,7 +42,7 @@ export class FactorAvanceSegundoSemanaComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['datos'] && this.datos) {
+    if ((changes['datos'] || changes['toneladas']) && this.datos) {
       this.updateChart();
     }
   }
@@ -67,7 +67,7 @@ export class FactorAvanceSegundoSemanaComponent implements OnChanges {
       },
       dataLabels: {
         enabled: true,
-        enabledOnSeries: [0],
+        enabledOnSeries: [0, 1],
         formatter: (val: number) => val ? val.toFixed(2) : '',
         style: { fontSize: '12px', colors: ['#000'] },
         offsetY: -20
@@ -87,15 +87,14 @@ export class FactorAvanceSegundoSemanaComponent implements OnChanges {
       },
       yaxis: [
         {
-          title: { text: "Kg Explosivos / Toneladas" },
+          title: { text: "Kg Explosivos y Toneladas" },
           labels: { formatter: (val: number) => val.toFixed(2) }
         },
         {
           opposite: true,
-          title: { text: "Kg Explosivos / Toneladas" },
-          labels: { formatter: (val: number) => val.toFixed(2) },
-          min: 0, 
-          forceNiceScale: false
+          title: { text: "Relación Kg Explosivos / Toneladas" },
+          min: 0,
+          tickAmount: 4
         }
       ],
       tooltip: {
@@ -111,86 +110,115 @@ export class FactorAvanceSegundoSemanaComponent implements OnChanges {
     };
   }
 
-private updateChart(): void {
-  const filtrados = this.datos.filter(d =>
-  d.kg_explosivos &&
-  d.labor &&
-  d.labor.trim().toUpperCase().startsWith("TJ") && // 🔹 Solo las labores que inician con "TJ"
-  (!d.no_aplica || d.no_aplica === 0) &&
-  (!d.remanente || d.remanente === 0)
-);
-
-
-  if (filtrados.length === 0) {
-    this.chartOptions.series = [];
-    return;
-  }
-
-  // 🔹 Agrupar por semana
-  const grupos: { [semana: string]: { kg: number; toneladas: number; count: number } } = {};
-
-  filtrados.forEach(d => {
-    const semana = d?.semana?.toString() || "Sin semana";
-    const t = this.toneladas.find(
-      ton => ton.zona === d.zona && ton.labor === d.labor
+  private updateChart(): void {
+    const filtrados = this.datos.filter(d =>
+      d.kg_explosivos &&
+      d.labor &&
+      d.labor.trim().toUpperCase().startsWith("TJ") &&
+      (!d.no_aplica || d.no_aplica === 0) &&
+      (!d.remanente || d.remanente === 0)
     );
-    const toneladasVal = t ? t.toneladas : 0;
 
-    if (!grupos[semana]) {
-      grupos[semana] = { kg: 0, toneladas: 0, count: 0 };
+    if (filtrados.length === 0) {
+      this.chartOptions.series = [];
+      return;
     }
-    grupos[semana].kg += d.kg_explosivos || 0;
-    grupos[semana].toneladas += toneladasVal;
-    grupos[semana].count += 1;
-  });
 
-  const categories: string[] = [];
-  const kgExplosivos: number[] = [];
-  const toneladasSeries: number[] = [];
-  const kgPorTonelada: number[] = [];
-
-  Object.keys(grupos).sort().forEach(semana => {
-    const g = grupos[semana];
-    if (g.count > 0) {
-      categories.push(`Semana ${semana}`);
-      kgExplosivos.push(Number((g.kg).toFixed(2))); // total semanal
-      toneladasSeries.push(Number((g.toneladas).toFixed(2))); // total semanal
-      kgPorTonelada.push(
-        g.toneladas > 0 ? Number((g.kg / g.toneladas).toFixed(2)) : 0
+    // 👉 PRIMERO: Hacer el match completo labor-fecha-zona como en el gráfico anterior
+    const datosConToneladas = filtrados.map(d => {
+      const toneladaMatch = this.toneladas.find(
+        ton => ton.fecha === (d.fechaAjustada || d.fecha) && 
+               ton.zona === d.zona && 
+               ton.labor === d.labor
       );
+      
+      return {
+        semana: d?.semana?.toString() || "Sin semana",
+        kg_explosivos: d.kg_explosivos || 0,
+        toneladas: toneladaMatch ? toneladaMatch.toneladas : 0,
+        labor: d.labor,
+        zona: d.zona,
+        fecha: d.fechaAjustada || d.fecha
+      };
+    });
+
+    // 👉 SEGUNDO: Ahora sí agrupar por semana
+    const grupos: { [semana: string]: { kg: number; toneladas: number; count: number } } = {};
+
+    datosConToneladas.forEach(d => {
+      const semana = d.semana;
+      grupos[semana] = grupos[semana] || { kg: 0, toneladas: 0, count: 0 };
+      
+      grupos[semana].kg += d.kg_explosivos;
+      grupos[semana].toneladas += d.toneladas; // ← Ya viene del match correcto
+      grupos[semana].count += 1;
+    });
+
+    const categories: string[] = [];
+    const kgExplosivos: number[] = [];
+    const toneladasSeries: number[] = [];
+    const kgPorTonelada: number[] = [];
+
+    Object.keys(grupos).sort().forEach(semana => {
+      const g = grupos[semana];
+      if (g.count > 0) {
+        categories.push(`Semana ${semana}`);
+        kgExplosivos.push(Number((g.kg).toFixed(2)));
+        toneladasSeries.push(Number((g.toneladas).toFixed(2)));
+        kgPorTonelada.push(
+          g.toneladas > 0 ? Number((g.kg / g.toneladas).toFixed(2)) : 0
+        );
+      }
+    });
+
+    // 🔹 Calcular PROMEDIO por semana
+    const numSemanas = Object.keys(grupos).length;
+
+    if (numSemanas > 0) {
+      const totalKg = Object.values(grupos).reduce((s, g) => s + g.kg, 0);
+      const totalToneladas = Object.values(grupos).reduce((s, g) => s + g.toneladas, 0);
+      const totalKgPorTonelada = kgPorTonelada.reduce((s, v) => s + v, 0);
+
+      categories.push("PROMEDIO");
+      kgExplosivos.push(Number((totalKg / numSemanas).toFixed(2)));
+      toneladasSeries.push(Number((totalToneladas / numSemanas).toFixed(2)));
+      kgPorTonelada.push(Number((totalKgPorTonelada / numSemanas).toFixed(2)));
     }
-  });
 
-  // 🔹 Calcular PROMEDIO por semana
-  const numSemanas = Object.keys(grupos).length;
+    // 🔹 Calcular máximo dinámico para el eje derecho
+    const valoresRelacion = kgPorTonelada.filter(val => val !== null && val !== undefined) as number[];
+    const maxRelacion = valoresRelacion.length > 0 ? Math.max(...valoresRelacion) : 1;
+    const maxEje = Math.max(maxRelacion * 1.2, 0.5); // mínimo 0.5 para evitar ejes muy pequeños
 
-  if (numSemanas > 0) {
-    const totalKg = Object.values(grupos).reduce((s, g) => s + g.kg, 0);
-    const totalToneladas = Object.values(grupos).reduce((s, g) => s + g.toneladas, 0);
-    const totalKgPorTonelada = kgPorTonelada.reduce((s, v) => s + v, 0);
+    // 🔹 Actualizar gráfica CON EL EJE CORREGIDO
+    this.chartOptions = {
+      ...this.chartOptions,
+      series: [
+        { name: "Kg Explosivos", type: "bar", data: kgExplosivos, yAxisIndex: 0 },
+        { name: "Toneladas", type: "bar", data: toneladasSeries, yAxisIndex: 0 },
+        { name: "Kg Explosivos / Toneladas", type: "line", data: kgPorTonelada, yAxisIndex: 1 }
+      ],
+      xaxis: { ...this.chartOptions.xaxis, categories },
+      yaxis: [
+        {
+          title: { text: "Kg Explosivos y Toneladas" },
+          labels: { formatter: (val: number) => val.toFixed(2) }
+        },
+        {
+          opposite: true,
+          title: { text: "Relación Kg Explosivos / Toneladas" },
+          labels: { formatter: (val: number) => val.toFixed(2) },
+          min: 0,
+          max: maxEje,
+          tickAmount: 4
+        }
+      ]
+    };
 
-    categories.push("PROMEDIO");
-    kgExplosivos.push(Number((totalKg / numSemanas).toFixed(2))); // 🔹 promedio por semana
-    toneladasSeries.push(Number((totalToneladas / numSemanas).toFixed(2)));
-    kgPorTonelada.push(Number((totalKgPorTonelada / numSemanas).toFixed(2)));
+    setTimeout(() => {
+      if (this.chart && this.chart.updateOptions) {
+        this.chart.updateOptions(this.chartOptions);
+      }
+    }, 100);
   }
-
-  // 🔹 Actualizar gráfica
-  this.chartOptions = {
-    ...this.chartOptions,
-    series: [
-      { name: "Kg Explosivos", type: "bar", data: kgExplosivos, yAxisIndex: 0 },
-      { name: "Toneladas", type: "bar", data: toneladasSeries, yAxisIndex: 0 },
-      { name: "Kg Explosivos / Toneladas", type: "line", data: kgPorTonelada, yAxisIndex: 1 }
-    ],
-    xaxis: { ...this.chartOptions.xaxis, categories }
-  };
-
-  setTimeout(() => {
-    if (this.chart && this.chart.updateOptions) {
-      this.chart.updateOptions(this.chartOptions);
-    }
-  }, 100);
-}
-
 }

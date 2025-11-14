@@ -21,6 +21,7 @@ export class MenuComponent {
         { title: 'KPI P&V', path: 'medicion-horizontal' },
         { title: 'Medicion Programado', path: 'medicion-horizontal-programado' },
         { title: 'autocad', path: 'autocad' },
+        // { title: 'pensando', path: 'pensando' },
       ],
     },
     {

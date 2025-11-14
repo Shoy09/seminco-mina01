@@ -1,0 +1,27 @@
+<div class="dialog-container">
+  <div class="dialog-content">
+    <ng-container *ngIf="data.cargando">
+      <div class="spinner-container">
+        <mat-spinner diameter="70" strokeWidth="4"></mat-spinner>
+      </div>
+      <p class="mensaje">Cargando información...</p>
+      <p class="subtitulo">Por favor, espere un momento</p>
+    </ng-container>
+
+    <ng-container *ngIf="!data.cargando && !data.error">
+      <div class="success-animation">
+        <mat-icon color="primary" class="icono">check_circle</mat-icon>
+      </div>
+      <p class="mensaje">¡Éxito!</p>
+      <p class="subtitulo">Los datos se han cargado correctamente</p>
+    </ng-container>
+
+    <ng-container *ngIf="data.error">
+      <div class="error-animation">
+        <mat-icon color="warn" class="icono">error</mat-icon>
+      </div>
+      <p class="mensaje">Ha ocurrido un error</p>
+      <p class="subtitulo">No se pudieron cargar los datos</p>
+    </ng-container>
+  </div>
+</div>

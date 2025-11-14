@@ -24,6 +24,7 @@ import { AutocadMineroComponent } from './Components/autocad-minero/autocad-mine
 import { MedicionHorizontalProgramadoComponent } from './Components/Dashboard/Mediciones programadas/horizontal/medicion-horizontal/medicion-horizontal.component';
 import { ToneladasComponent } from './Components/Crear datos/toneladas/toneladas.component';
 import { PlanMantenimientoListComponent } from './Components/Planes mensuales/Plan mensual mantenimiento/plan-mantenimiento-list/plan-mantenimiento-list.component';
+import { PrinciComponent } from './Components/nuevo/princi/princi.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -55,6 +56,7 @@ export const routes: Routes = [
       { path: 'medicion-horizontal-programado', component: MedicionHorizontalProgramadoComponent },
       { path: 'toneladas', component: ToneladasComponent },
        { path: 'plan-mantenimiento', component: PlanMantenimientoListComponent },
+       { path: 'pensando', component: PrinciComponent },
     ],
   },
 

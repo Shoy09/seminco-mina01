@@ -103,7 +103,7 @@ export class FactorAvanceDiasSemanaComponent implements OnChanges, OnInit {
     const grupos: { [fecha: string]: { kg: number; avance: number; count: number } } = {};
     
     filtrados.forEach(d => {
-      const fecha = d?.fecha || "Sin fecha";
+      const fecha = d?.fechaAjustada || d?.fecha || "Sin fecha";
       grupos[fecha] = grupos[fecha] || { kg: 0, avance: 0, count: 0 };
       grupos[fecha].kg += d?.kg_explosivos ?? 0;
       grupos[fecha].avance += d?.avance_programado ?? 0;

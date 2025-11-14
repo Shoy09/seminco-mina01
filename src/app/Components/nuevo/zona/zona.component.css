@@ -1,0 +1,111 @@
+.zona-card {
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.zona-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  font-weight: bold;
+  background-color: #f4f6f8;
+  border-radius: 12px 12px 0 0;
+}
+
+.icon {
+  transition: transform 0.3s ease;
+}
+
+.icon.rotar {
+  transform: rotate(180deg);
+}
+
+.zona-contenido {
+  padding: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.labor-item {
+  margin-bottom: 1rem;
+}
+
+.labor-titulo {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.barra {
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.ejecutado {
+  background-color: #4caf50;
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+.medidas {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #555;
+  margin-top: 0.3rem;
+}
+
+/* 🟦 Estilos del cuadro resumen */
+.resumen-card {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  background: #f9fafb;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.resumen-card h4 {
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.resumen-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem 0;
+}
+
+.resumen-row .label {
+  font-weight: 500;
+  color: #555;
+}
+
+.resumen-row .valor {
+  font-weight: 600;
+  color: #333;
+}
+.resumen-total {
+  margin-top: 0.8rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.valor-destacado {
+  font-weight: bold;
+  color: #2e7d32;
+}
