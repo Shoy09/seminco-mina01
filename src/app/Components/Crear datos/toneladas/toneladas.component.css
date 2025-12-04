@@ -262,11 +262,11 @@ background-color: #CCEAF3;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 5px;
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px;
   overflow: hidden;
-
+  min-width: 800px; /* Ancho mínimo para la tabla */
 }
 
 table th, table td {
@@ -340,22 +340,34 @@ td:last-child {
   background: white;
   border-radius: 8px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-  max-width: 1000px;
-  width: 600px;
+  max-width: 95vw; /* Cambiado de 1000px a 95% del viewport width */
+  width: 1200px; /* Aumentado significativamente el ancho */
   margin: auto;
+  max-height: 90vh; /* Aumentar también la altura máxima */
+}
+
+.forme {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  max-width: 500px; /* Mantener un ancho máximo */
+  margin: 0 auto 50px auto; /* Centrado horizontal: margen automático izquierdo y derecho */
+  width: 100%; /* Ocupar el 100% del contenedor padre hasta max-width */
 }
 
 .modal-content {
-  padding: 20px; /* Espaciado interno */
-  max-height: 80vh; /* Evita que el modal sea demasiado alto */
-  overflow-y: auto; /* Agrega scroll si es necesario */
+  padding: 20px;
+  max-height: 85vh; /* Aumentar para aprovechar el nuevo tamaño */
+  overflow-y: auto;
 }
 
 .tabla-scroll {
-  max-height: 300px; /* Ajusta la altura máxima de la tabla */
-  overflow-y: auto; /* Habilita el desplazamiento vertical */
-  border: 1px solid #ccc; /* Opcional: Añade un borde para mejor visualización */
-  padding: 5px; /* Espaciado interno */
+  max-height: 400px; /* Aumentar la altura de la tabla */
+  overflow-y: auto;
+  overflow-x: auto; /* Agregar scroll horizontal si es necesario */
+  border: 1px solid #ccc;
+  padding: 5px;
 }
 
 
@@ -400,18 +412,17 @@ background-color: #ffffff;        /* fondo blanco */
 
 /* Estilo del formulario con sombra */
 .form-group {
-   /* Ajusta según el tamaño del contenedor */
   padding: 0 10px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-    flex: 1;
-    margin-top: 20px;
-    margin-bottom:20px;
-
-
+  flex: 1;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  min-width: 200px; /* Asegurar un mínimo de ancho */
 }
+
 .group-modal{
   padding: 0 20px;
   border-radius: 8px;
@@ -476,4 +487,67 @@ width: 100%;         /* ocupa el 100% del contenedor */
   max-width: 20px;    /* tamaño máximo */
   display: block;      /* evita espacios debajo de la imagen */
   margin: 2px;
+}
+/* Estilos para la barra de búsqueda */
+.search-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  flex-wrap: wrap;
+  align-items: end;
+}
+
+.search-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.btn-clear {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.btn-clear:hover {
+  background-color: #5a6268;
+}
+
+.no-results {
+  text-align: center;
+  padding: 20px;
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-container {
+    flex-direction: column;
+  }
+  
+  .search-group {
+    min-width: 100%;
+  }
 }

@@ -20,6 +20,11 @@ export class ToneladasComponent implements OnInit {
   years: number[] = []; 
   tiposAceroData: any[] = [];
 
+  filtroLabor: string = '';
+  filtroFecha: string = '';
+  datosFiltrados: any[] = [];
+   filtrosActivos: boolean = false;
+
   editando: boolean = false;
 indiceEditando: number = -1;
 datoOriginal: any = null;
@@ -232,16 +237,60 @@ procesarExcelToneladas(event: any) {
   abrirModal(button: any) {
     this.modalAbierto = true;
     this.modalContenido = button;
+    this.limpiarFiltros(); 
 
    if (button.tipo === 'Toneladas') {
   this.toneladasService.getToneladas().subscribe({
     next: (data) => {
       this.modalContenido.datos = data;
+          this.datosFiltrados = [...data]; // Inicializar con todos los datos
+          this.filtrosActivos = false; // No hay filtros aplicados inicialmente
     },
     error: (err) => console.error('Error al cargar Toneladas:', err)
   });
 }
 
+  }
+
+   aplicarFiltros() {
+    if (!this.modalContenido?.datos) return;
+
+    // Verificar si hay algún filtro activo
+    this.filtrosActivos = this.filtroLabor !== '' || this.filtroFecha !== '';
+
+    // Si no hay filtros activos, mostrar todos los datos
+    if (!this.filtrosActivos) {
+      this.datosFiltrados = [...this.modalContenido.datos];
+      return;
+    }
+
+    let datosFiltrados = [...this.modalContenido.datos];
+
+    // Filtrar por labor (búsqueda parcial case insensitive)
+    if (this.filtroLabor) {
+      datosFiltrados = datosFiltrados.filter(dato => 
+        dato.labor && dato.labor.toLowerCase().includes(this.filtroLabor.toLowerCase())
+      );
+    }
+
+    // Filtrar por fecha (formato YYYY-MM-DD)
+    if (this.filtroFecha) {
+      datosFiltrados = datosFiltrados.filter(dato => 
+        dato.fecha === this.filtroFecha
+      );
+    }
+
+    this.datosFiltrados = datosFiltrados;
+  }
+
+  // Método para limpiar filtros
+  limpiarFiltros() {
+    this.filtroLabor = '';
+    this.filtroFecha = '';
+    this.filtrosActivos = false;
+    if (this.modalContenido?.datos) {
+      this.datosFiltrados = [...this.modalContenido.datos];
+    }
   }
 
   onCampoChange(nombreCampo: string) {

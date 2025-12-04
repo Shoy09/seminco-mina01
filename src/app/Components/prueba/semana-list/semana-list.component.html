@@ -26,16 +26,18 @@
     </mat-form-field>
 
     <!-- Botones de acciones -->
-    <div class="action-buttons">
-      <button mat-raised-button color="primary" (click)="openDialog()" *ngIf="semanas.length < 53">
-        <mat-icon>add</mat-icon> Agregar semana
-      </button>
-      <button mat-raised-button color="accent" (click)="seleccionarArchivo()">
-        <mat-icon>upload</mat-icon> Importar desde Excel
-      </button>
-      
-      <input type="file" id="fileInput" (change)="cargarArchivo($event)" accept=".xlsx, .xls" style="display: none;">
-    </div>
+    <!-- En el div .action-buttons -->
+<div class="action-buttons">
+  <!-- Nuevo botón para calendario -->
+  <button mat-raised-button color="accent" (click)="openCalendario()">
+    <mat-icon>calendar_today</mat-icon> Seleccionar en calendario
+  </button>
+  <button mat-raised-button color="accent" (click)="seleccionarArchivo()">
+    <mat-icon>upload</mat-icon> Importar desde Excel
+  </button>
+  
+  <input type="file" id="fileInput" (change)="cargarArchivo($event)" accept=".xlsx, .xls" style="display: none;">
+</div>
   </div>
 
   <!-- Tabla de semanas -->

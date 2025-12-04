@@ -93,7 +93,7 @@ export class FactorAvanceDiasSemanaComponent implements OnChanges, OnInit {
              (!d?.remanente || d.remanente === 0);
     });
 
-    console.log("📊 Datos filtrados válidos:", filtrados.length);
+    //console.log("📊 Datos filtrados válidos:", filtrados.length);
 
     if (filtrados.length === 0) {
       this.safeChartUpdate(this.getEmptyOptions());
@@ -110,7 +110,7 @@ export class FactorAvanceDiasSemanaComponent implements OnChanges, OnInit {
       grupos[fecha].count += 1;
     });
 
-    console.log("📦 Grupos por fecha:", grupos);
+    //console.log("📦 Grupos por fecha:", grupos);
 
     const categories: string[] = [];
     const rendimiento: number[] = [];
@@ -126,13 +126,13 @@ export class FactorAvanceDiasSemanaComponent implements OnChanges, OnInit {
         const calculoRendimiento = grupo.kg / grupo.avance;
         const calculoAvance = grupo.avance / grupo.count;
         
-        console.log(`🔢 Fecha ${fecha}:`);
-        console.log(`   KG Total: ${grupo.kg}`);
-        console.log(`   Avance Total: ${grupo.avance}`);
-        console.log(`   Count: ${grupo.count}`);
-        console.log(`   Rendimiento: ${grupo.kg} / ${grupo.avance} = ${calculoRendimiento.toFixed(2)} Kg/m`);
-        console.log(`   Avance Promedio: ${grupo.avance} / ${grupo.count} = ${calculoAvance.toFixed(2)} m`);
-        console.log('---');
+        //console.log(`🔢 Fecha ${fecha}:`);
+        //console.log(`   KG Total: ${grupo.kg}`);
+        //console.log(`   Avance Total: ${grupo.avance}`);
+        //console.log(`   Count: ${grupo.count}`);
+        //console.log(`   Rendimiento: ${grupo.kg} / ${grupo.avance} = ${calculoRendimiento.toFixed(2)} Kg/m`);
+        //console.log(`   Avance Promedio: ${grupo.avance} / ${grupo.count} = ${calculoAvance.toFixed(2)} m`);
+        //console.log('---');
 
         categories.push(this.formatDateToDDMMMYY(fecha));
         rendimiento.push(Number(calculoRendimiento.toFixed(2)));
@@ -150,24 +150,24 @@ export class FactorAvanceDiasSemanaComponent implements OnChanges, OnInit {
       const promedioRend = sumaRendimiento / categories.length;
       const promedioAvance = sumaAvance / categories.length;
 
-      console.log('📊 PROMEDIO GLOBAL (POR DÍAS):');
-      console.log(`   Días totales: ${categories.length}`);
-      console.log(`   Suma Rendimiento: ${sumaRendimiento.toFixed(2)}`);
-      console.log(`   Suma Avance: ${sumaAvance.toFixed(2)}`);
-      console.log(`   Rendimiento Promedio: ${sumaRendimiento.toFixed(2)} / ${categories.length} = ${promedioRend.toFixed(2)} Kg/m`);
-      console.log(`   Avance Promedio: ${sumaAvance.toFixed(2)} / ${categories.length} = ${promedioAvance.toFixed(2)} m`);
-      console.log('---');
+      //console.log('📊 PROMEDIO GLOBAL (POR DÍAS):');
+      //console.log(`   Días totales: ${categories.length}`);
+      //console.log(`   Suma Rendimiento: ${sumaRendimiento.toFixed(2)}`);
+      //console.log(`   Suma Avance: ${sumaAvance.toFixed(2)}`);
+      //console.log(`   Rendimiento Promedio: ${sumaRendimiento.toFixed(2)} / ${categories.length} = ${promedioRend.toFixed(2)} Kg/m`);
+      //console.log(`   Avance Promedio: ${sumaAvance.toFixed(2)} / ${categories.length} = ${promedioAvance.toFixed(2)} m`);
+      //console.log('---');
 
       categories.push("PROMEDIO");
       rendimiento.push(Number(promedioRend.toFixed(2)));
       avance.push(Number(promedioAvance.toFixed(2)));
     }
 
-    console.log('📈 RESULTADOS FINALES:');
-    console.log('   Categorías:', categories);
-    console.log('   Rendimiento (Kg/m):', rendimiento);
-    console.log('   Avance Promedio (m):', avance);
-    console.log('=====================');
+    //console.log('📈 RESULTADOS FINALES:');
+    //console.log('   Categorías:', categories);
+    //console.log('   Rendimiento (Kg/m):', rendimiento);
+    //console.log('   Avance Promedio (m):', avance);
+    //console.log('=====================');
 
     const minLength = Math.min(categories.length, rendimiento.length, avance.length);
     if (minLength === 0) {
@@ -200,7 +200,7 @@ export class FactorAvanceDiasSemanaComponent implements OnChanges, OnInit {
       try {
         this.chart.updateOptions(options, false, true);
       } catch (err) {
-        console.error("Error updating chart:", err);
+        //console.error("Error updating chart:", err);
       }
     }
   }

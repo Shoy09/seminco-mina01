@@ -1,0 +1,134 @@
+<div class="calendario-container">
+  <h2>Calendario de Semanas - {{ empresa.nombre }}</h2>
+  
+  <!-- Información de última semana -->
+  <div class="ultima-semana-info" *ngIf="ultimaSemana">
+    <mat-icon>info</mat-icon>
+    <span>{{ getInfoUltimaSemana() }}</span>
+  </div>
+  
+  <!-- Controles del calendario -->
+  <div class="calendario-controls">
+    <button mat-icon-button (click)="cambiarMes(-1)">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    
+    <div class="mes-anio">
+      <span class="mes">{{ meses[mesActual.getMonth()] }}</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="anioSeleccionado" (ngModelChange)="onAnioChange()">
+          <mat-option *ngFor="let anio of anios" [value]="anio">
+            {{ anio }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    
+    <button mat-icon-button (click)="cambiarMes(1)">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+    
+    <button mat-button color="primary" (click)="irAlMesSiguiente()" *ngIf="ultimaSemana">
+      <mat-icon>skip_next</mat-icon>
+      Ir al mes siguiente
+    </button>
+  </div>
+
+  <!-- Instrucciones -->
+  <div class="instrucciones">
+    <mat-icon>info</mat-icon>
+    <span>Haz clic en el primer día de la semana y luego en el último (7 días en total)</span>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" *ngIf="cargando">
+    <mat-spinner diameter="40"></mat-spinner>
+    <span>Cargando semanas existentes...</span>
+  </div>
+
+  <!-- Calendario -->
+  <div class="calendario-grid" *ngIf="!cargando">
+    <!-- Días de la semana -->
+    <div class="dias-semana">
+      <div *ngFor="let dia of diasSemana" class="dia-header">
+        {{ dia }}
+      </div>
+    </div>
+
+    <!-- Días del mes -->
+    <div class="dias-mes">
+      <div 
+        *ngFor="let dia of diasCalendario; let i = index"
+        class="dia"
+        [class.es-hoy]="dia.esHoy"
+        [class.es-domingo]="dia.esDomingo"
+        [class.fuera-mes]="!dia.esMesActual"
+        [class.con-semana]="dia.semanaNumero"
+        [class.seleccionado]="dia.esSeleccionado"
+        [class.inicio]="dia.esInicio"
+        [class.fin]="dia.esFin"
+        [class.en-rango]="dia.esRango"
+        [class.deshabilitado]="dia.esDeshabilitado"
+        [style.background-color]="dia.semanaColor"
+        [matTooltip]="getTooltip(dia)"
+        matTooltipPosition="above"
+        (click)="onFechaClick(dia.fecha, dia)"
+      >
+        <div class="dia-numero">{{ dia.fecha.getDate() }}</div>
+        <div *ngIf="dia.semanaNumero" class="semana-indicador">
+          S{{ dia.semanaNumero }}
+        </div>
+        <div *ngIf="dia.esDeshabilitado && !dia.semanaNumero" class="bloqueado-indicador">
+          <mat-icon>lock</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leyenda -->
+  <div class="leyenda" *ngIf="!cargando">
+    <div class="leyenda-item">
+      <div class="color-box" style="background-color: #C8E6C9;"></div>
+      <span>Semanas existentes (cada una con color único)</span>
+    </div>
+    <div class="leyenda-item">
+      <div class="color-box seleccionado"></div>
+      <span>Selección actual</span>
+    </div>
+    <div class="leyenda-item">
+      <div class="color-box en-rango"></div>
+      <span>Semanas a agregar</span>
+    </div>
+    <div class="leyenda-item">
+      <div class="color-box deshabilitado"></div>
+      <span>Fechas bloqueadas (anteriores a la última semana)</span>
+    </div>
+  </div>
+
+  <!-- Semanas a agregar -->
+  <div class="semanas-agregar" *ngIf="semanasNuevas.length > 0">
+    <h3>Semanas a agregar ({{ semanasNuevas.length }})</h3>
+    <div class="semanas-lista">
+      <mat-chip 
+        *ngFor="let semana of semanasNuevas; let i = index"
+        [removable]="true"
+        (removed)="eliminarSemanaNueva(i)"
+        [style.background-color]="coloresSemanas[i % coloresSemanas.length]"
+      >
+        Semana {{ semana.numero }}: {{ semana.inicio | date:'dd/MM/yyyy' }} - {{ semana.fin | date:'dd/MM/yyyy' }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </div>
+  </div>
+
+  <!-- Acciones -->
+  <div class="acciones">
+    <button mat-raised-button color="primary" (click)="guardarSemanas()" [disabled]="semanasNuevas.length === 0">
+      <mat-icon>save</mat-icon>
+      Guardar {{ semanasNuevas.length }} semana(s)
+    </button>
+    <button mat-stroked-button (click)="cancelar()">
+      Cancelar
+    </button>
+  </div>
+</div>

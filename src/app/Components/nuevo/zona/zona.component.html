@@ -1,44 +1,60 @@
-<div class="zona-card" *ngFor="let z of zonasAgrupadas">
-  <div class="zona-header" (click)="toggleExpand(z.nombre)">
-    <h3>{{ z.nombre }}</h3>
-    <span class="icon" [class.rotar]="expandido[z.nombre]">⌄</span>
+<!-- Iteramos directamente por zonas -->
+<ng-container *ngFor="let zona of zonasAgrupadas">
+
+  <!-- Título de la zona + opcional colapsar -->
+  <div class="zona-header-linea" (click)="toggleExpand(zona.nombre)">
+    <h3 class="zona-titulo">{{ zona.nombre }}</h3>
+    <span class="zona-toggle">
+      {{ expandido[zona.nombre] ? '−' : '+' }}
+    </span>
   </div>
 
-  <div class="zona-contenido" *ngIf="expandido[z.nombre]">
-    <div *ngFor="let labor of z.labores" class="labor-item">
-      <div class="labor-titulo">{{ labor.labor }}</div>
+  <div *ngIf="expandido[zona.nombre]">
 
-      <div class="barra">
-        <div class="ejecutado" [style.width.%]="getPorcentaje(labor.real, labor.programado)"></div>
-      </div>
+    <!-- 🔹 Cards por labor -->
+    <div *ngFor="let labor of zona.labores" class="labor-card">
 
-      <div class="medidas">
-        <span>{{ labor.real }} m</span>
-        <span>{{ labor.programado }} m</span>
-      </div>
-    </div>
+      <!-- Leyenda / cuadrado izquierdo -->
+      <div class="labor-leyenda">
+  <div class="leyenda-cuadro"
+       [style.background]="labor.color || '#bdbdbd'"
+       (mouseenter)="mostrarTooltip($event, labor)"
+       (mousemove)="mostrarTooltip($event, labor)"
+       (mouseleave)="ocultarTooltip()">
 
-    <!-- 🟦 Cuadro resumen -->
-    <div class="resumen-card" *ngIf="z.labores.length > 0">
-      <h4>Cuadro Resumen</h4>
+    <span class="leyenda-texto">
+      {{ labor.labor }}
+    </span>
 
-      <ng-container *ngIf="calcularResumen(z.labores) as resumen">
-        <div class="resumen-row" *ngFor="let key of ['Ancho', 'Alto', 'Avance']">
-          <span class="label">{{ key }}:</span>
-          <span class="valor">
-            {{ resumen[key].real }} / {{ resumen[key].programado }} m
-            ({{ getPorcentaje(resumen[key].real, resumen[key].programado) | number:'1.0-0' }}%)
-          </span>
-        </div>
-
-        <!-- 🟩 Porcentaje general de cumplimiento del avance -->
-        <div class="resumen-total">
-          <strong>% Cumplimiento:</strong>
-          <span class="valor-destacado">
-            {{ getPorcentaje(resumen['Avance'].real, resumen['Avance'].programado) | number:'1.0-0' }}%
-          </span>
-        </div>z
-      </ng-container>
-    </div>
   </div>
 </div>
+
+
+      <!-- Barra y medidas a la derecha -->
+      <div class="labor-detalle">
+        <div class="barra-programado">
+          <div class="barra-ejecutado"
+               [style.width.%]="getPorcentaje(labor.real, labor.programado)">
+          </div>
+        </div>
+
+        <div class="labor-medidas">
+          <span>{{ labor.real }} m</span>
+          <span>{{ labor.programado }} m</span>
+        </div>
+      </div>
+
+    </div>
+
+
+    <hr class="separador-zona" />
+
+  </div>
+</ng-container>
+
+<app-tooltip-labor
+  *ngIf="tooltipVisible"
+  [labor]="tooltipLabor"
+  [x]="tooltipX"
+  [y]="tooltipY">
+</app-tooltip-labor>

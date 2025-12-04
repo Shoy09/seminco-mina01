@@ -1,0 +1,79 @@
+<!-- Iteramos directamente por zonas -->
+<ng-container *ngFor="let zona of zonasAgrupadas">
+
+  <!-- Título de la zona + opcional colapsar -->
+  <div class="zona-header-linea" (click)="toggleExpand(zona.nombre)">
+    <h3 class="zona-titulo">{{ zona.nombre }}</h3>
+    <span class="zona-toggle">
+      {{ expandido[zona.nombre] ? '−' : '+' }}
+    </span>
+  </div>
+
+  <div *ngIf="expandido[zona.nombre]">
+
+    <!-- 🔹 Cards por labor -->
+    <div *ngFor="let labor of zona.labores" class="labor-card">
+
+      <!-- Leyenda / cuadrado izquierdo -->
+      <div class="labor-leyenda">
+        <div class="leyenda-cuadro"
+             [style.background]="labor.color || '#bdbdbd'"
+             (mouseenter)="mostrarTooltip($event, labor)"
+             (mousemove)="mostrarTooltip($event, labor)"
+             (mouseleave)="ocultarTooltip()">
+          <span class="leyenda-texto">
+            {{ labor.labor }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Barra y medidas a la derecha -->
+      <div class="labor-detalle">
+        <div class="barra-programado">
+          <div class="barra-ejecutado"
+               [style.width.%]="getPorcentaje(labor.real, labor.programado)">
+          </div>
+        </div>
+
+        <div class="labor-medidas">
+          <span>{{ labor.real | number:'1.3-3' }} T</span>
+          <span>{{ labor.programado | number:'1.3-3' }} T</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 🟦 Cuadro resumen por zona -->
+    <div class="resumen-card" *ngIf="zona.labores.length > 0">
+      <h4>Cuadro Resumen</h4>
+
+      <ng-container *ngIf="calcularResumen(zona.labores) as resumen">
+        <div class="resumen-row" *ngFor="let key of ['Ancho', 'Alto', 'Avance']">
+          <span class="label">{{ key }}:</span>
+          <span class="valor">
+            {{ resumen[key].real }} / {{ resumen[key].programado }} m
+            ({{ getPorcentaje(resumen[key].real, resumen[key].programado) | number:'1.0-0' }}%)
+          </span>
+        </div>
+
+        <div class="resumen-total">
+          <strong>% Cumplimiento:</strong>
+          <span class="valor-destacado">
+            {{ getPorcentaje(resumen['Avance'].real, resumen['Avance'].programado) | number:'1.0-0' }}%
+          </span>
+        </div>
+      </ng-container>
+    </div>
+
+    <hr class="separador-zona" />
+
+  </div>
+</ng-container>
+
+<!-- 🔍 Tooltip reutilizado igual que en ZonaComponent -->
+<app-tooltip-labor
+  *ngIf="tooltipVisible"
+  [labor]="tooltipLabor"
+  [x]="tooltipX"
+  [y]="tooltipY">
+</app-tooltip-labor>

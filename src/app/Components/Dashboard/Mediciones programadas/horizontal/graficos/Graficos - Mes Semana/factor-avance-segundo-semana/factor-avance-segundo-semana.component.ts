@@ -110,115 +110,132 @@ export class FactorAvanceSegundoSemanaComponent implements OnChanges {
     };
   }
 
-  private updateChart(): void {
-    const filtrados = this.datos.filter(d =>
-      d.kg_explosivos &&
-      d.labor &&
-      d.labor.trim().toUpperCase().startsWith("TJ") &&
-      (!d.no_aplica || d.no_aplica === 0) &&
-      (!d.remanente || d.remanente === 0)
-    );
+private updateChart(): void {
+  const filtrados = this.datos.filter(d =>
+    d.kg_explosivos &&
+    d.labor &&
+    d.labor.trim().toUpperCase().startsWith("TJ") &&
+    (!d.no_aplica || d.no_aplica === 0) &&
+    (!d.remanente || d.remanente === 0)
+  );
 
-    if (filtrados.length === 0) {
-      this.chartOptions.series = [];
-      return;
-    }
+  if (filtrados.length === 0) {
+    this.chartOptions.series = [];
+    return;
+  }
 
-    // 👉 PRIMERO: Hacer el match completo labor-fecha-zona como en el gráfico anterior
-    const datosConToneladas = filtrados.map(d => {
+  // 🔹 NUEVA ESTRATEGIA: Agrupar primero por combinación única (labor, zona, fecha)
+  const datosAgrupadosUnicos = filtrados.reduce((acc, d) => {
+    const labor = d.labor || 'SIN LABOR';
+    const zona = d.zona || 'SIN ZONA';
+    const fecha = d.fechaAjustada || d.fecha || 'SIN FECHA';
+    const semana = d?.semana?.toString() || "Sin semana";
+    
+    // Crear clave única para evitar duplicados de toneladas
+    const claveUnica = `${labor}|${zona}|${fecha}`;
+    
+    if (!acc[claveUnica]) {
+      // Buscar tonelada correspondiente
       const toneladaMatch = this.toneladas.find(
-        ton => ton.fecha === (d.fechaAjustada || d.fecha) && 
-               ton.zona === d.zona && 
-               ton.labor === d.labor
+        ton => ton.fecha === fecha && 
+               ton.zona === zona && 
+               ton.labor === labor
       );
       
-      return {
-        semana: d?.semana?.toString() || "Sin semana",
-        kg_explosivos: d.kg_explosivos || 0,
-        toneladas: toneladaMatch ? toneladaMatch.toneladas : 0,
-        labor: d.labor,
-        zona: d.zona,
-        fecha: d.fechaAjustada || d.fecha
+      acc[claveUnica] = { 
+        semana,
+        fecha,
+        labor,
+        zona,
+        kg_explosivos: 0, 
+        toneladas: toneladaMatch ? toneladaMatch.toneladas : 0
       };
-    });
-
-    // 👉 SEGUNDO: Ahora sí agrupar por semana
-    const grupos: { [semana: string]: { kg: number; toneladas: number; count: number } } = {};
-
-    datosConToneladas.forEach(d => {
-      const semana = d.semana;
-      grupos[semana] = grupos[semana] || { kg: 0, toneladas: 0, count: 0 };
-      
-      grupos[semana].kg += d.kg_explosivos;
-      grupos[semana].toneladas += d.toneladas; // ← Ya viene del match correcto
-      grupos[semana].count += 1;
-    });
-
-    const categories: string[] = [];
-    const kgExplosivos: number[] = [];
-    const toneladasSeries: number[] = [];
-    const kgPorTonelada: number[] = [];
-
-    Object.keys(grupos).sort().forEach(semana => {
-      const g = grupos[semana];
-      if (g.count > 0) {
-        categories.push(`Semana ${semana}`);
-        kgExplosivos.push(Number((g.kg).toFixed(2)));
-        toneladasSeries.push(Number((g.toneladas).toFixed(2)));
-        kgPorTonelada.push(
-          g.toneladas > 0 ? Number((g.kg / g.toneladas).toFixed(2)) : 0
-        );
-      }
-    });
-
-    // 🔹 Calcular PROMEDIO por semana
-    const numSemanas = Object.keys(grupos).length;
-
-    if (numSemanas > 0) {
-      const totalKg = Object.values(grupos).reduce((s, g) => s + g.kg, 0);
-      const totalToneladas = Object.values(grupos).reduce((s, g) => s + g.toneladas, 0);
-      const totalKgPorTonelada = kgPorTonelada.reduce((s, v) => s + v, 0);
-
-      categories.push("PROMEDIO");
-      kgExplosivos.push(Number((totalKg / numSemanas).toFixed(2)));
-      toneladasSeries.push(Number((totalToneladas / numSemanas).toFixed(2)));
-      kgPorTonelada.push(Number((totalKgPorTonelada / numSemanas).toFixed(2)));
     }
 
-    // 🔹 Calcular máximo dinámico para el eje derecho
-    const valoresRelacion = kgPorTonelada.filter(val => val !== null && val !== undefined) as number[];
-    const maxRelacion = valoresRelacion.length > 0 ? Math.max(...valoresRelacion) : 1;
-    const maxEje = Math.max(maxRelacion * 1.2, 0.5); // mínimo 0.5 para evitar ejes muy pequeños
+    // Sumar kg explosivos (esto sí se puede sumar de múltiples registros)
+    acc[claveUnica].kg_explosivos += d.kg_explosivos || 0;
 
-    // 🔹 Actualizar gráfica CON EL EJE CORREGIDO
-    this.chartOptions = {
-      ...this.chartOptions,
-      series: [
-        { name: "Kg Explosivos", type: "bar", data: kgExplosivos, yAxisIndex: 0 },
-        { name: "Toneladas", type: "bar", data: toneladasSeries, yAxisIndex: 0 },
-        { name: "Kg Explosivos / Toneladas", type: "line", data: kgPorTonelada, yAxisIndex: 1 }
-      ],
-      xaxis: { ...this.chartOptions.xaxis, categories },
-      yaxis: [
-        {
-          title: { text: "Kg Explosivos y Toneladas" },
-          labels: { formatter: (val: number) => val.toFixed(2) }
-        },
-        {
-          opposite: true,
-          title: { text: "Relación Kg Explosivos / Toneladas" },
-          labels: { formatter: (val: number) => val.toFixed(2) },
-          min: 0,
-          max: maxEje,
-          tickAmount: 4
-        }
-      ]
-    };
+    return acc;
+  }, {} as Record<string, { semana: string; fecha: string; labor: string; zona: string; kg_explosivos: number; toneladas: number }>);
 
-    setTimeout(() => {
-      if (this.chart && this.chart.updateOptions) {
-        this.chart.updateOptions(this.chartOptions);
-      }
-    }, 100);
+  // 🔹 AHORA agrupar por semana para el gráfico
+  const gruposPorSemana: { [semana: string]: { kg: number; toneladas: number; count: number } } = {};
+
+  Object.values(datosAgrupadosUnicos).forEach(item => {
+    const semana = item.semana;
+    gruposPorSemana[semana] = gruposPorSemana[semana] || { kg: 0, toneladas: 0, count: 0 };
+    
+    gruposPorSemana[semana].kg += item.kg_explosivos;
+    gruposPorSemana[semana].toneladas += item.toneladas; // ✅ Ya no se duplican
+    gruposPorSemana[semana].count += 1;
+  });
+
+  // 🔹 Resto del código se mantiene igual...
+  const categories: string[] = [];
+  const kgExplosivos: number[] = [];
+  const toneladasSeries: number[] = [];
+  const kgPorTonelada: number[] = [];
+
+  Object.keys(gruposPorSemana).sort().forEach(semana => {
+    const g = gruposPorSemana[semana];
+    if (g.count > 0) {
+      categories.push(`Semana ${semana}`);
+      kgExplosivos.push(Number((g.kg).toFixed(2)));
+      toneladasSeries.push(Number((g.toneladas).toFixed(2)));
+      kgPorTonelada.push(
+        g.toneladas > 0 ? Number((g.kg / g.toneladas).toFixed(2)) : 0
+      );
+    }
+  });
+
+  // 🔹 Calcular PROMEDIO por semana
+  const numSemanas = Object.keys(gruposPorSemana).length;
+
+  if (numSemanas > 0) {
+    const totalKg = Object.values(gruposPorSemana).reduce((s, g) => s + g.kg, 0);
+    const totalToneladas = Object.values(gruposPorSemana).reduce((s, g) => s + g.toneladas, 0);
+    const totalKgPorTonelada = kgPorTonelada.reduce((s, v) => s + v, 0);
+
+    categories.push("PROMEDIO");
+    kgExplosivos.push(Number((totalKg / numSemanas).toFixed(2)));
+    toneladasSeries.push(Number((totalToneladas / numSemanas).toFixed(2)));
+    kgPorTonelada.push(Number((totalKgPorTonelada / numSemanas).toFixed(2)));
   }
+
+  // 🔹 Calcular máximo dinámico para el eje derecho
+  const valoresRelacion = kgPorTonelada.filter(val => val !== null && val !== undefined) as number[];
+  const maxRelacion = valoresRelacion.length > 0 ? Math.max(...valoresRelacion) : 1;
+  const maxEje = Math.max(maxRelacion * 1.2, 0.5);
+
+  // 🔹 Actualizar gráfica
+  this.chartOptions = {
+    ...this.chartOptions,
+    series: [
+      { name: "Kg Explosivos", type: "bar", data: kgExplosivos, yAxisIndex: 0 },
+      { name: "Toneladas", type: "bar", data: toneladasSeries, yAxisIndex: 0 },
+      { name: "Kg Explosivos / Toneladas", type: "line", data: kgPorTonelada, yAxisIndex: 1 }
+    ],
+    xaxis: { ...this.chartOptions.xaxis, categories },
+    yaxis: [
+      {
+        title: { text: "Kg Explosivos y Toneladas" },
+        labels: { formatter: (val: number) => val.toFixed(2) }
+      },
+      {
+        opposite: true,
+        title: { text: "Relación Kg Explosivos / Toneladas" },
+        labels: { formatter: (val: number) => val.toFixed(2) },
+        min: 0,
+        max: maxEje,
+        tickAmount: 4
+      }
+    ]
+  };
+
+  setTimeout(() => {
+    if (this.chart && this.chart.updateOptions) {
+      this.chart.updateOptions(this.chartOptions);
+    }
+  }, 100);
+}
 }

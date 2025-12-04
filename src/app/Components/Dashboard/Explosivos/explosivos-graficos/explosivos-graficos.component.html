@@ -12,13 +12,13 @@
     <label>
       Turno:
       <select [(ngModel)]="turnoSeleccionado">
-        <option value="">Todos</option>
-        <option *ngFor="let turno of turnos" [value]="turno">
-          {{ turno }}
-        </option>
-      </select>
+    <option value="">Todos</option>  <!-- ✅ Valor vacío para "Todos" -->
+    <option *ngFor="let turno of turnos" [value]="turno">
+        {{ turno }}
+    </option>
+</select>
     </label>
-    <button (click)="aplicarFiltrosLocales()">Filtrar</button>
+    <button (click)="aplicarFiltros()">Filtrar</button>
     <button (click)="quitarFiltros()">Quitar filtros</button>
     <button (click)="exportarAExcelExplosivos()" class="btn btn-success">
   <i class="fas fa-file-excel"></i> Exportar a Excel completo

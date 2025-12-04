@@ -197,6 +197,7 @@ obtenerExploracionesPorCadaTipo() {
 
         // --- Crear objeto de medición ---
         const medicion: MedicionesHorizontal = {
+          id: registro.id ?? null,
           fecha: registro.fecha,
           turno: registro.turno,
           empresa: registro.empresa,
@@ -293,48 +294,6 @@ obtenerExploracionesPorCadaTipo() {
   });
 }
 
-
-  private obtenerMesesEntreFechas(fechaDesde: Date, fechaHasta: Date): string[] {
-  const meses: string[] = [];
-  const fechaActual = new Date(fechaDesde);
-
-  while (fechaActual <= fechaHasta) {
-    const mes = fechaActual.toLocaleString("es-ES", { month: "long" });
-    const año = fechaActual.getFullYear();
-    const mesFormato = `${mes} ${año}`;
-    if (!meses.includes(mesFormato)) {
-      meses.push(mesFormato);
-    }
-    fechaActual.setMonth(fechaActual.getMonth() + 1);
-  }
-
-  return meses;
-}
-
-// Devuelve la semana ISO de una fecha
-private obtenerSemanaISO(fecha: Date): number {
-  const temp = new Date(fecha.getTime());
-  temp.setUTCDate(temp.getUTCDate() + 4 - (temp.getUTCDay() || 7));
-  const inicioAño = new Date(Date.UTC(temp.getUTCFullYear(), 0, 1));
-  const semana = Math.ceil((((+temp - +inicioAño) / 86400000) + 1) / 7);
-  return semana;
-}
-
-// Devuelve todas las semanas ISO entre dos fechas
-private obtenerSemanasEntreFechas(fechaDesde: Date, fechaHasta: Date): number[] {
-  const semanas: number[] = [];
-  const fechaActual = new Date(fechaDesde);
-
-  while (fechaActual <= fechaHasta) {
-    const semana = this.obtenerSemanaISO(fechaActual);
-    if (!semanas.includes(semana)) {
-      semanas.push(semana);
-    }
-    fechaActual.setDate(fechaActual.getDate() + 1);
-  }
-
-  return semanas;
-}
 
   obtenerDatos(): void {
     this.medicionService.getMediciones().subscribe({

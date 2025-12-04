@@ -155,7 +155,7 @@ private updateChart(): void {
       try {
         this.chart.updateOptions(options, false, true);
       } catch (err) {
-        console.error("Error updating chart:", err);
+        //console.error("Error updating chart:", err);
       }
     }
   }

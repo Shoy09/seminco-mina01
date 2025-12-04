@@ -59,6 +59,7 @@ export interface NubeOperacion {
     zona: string;
     tipo_labor: string;
     labor: string;
+    ala: string;
     veta: string;
     nivel: string;
     tipo_perforacion: string;
@@ -98,6 +99,7 @@ export interface NubeOperacion {
     zona: string;
     tipo_labor: string;
     labor: string;
+    ala: string;
     veta: string;
     nivel: string;
     tipo_perforacion: string;
@@ -136,6 +138,7 @@ export interface NubeOperacion {
     zona: string;
     tipo_labor: string;
     labor: string;
+    ala: string;
     veta: string;
     nivel: string;
     tipo_perforacion: string;

@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { CalendarioSemanasComponent } from '../calendario-semanas/calendario-semanas.component';
 
 @Component({
   selector: 'app-semana-list',
@@ -283,5 +284,31 @@ private enviarSemanasAlServidor(semanas: Semana[]): void {
       data: { mensaje: 'Importando semanas...' }
     });
   }
+
+  openCalendario(): void {
+  if (!this.empresaSeleccionada) {
+    this.snackBar.open('Debe seleccionar una empresa', 'Cerrar', { duration: 3000 });
+    return;
+  }
+
+  const empresaSeleccionada = this.empresas.find(e => e.id === this.empresaSeleccionada);
+  
+  if (!empresaSeleccionada) {
+    this.snackBar.open('Empresa no encontrada', 'Cerrar', { duration: 3000 });
+    return;
+  }
+
+  const dialogRef = this.dialog.open(CalendarioSemanasComponent, {
+    width: '900px',
+    maxWidth: '95vw',
+    data: { empresa: empresaSeleccionada }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result === 'saved') {
+      this.cargarSemanas();
+    }
+  });
+}
 }
 

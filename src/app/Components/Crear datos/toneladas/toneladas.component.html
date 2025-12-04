@@ -79,28 +79,63 @@
           </div>
         </form>
 
-        <!-- TABLA DENTRO DEL MODAL -->
-        <div class="tabla-scroll">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th *ngFor="let campo of modalContenido?.campos">{{ campo.label }}</th>
-                <th>Opciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let dato of modalContenido?.datos; let i = index">
-                <td>{{ i + 1 }}</td>
-                <td *ngFor="let campo of modalContenido?.campos">{{ dato[campo.nombre] }}</td>
-                <td>
-                  <img src="boton-editar.png" alt="Editar" class="action-icon" (click)="editarDato(dato, i)">
-                  <img src="dele.svg" alt="Eliminar" class="action-icon" (click)="eliminar(dato)">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <!-- BARRA DE BÚSQUEDA -->
+<div class="search-container">
+  <div class="search-group">
+    <input 
+      type="text" 
+      [(ngModel)]="filtroLabor" 
+      (input)="aplicarFiltros()"
+      placeholder="Buscar por labor..." 
+      class="search-input">
+  </div>
+  
+  <div class="search-group">
+    <input 
+      type="date" 
+      [(ngModel)]="filtroFecha" 
+      (change)="aplicarFiltros()"
+      class="search-input">
+  </div>
+  
+  <div class="search-group">
+    <button 
+      type="button" 
+      (click)="limpiarFiltros()" 
+      class="btn-clear">
+      Limpiar filtros
+    </button>
+  </div>
+</div>
+
+<!-- TABLA DENTRO DEL MODAL -->
+<div class="tabla-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th *ngFor="let campo of modalContenido?.campos">{{ campo.label }}</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Cambiar esta línea para usar datosFiltrados en lugar de modalContenido?.datos -->
+      <tr *ngFor="let dato of datosFiltrados; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td *ngFor="let campo of modalContenido?.campos">{{ dato[campo.nombre] }}</td>
+        <td>
+          <img src="boton-editar.png" alt="Editar" class="action-icon" (click)="editarDato(dato, i)">
+          <img src="dele.svg" alt="Eliminar" class="action-icon" (click)="eliminar(dato)">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <!-- Mensaje cuando no hay resultados -->
+  <div *ngIf="datosFiltrados.length === 0" class="no-results">
+    No se encontraron resultados para los filtros aplicados.
+  </div>
+</div>
       </div>
     </div>
   </div>

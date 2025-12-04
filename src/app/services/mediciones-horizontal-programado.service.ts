@@ -64,5 +64,19 @@ getMedicionesPorLabor(labor: string, mes?: string, anio?: number): Observable<Me
   return this.apiService.getDatos(url);
 }
 
+getMedicionesPorFecha(mes?: string, anio?: number): Observable<MedicionesHorizontal[]> {
+  let url = `${this.baseUrl}/por-fecha`;
+  const query: string[] = [];
+
+  if (mes)  query.push(`mes=${mes}`);
+  if (anio) query.push(`anio=${anio}`);
+
+  if (query.length) {
+    url += `?${query.join('&')}`;
+  }
+
+  return this.apiService.getDatos(url);
+}
+
 
 }

@@ -102,7 +102,7 @@ toneladas: Tonelada[] = [];
         if (anio !== undefined) {
           this.anio = anio;  // Asignamos el valor de anio a la propiedad del componente
           this.mes = mes; 
-          this.obtenerPlanesMetraje(anio, mes);
+          this.obtenerPlanesProduccion(anio, mes);
         } else {
           //console.error('Fecha de ingreso no válida');
         }
@@ -113,7 +113,7 @@ toneladas: Tonelada[] = [];
     );
   }
 
-  obtenerPlanesMetraje(anio: number, mes: string): void {
+  obtenerPlanesProduccion(anio: number, mes: string): void {
     this.planProduccionService.getPlanMensualByYearAndMonth(anio, mes).subscribe(
       (planes) => {
         this.dataSource.data = planes;

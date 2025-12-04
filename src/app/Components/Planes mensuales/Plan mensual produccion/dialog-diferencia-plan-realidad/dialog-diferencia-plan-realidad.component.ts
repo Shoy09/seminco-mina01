@@ -23,7 +23,7 @@ export class DialogDiferenciaPlanRealidadComponent implements OnInit {
   ala: string = '';
   toneladas_plan: number = 0;
   exploraciones: NubeDatosTrabajoExploraciones[] = [];
-  mediciones: MedicionesHorizontal[] = [];
+  medicionesProceso: MedicionesHorizontal[] = [];
   sumaToneladas: number = 0;
   faltanteToneladas: number = 0;
   mes: string = '';
@@ -152,12 +152,12 @@ const toneladasValor = toneladaEncontrada ? toneladaEncontrada.toneladas : 0;
       datosFormateados.push(medicion);
     });
 
-    this.mediciones = datosFormateados;
-    console.log("✅ Mediciones formateadas con toneladas:", this.mediciones);
+    this.medicionesProceso = datosFormateados;
+    console.log("✅ Mediciones formateadas con toneladas:", this.medicionesProceso);
   }
 
   calcularToneladasRestantes(): void {
-    this.sumaToneladas = this.mediciones.reduce((total, m) => total + (m.toneladas || 0), 0);
+    this.sumaToneladas = this.medicionesProceso.reduce((total, m) => total + (m.toneladas || 0), 0);
     this.faltanteToneladas = this.toneladas_plan - this.sumaToneladas;
 
     console.log(`📦 Toneladas planificadas: ${this.toneladas_plan}`);
