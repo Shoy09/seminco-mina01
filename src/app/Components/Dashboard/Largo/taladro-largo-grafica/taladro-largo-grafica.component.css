@@ -121,3 +121,17 @@
   grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   gap: 20px;
 }
+
+.gantt-container {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+  padding: 15px;
+
+  /* control de altura */
+  height: 320px;        /* ajustable */
+  overflow-x: auto;
+  overflow-y: hidden;
+}

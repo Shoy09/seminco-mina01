@@ -23,11 +23,12 @@ import { RendimientoPromedioComponent } from "../Graficos/rendimiento-promedio/r
 import * as XLSX from 'xlsx-js-style';
 import { ExcelExportServiceLargoFiltro } from '../../../../services/export/filtro/ExcelExportService.service';
 import { ExcelExportService } from '../../../../services/export/general/ExcelExportService.service';
+import { SchedulerComponent } from "../scheduler/scheduler.component";
 
  
 @Component({
   selector: 'app-taladro-largo-grafica',
-  imports: [NgApexchartsModule, CommonModule, FormsModule, MetrosPerforadosEquipoComponent, MetrosPerforadosLaborComponent, LongitudDePerforacionComponent, HorometrosComponent, GraficoEstadosComponent, PromedioDeEstadosGeneralComponent, RendimientoDePerforacionesComponent, DisponibilidadMecanicaEquipoComponent, DisponibilidadMecanicaGeneralComponent, UtilizacionEquipoComponent, UtilizacionGeneralComponent, SumaMetrosPerforadosComponent, RendimientoPromedioComponent],
+  imports: [NgApexchartsModule, CommonModule, FormsModule, MetrosPerforadosEquipoComponent, MetrosPerforadosLaborComponent, LongitudDePerforacionComponent, HorometrosComponent, GraficoEstadosComponent, PromedioDeEstadosGeneralComponent, RendimientoDePerforacionesComponent, DisponibilidadMecanicaEquipoComponent, DisponibilidadMecanicaGeneralComponent, UtilizacionEquipoComponent, UtilizacionGeneralComponent, SumaMetrosPerforadosComponent, RendimientoPromedioComponent, SchedulerComponent],
   templateUrl: './taladro-largo-grafica.component.html',
   styleUrl: './taladro-largo-grafica.component.css'
 })
@@ -39,7 +40,7 @@ export class TaladroLargoGraficaComponent implements OnInit {
   datosGraficoEstados: any[] = [];
   datosOperacionesOriginal: NubeOperacion[] = [];
   RendimientoPerforacion: any[] = [];
-
+ganttData: any[] = [];
   fechaDesde: string = '';
 fechaHasta: string = '';
 turnoSeleccionado: string = '';
@@ -162,6 +163,8 @@ private obtenerMesDeFecha(fecha: string): string {
     this.filtrarMetasPorMes(this.fechaDesde, this.fechaHasta);
     
     this.reprocesarTodosLosGraficos();
+
+    this.construirGanttData(this.datosOperaciones);
   }
 
   obtenerFechaLocalISO(): string {
@@ -185,6 +188,8 @@ private obtenerMesDeFecha(fecha: string): string {
   
     // Actualizar los datos filtrados
     this.datosOperaciones = datosFiltrados;
+
+    this.construirGanttData(this.datosOperaciones);
   
     // Filtrar metas según el mes de la fecha de inicio
     this.filtrarMetasPorMes(this.fechaDesde, this.fechaHasta) ;
@@ -279,6 +284,8 @@ private obtenerCantidadDias(fechaInicio: string, fechaFin: string): number {
   
         this.datosOperaciones = this.filtrarDatos(this.datosOperacionesOriginal, filtros);
   
+        this.construirGanttData(this.datosOperaciones);
+
         // Procesar datos para los gráficos
         this.prepararDatosGraficoBarrasApilada();
         this.prepararDatosHorometros();
@@ -396,6 +403,62 @@ exportToExcelFiltro() {
     this.datosOperaciones, 
     'Reporte_Operaciones_Largo'
   );
+}
+
+private construirGanttData(datos: NubeOperacion[]) {
+
+  const fechaMap: Record<string, any> = {};
+
+  datos.forEach(operacion => {
+
+    const fecha = operacion.fecha_mina ?? operacion.fecha;
+    const equipoCodigo = `${operacion.equipo} - ${operacion.codigo}`;
+
+    if (!fechaMap[fecha]) {
+      fechaMap[fecha] = {};
+    }
+
+    if (!fechaMap[fecha][equipoCodigo]) {
+      fechaMap[fecha][equipoCodigo] = {};
+    }
+
+    operacion.estados?.forEach(est => {
+
+      const labor = est.estado || 'SIN LABOR';
+
+      if (!fechaMap[fecha][equipoCodigo][labor]) {
+        fechaMap[fecha][equipoCodigo][labor] = [];
+      }
+
+      fechaMap[fecha][equipoCodigo][labor].push({
+        start: est.hora_inicio,
+        end: est.hora_final,
+        estado: est.estado,
+        description: est.codigo
+      });
+
+    });
+  });
+
+  // 🔁 Normalización final
+  this.ganttData = Object.entries(fechaMap).map(
+    ([fecha, equipos]: any) => ({
+      fecha,
+      groups: Object.entries(equipos).map(
+        ([equipoCodigo, labores]: any) => ({
+          equipoCodigo,
+          rows: Object.entries(labores).map(
+            ([labor, tasks]: any) => ({
+              labor,
+              tasks
+            })
+          )
+        })
+      )
+    })
+  );
+
+  console.log('📊 GANTT DATA FINAL:', this.ganttData);
 }
 
 }

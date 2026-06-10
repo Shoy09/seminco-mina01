@@ -1,0 +1,32 @@
+<div
+  class="tooltip-box"
+  [style.left.px]="x"
+  [style.top.px]="y"
+>
+  <strong>{{ labor.labor }}</strong>
+  <br>
+  <!-- Sección programada -->
+  Sección programada:
+  {{ labor.alto | number:'1.2-2' }}m x
+  {{ labor.ancho | number:'1.2-2' }}m
+  <br>
+
+  <!-- Sección ejecutada (desde MedicionesHorizontal) -->
+  Sección ejecutada:
+  {{ labor.altoReal | number:'1.2-2' }}m x
+  {{ labor.anchoReal | number:'1.2-2' }}m
+  <br>
+
+  <!-- % Sobre excavación -->
+  <ng-container *ngIf="porcentajeSobreExcavacion !== null">
+    %Sobre excavación:
+    {{ porcentajeSobreExcavacion | number:'1.2-2' }}%
+  </ng-container>
+  <br>
+
+  <!-- Última medición (al final de todo) -->
+  <ng-container *ngIf="labor.fechaUltima || labor.turnoUltimo">
+    Última medición: {{ labor.fechaUltima || '—' }}<br>
+    Turno: {{ labor.turnoUltimo || '—' }}
+  </ng-container>
+</div>

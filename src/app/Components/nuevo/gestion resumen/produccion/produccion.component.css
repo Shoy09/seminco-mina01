@@ -1,0 +1,12 @@
+.etapas-barra { display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+.etapa-btn { display:flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid #ddd; background:#fff; border-radius:6px; cursor:pointer; min-width:140px; }
+.etapa-nombre { font-weight:600; text-transform:capitalize; }
+.etapa-count { margin-left:auto; font-size:0.95rem; opacity:0.9; }
+
+.labor-card { display:flex; gap:12px; padding:8px 6px; align-items:center; }
+.leyenda-cuadro { padding:8px 12px; border-radius:6px; color:#fff; cursor:default; }
+.barra-programado { height:10px; background:#eee; border-radius:6px; overflow:hidden; width:180px; }
+.barra-ejecutado { height:100%; width:0%; background:#5c9; }
+.resumen-card { border:1px solid #eee; padding:8px; border-radius:6px; margin:8px 0; background:#fafafa; }
+.resumen-row { display:flex; justify-content:space-between; padding:4px 0; }
+.resumen-total { margin-top:8px; }

@@ -1,0 +1,84 @@
+<div class="filtros-container">
+  <div class="filtros-header">
+    <div class="plan-botones">
+      <button 
+        class="plan-btn" 
+        [class.active]="esPlanActivo('avance')"
+        (click)="cambiarPlan('avance')">
+        Plan avance
+      </button>
+      <button 
+        class="plan-btn" 
+        [class.active]="esPlanActivo('metraje')"
+        (click)="cambiarPlan('metraje')">
+        Plan metraje
+      </button>
+      <button 
+        class="plan-btn" 
+        [class.active]="esPlanActivo('produccion')"
+        (click)="cambiarPlan('produccion')">
+        Plan producción
+      </button>
+    </div>
+
+    <div class="filtros-controls">
+      <div class="filtro-group">
+  <label class="filtro-label">Zona</label>
+  <select class="filtro-select">
+    <option value="todas">Todas</option>
+    <option *ngFor="let z of zonas" [value]="z.zona">{{ z.zona }}</option>
+  </select>
+</div>
+
+
+      <div class="filtro-group">
+  <button class="mes-btn">
+    <span class="mes-text">{{ mesAnio }}</span>
+    <span class="mes-icon">▼</span>
+  </button>
+</div>
+
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="contenedor-principal">
+  <div class="zonas-container">
+    <!-- Componente dinámico basado en el plan seleccionado -->
+    <ng-container [ngSwitch]="planActivo">
+      
+      <!-- Plan Avance -->
+      <app-zona 
+  *ngSwitchCase="'avance'"
+  [avance]="Avance"
+  [operacionesHorizontal]="operacionesHorizontalPlan"
+  [operacionesSostenimiento]="operacionesSostenimientoPlan"
+  [mediciones]="medicionesHorizontales">
+</app-zona>
+
+      
+      <!-- Plan Metraje -->
+      <!-- <app-metraje 
+        *ngSwitchCase="'metraje'" 
+        [data]="filtrarZonas()">
+      </app-metraje> -->
+      
+      <!-- Plan Producción -->
+      <app-produccion
+        *ngSwitchCase="'produccion'" 
+        [Produccion]="Produccion"
+        [operacionesLargo]="operacionesLargoPlan"
+  [operacionesSostenimiento]="operacionesSostenimientoPlan"
+  [mediciones]="medicionesProceso">
+        >
+      </app-produccion>
+      
+    </ng-container>
+  </div>
+
+  <div class="leyenda-container">
+    <app-leyenda></app-leyenda>
+  </div>
+</div>

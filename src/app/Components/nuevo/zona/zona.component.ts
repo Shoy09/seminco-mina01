@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { PlanMensual } from '../../../models/plan-mensual.model';
 import { MedicionesHorizontal } from '../../../models/MedicionesHorizontal';
-import { TooltipLaborComponent } from "../Avance/tooltip-labor/tooltip-labor.component";
 import { NubeOperacion } from '../../../models/operaciones.models';
+import { TooltipLaborComponent } from '../Dialog/tooltip-labor/tooltip-labor.component';
 
 interface LaborFila {
   proceso: string;

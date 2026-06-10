@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { PlanProduccion } from '../../../models/plan_produccion.model';
-import { MedicionesHorizontal } from '../../../models/MedicionesHorizontal';
-import { NubeOperacion } from '../../../models/operaciones.models';
-import { TooltipLaborComponent } from '../Dialog/Produccion/tooltip-labor/tooltip-labor.component';
+import { PlanMensual } from '../../../../models/plan-mensual.model';
+import { MedicionesHorizontal } from '../../../../models/MedicionesHorizontal';
+import { NubeOperacion } from '../../../../models/operaciones.models';
+import { TooltipLaborComponent } from '../../Dialog/tooltip-labor/tooltip-labor.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ZonaDetalleDialogComponent } from '../zona-detalle-dialog/zona-detalle-dialog.component';
 
 interface LaborFila {
   proceso: string;
@@ -13,14 +15,12 @@ interface LaborFila {
   real: number;
   ancho: number;
   alto: number;
-
-  // 🔹 Datos para tooltip (igual que en ZonaComponent)
-  anchoReal?: number;     // Ejecutado (si lo manejas en Producción)
-  altoReal?: number;      // Ejecutado
+  anchoReal: number;  // Ejecutado
+  altoReal: number;   // Ejecutado
   fechaUltima?: string | null;
   turnoUltimo?: string | null;
-
   color?: string;
+  etapaFinal?: EventoTipo | null;
 }
 
 interface ZonaAgrupada {
@@ -31,19 +31,23 @@ interface ZonaAgrupada {
 type EventoTipo = 'PERFORADO' | 'DISPARADA' | 'LIMPIEZA' | 'ACARREO' | 'SOSTENIMIENTO';
 
 @Component({
-  selector: 'app-produccion',
+  selector: 'app-zona',
   standalone: true,
   imports: [CommonModule, TooltipLaborComponent],
-  templateUrl: './produccion.component.html',
-  styleUrl: './produccion.component.css'
+  templateUrl: './zona.component.html',
+  styleUrl: './zona.component.css'
 })
-export class ProduccionComponent implements OnChanges {
-  @Input() Produccion: PlanProduccion[] = [];
+export class ZonaComponent implements OnChanges {
+
+  constructor(private dialog: MatDialog) {}
+  
+  @Input() avance: PlanMensual[] = [];
   @Input() mediciones: MedicionesHorizontal[] = [];
 
-  @Input() operacionesLargo: NubeOperacion[] = [];
+  @Input() operacionesHorizontal: NubeOperacion[] = [];
   @Input() operacionesSostenimiento: NubeOperacion[] = [];
 
+  // Mapa de colores por estado
   estadoColorMap: Record<string, string> = {
     'PERFORADO': '#4caf50',
     'DISPARADA': '#f44336',
@@ -52,27 +56,39 @@ export class ProduccionComponent implements OnChanges {
     'SOSTENIMIENTO': '#9c27b0'
   };
 
-  // Orden de la línea de trabajo
   etapasOrden: EventoTipo[] = ['PERFORADO', 'DISPARADA', 'LIMPIEZA', 'ACARREO', 'SOSTENIMIENTO'];
 
-  // Estructura simple de zonas
   zonasAgrupadas: ZonaAgrupada[] = [];
   expandido: { [clave: string]: boolean } = {};
 
-  // Tooltip
+  // tooltip para cuadros y botones
   tooltipVisible = false;
   tooltipLabor: any = null;
   tooltipX = 0;
   tooltipY = 0;
 
+  // Nuevo: resumen por etapa y modal
+  resumenPorEtapa: Record<EventoTipo, { count: number; labores: LaborFila[] }> = {
+    PERFORADO: { count: 0, labores: [] },
+    DISPARADA: { count: 0, labores: [] },
+    LIMPIEZA: { count: 0, labores: [] },
+    ACARREO: { count: 0, labores: [] },
+    SOSTENIMIENTO: { count: 0, labores: [] }
+  };
+
+  // Modal state
+  modalOpen = false;
+  modalEtapaSeleccionada: EventoTipo | null = null;
+  modalLabores: LaborFila[] = [];
+
   ngOnChanges(changes: SimpleChanges): void {
     if (
-      changes['Produccion'] || 
-      changes['mediciones'] || 
-      changes['operacionesLargo'] || 
+      changes['avance'] ||
+      changes['mediciones'] ||
+      changes['operacionesHorizontal'] ||
       changes['operacionesSostenimiento']
     ) {
-      console.log('🔄 [ProduccionComponent] ngOnChanges → reconstruir estructura');
+      console.log('🔄 [ZonaComponent] ngOnChanges → reconstruir estructura');
       this.construirEstructura();
     }
   }
@@ -88,20 +104,6 @@ export class ProduccionComponent implements OnChanges {
     this.tooltipVisible = false;
   }
 
-  /** Normaliza el nombre de la labor para poder comparar:
-   *  - trim
-   *  - pasa a mayúsculas
-   *  - colapsa espacios múltiples a un solo espacio
-   */
-  private normalizarLabor(valor: string): string {
-    return valor
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .trim()
-      .replace(/\s+/g, ' ')
-      .toUpperCase();
-  }
-
   // ---------- Helpers de fechas ----------
   private normalizeDateToYMD(dateStr: string | undefined | null): string | null {
     if (!dateStr) return null;
@@ -110,11 +112,11 @@ export class ProduccionComponent implements OnChanges {
     return d.toISOString().slice(0, 10); // yyyy-mm-dd
   }
 
-  // ---------- Eventos por labor ----------
+  // ---------- Eventos por labor (mismo código que antes) ----------
+
   private getEventosParaLabor(laborKey: string): { tipo: EventoTipo; fecha: string }[] {
     const eventos: { tipo: EventoTipo; fecha: string }[] = [];
 
-    // 1) Mediciones -> DISPARADA
     for (const med of this.mediciones) {
       const laborMed = (med.labor ?? '').toString().trim();
       if (!laborMed || laborMed !== laborKey) continue;
@@ -123,41 +125,32 @@ export class ProduccionComponent implements OnChanges {
       eventos.push({ tipo: 'DISPARADA', fecha: f });
     }
 
-    // 2) Operaciones de LARGO -> PERFORADO + LIMPIEZA + ACARREO
-    for (const op of this.operacionesLargo ?? []) {
+    for (const op of this.operacionesHorizontal ?? []) {
       const fechaOp = this.normalizeDateToYMD(op.fecha ?? '');
       if (!fechaOp) continue;
 
-      // PERFORADO (perforaciones largas)
-      for (const pl of op.perforaciones ?? []) {
+      for (const ph of op.perforaciones_horizontal ?? []) {
         const laborOp = [
-          pl.tipo_labor,
-          pl.labor
-        ]
-          .filter(v => v && v.toString().trim() !== '')
-          .join(' ')
-          .trim();
+          ph.tipo_labor,
+          ph.labor
+        ].filter(v => v && v.toString().trim() !== '').join(' ').trim();
 
         if (laborOp === laborKey) {
           eventos.push({ tipo: 'PERFORADO', fecha: fechaOp });
         }
       }
 
-      // Estados que pueden representar LIMPIEZA / ACARREO
       for (const st of op.estados ?? []) {
         const estadoTxt = (st.estado ?? '').toString().toLowerCase();
         const fechaSt = this.normalizeDateToYMD(op.fecha ?? '') ?? null;
         if (!fechaSt) continue;
 
         if (estadoTxt.includes('limpie') || estadoTxt.includes('limpieza')) {
-          for (const pl of op.perforaciones ?? []) {
+          for (const ph of op.perforaciones_horizontal ?? []) {
             const laborOp = [
-              pl.tipo_labor,
-              pl.labor
-            ]
-              .filter(v => v && v.toString().trim() !== '')
-              .join(' ')
-              .trim();
+              ph.tipo_labor,
+              ph.labor
+            ].filter(v => v && v.toString().trim() !== '').join(' ').trim();
             if (laborOp === laborKey) {
               eventos.push({ tipo: 'LIMPIEZA', fecha: fechaSt });
             }
@@ -165,14 +158,11 @@ export class ProduccionComponent implements OnChanges {
         }
 
         if (estadoTxt.includes('acarreo') || estadoTxt.includes('cargu')) {
-          for (const pl of op.perforaciones ?? []) {
+          for (const ph of op.perforaciones_horizontal ?? []) {
             const laborOp = [
-              pl.tipo_labor,
-              pl.labor
-            ]
-              .filter(v => v && v.toString().trim() !== '')
-              .join(' ')
-              .trim();
+              ph.tipo_labor,
+              ph.labor
+            ].filter(v => v && v.toString().trim() !== '').join(' ').trim();
             if (laborOp === laborKey) {
               eventos.push({ tipo: 'ACARREO', fecha: fechaSt });
             }
@@ -181,27 +171,21 @@ export class ProduccionComponent implements OnChanges {
       }
     }
 
-    // 3) Operaciones sostenimiento -> SOSTENIMIENTO + LIMPIEZA + ACARREO
     for (const op of this.operacionesSostenimiento ?? []) {
       const fechaOp = this.normalizeDateToYMD(op.fecha ?? '');
       if (!fechaOp) continue;
 
-      // SOSTENIMIENTO
       for (const s of op.sostenimientos ?? []) {
         const laborOp = [
           s.tipo_labor,
           s.labor
-        ]
-          .filter(v => v && v.toString().trim() !== '')
-          .join(' ')
-          .trim();
+        ].filter(v => v && v.toString().trim() !== '').join(' ').trim();
 
         if (laborOp === laborKey) {
           eventos.push({ tipo: 'SOSTENIMIENTO', fecha: fechaOp });
         }
       }
 
-      // LIMPIEZA / ACARREO asociados a sostenimiento
       for (const st of op.estados ?? []) {
         const estadoTxt = (st.estado ?? '').toString().toLowerCase();
         const fechaSt = this.normalizeDateToYMD(op.fecha ?? '') ?? null;
@@ -212,10 +196,7 @@ export class ProduccionComponent implements OnChanges {
             const laborOp = [
               s.tipo_labor,
               s.labor
-            ]
-              .filter(v => v && v.toString().trim() !== '')
-              .join(' ')
-              .trim();
+            ].filter(v => v && v.toString().trim() !== '').join(' ').trim();
             if (laborOp === laborKey) {
               eventos.push({ tipo: 'LIMPIEZA', fecha: fechaSt });
             }
@@ -227,10 +208,7 @@ export class ProduccionComponent implements OnChanges {
             const laborOp = [
               s.tipo_labor,
               s.labor
-            ]
-              .filter(v => v && v.toString().trim() !== '')
-              .join(' ')
-              .trim();
+            ].filter(v => v && v.toString().trim() !== '').join(' ').trim();
             if (laborOp === laborKey) {
               eventos.push({ tipo: 'ACARREO', fecha: fechaSt });
             }
@@ -239,77 +217,45 @@ export class ProduccionComponent implements OnChanges {
       }
     }
 
-    // Ordenamos por fecha ascendente y luego por etapa (según etapasOrden)
     eventos.sort((a, b) => {
       if (a.fecha < b.fecha) return -1;
       if (a.fecha > b.fecha) return 1;
-      // misma fecha -> por orden de etapa
       return this.etapasOrden.indexOf(a.tipo) - this.etapasOrden.indexOf(b.tipo);
     });
 
-    console.log(`📌 [getEventosParaLabor] Labor "${laborKey}" → eventos ordenados:`, eventos);
     return eventos;
   }
 
-  /**
-   * A partir de todos los eventos de la labor:
-   * 1. Buscar el último PERFORADO (fecha más reciente).
-   * 2. Tomar todos los eventos desde ese PERFORADO hacia adelante (>= fechaPerforado).
-   * 3. De esos, devolver la etapa más avanzada.
-   */
   private decidirEtapaSegunLineaTrabajo(
     eventos: { tipo: EventoTipo; fecha: string }[]
   ): EventoTipo | null {
     if (!eventos.length) return null;
 
-    // Buscar el último PERFORADO (fecha más reciente)
     const perforados = eventos.filter(e => e.tipo === 'PERFORADO');
     if (!perforados.length) {
-      console.log('⚠️ [decidirEtapaSegunLineaTrabajo] No hay PERFORADO → null');
       return null;
     }
 
-    const ultimoPerforado = perforados.reduce(
-      (prev, curr) => (curr.fecha > prev.fecha ? curr : prev),
-      perforados[0]
-    );
-    console.log('🟢 [decidirEtapaSegunLineaTrabajo] último PERFORADO:', ultimoPerforado);
+    const ultimoPerforado = perforados.reduce((prev, curr) => (curr.fecha > prev.fecha ? curr : prev), perforados[0]);
 
-    // Tomar todos los eventos desde el último PERFORADO
     const desdePerforado = eventos.filter(e => e.fecha >= ultimoPerforado.fecha);
     if (!desdePerforado.length) return 'PERFORADO';
 
-    // Elegir la etapa más avanzada
     let mejor: EventoTipo = 'PERFORADO';
     for (const e of desdePerforado) {
       if (this.etapasOrden.indexOf(e.tipo) > this.etapasOrden.indexOf(mejor)) {
         mejor = e.tipo;
       }
     }
-
-    console.log('✅ [decidirEtapaSegunLineaTrabajo] etapa final elegida:', mejor, 'con eventos:', desdePerforado);
     return mejor;
   }
 
-  // ---------- Color final para la labor ----------
   private getColorParaLabor(laborKey: string): string {
     const eventos = this.getEventosParaLabor(laborKey);
-
-    if (!eventos.length) {
-      console.log(`⚪ [getColorParaLabor] Labor "${laborKey}" sin eventos → gris`);
-      return '#bdbdbd';
-    }
-
+    if (!eventos.length) return '#bdbdbd';
     const etapaFinal = this.decidirEtapaSegunLineaTrabajo(eventos);
-
-    if (!etapaFinal) {
-      console.log(`⚪ [getColorParaLabor] Labor "${laborKey}" sin etapa final → gris`);
-      return '#bdbdbd';
-    }
-
-    const color = this.estadoColorMap[etapaFinal] ?? '#bdbdbd';
-    console.log(`🎨 [getColorParaLabor] Labor "${laborKey}" → etapaFinal="${etapaFinal}", color="${color}"`);
-    return color;
+    if (!etapaFinal) return '#bdbdbd';
+    return this.estadoColorMap[etapaFinal] ?? '#bdbdbd';
   }
 
   // ---------- Construcción de estructura principal ----------
@@ -317,77 +263,59 @@ export class ProduccionComponent implements OnChanges {
     this.expandido = {};
     console.log('🔧 [construirEstructura] Inicio');
 
-    // 0. Crear un mapa laborNormalizada -> suma de toneladas (REAL)
+    // reset resumen por etapa
+    Object.keys(this.resumenPorEtapa).forEach(k => {
+      const key = k as EventoTipo;
+      this.resumenPorEtapa[key].count = 0;
+      this.resumenPorEtapa[key].labores = [];
+    });
+
     const realPorLabor: Record<string, number> = {};
     const ultimaMedicionPorLabor: Record<string, MedicionesHorizontal> = {};
 
+    // Agrupar mediciones
     this.mediciones.forEach(med => {
       if (!med.labor) return;
+      const laborKey = med.labor.toString().trim();
+      if (!laborKey) return;
 
-      // Para REAL usamos clave normalizada (toneladas)
-      const laborKeyNorm = this.normalizarLabor(med.labor);
-      if (!laborKeyNorm) return;
+      const avanceReal = med.avance_programado ?? 0;
+      if (!realPorLabor[laborKey]) realPorLabor[laborKey] = 0;
+      realPorLabor[laborKey] += avanceReal;
 
-      const toneladas = med.toneladas ?? 0;
-      if (!realPorLabor[laborKeyNorm]) {
-        realPorLabor[laborKeyNorm] = 0;
-      }
-      realPorLabor[laborKeyNorm] += toneladas;
-
-      // Para tooltip (fecha, turno, ancho/alto) guardamos por labor "visible" (sin normalizar)
-      const laborVisible = med.labor.toString().trim();
-      if (!laborVisible) return;
-
-      const actual = ultimaMedicionPorLabor[laborVisible];
+      const actual = ultimaMedicionPorLabor[laborKey];
       const fechaNueva = med.fecha ?? '';
       const idNuevo = med.id ?? 0;
 
       if (!actual) {
-        ultimaMedicionPorLabor[laborVisible] = med;
+        ultimaMedicionPorLabor[laborKey] = med;
       } else {
         const fechaActual = actual.fecha ?? '';
         const idActual = actual.id ?? 0;
         if (fechaNueva > fechaActual) {
-          ultimaMedicionPorLabor[laborVisible] = med;
+          ultimaMedicionPorLabor[laborKey] = med;
         } else if (fechaNueva === fechaActual && idNuevo > idActual) {
-          ultimaMedicionPorLabor[laborVisible] = med;
+          ultimaMedicionPorLabor[laborKey] = med;
         }
       }
     });
 
-    console.log('📊 [construirEstructura] realPorLabor:', realPorLabor);
-    console.log('📊 [construirEstructura] ultimaMedicionPorLabor:', ultimaMedicionPorLabor);
-
-    // 1. Convertimos cada PlanProduccion en una fila "normalizada"
-    const filas: LaborFila[] = this.Produccion.map(item => {
-      const proceso = 'Largo';
-
-      // labor visible = tipo_labor + labor + ala (como la ve el usuario)
-      const laborNombreVisible = [
+    const filas: LaborFila[] = this.avance.map(item => {
+      const laborNombre = [
         item.tipo_labor,
         item.labor,
         item.ala
-      ]
-        .filter(v => v && v.toString().trim() !== '')
-        .join(' ')
-        .trim();
+      ].filter(v => v && v.toString().trim() !== '').join(' ').trim();
 
-      // clave normalizada para buscar en el mapa de toneladas
-      const laborKeyNorm = this.normalizarLabor(laborNombreVisible || '');
-
-      // REAL desde mediciones: suma de toneladas por labor normalizada
-      const real = laborKeyNorm && realPorLabor[laborKeyNorm]
-        ? realPorLabor[laborKeyNorm]
-        : 0;
-
-      // Para tooltip: buscar la última medición por labor visible
-      const ultima = laborNombreVisible ? ultimaMedicionPorLabor[laborNombreVisible] : undefined;
+      const laborKey = laborNombre;
+      const real = laborKey && realPorLabor[laborKey] ? realPorLabor[laborKey] : 0;
 
       let anchoReal = 0;
       let altoReal = 0;
       let fechaUltima: string | null = null;
       let turnoUltimo: string | null = null;
 
+      const ultima = laborKey ? ultimaMedicionPorLabor[laborKey] : undefined;
       if (ultima) {
         anchoReal = ultima.ancho ?? 0;
         altoReal = ultima.alto ?? 0;
@@ -395,63 +323,70 @@ export class ProduccionComponent implements OnChanges {
         turnoUltimo = ultima.turno ?? null;
       }
 
-      // Color según línea PERFORADO → DISPARADA → LIMPIEZA → ACARREO → SOSTENIMIENTO
-      const color = laborNombreVisible ? this.getColorParaLabor(laborNombreVisible) : '#bdbdbd';
+      // Determinar etapa final (se usa la lógica completa de eventos)
+      const eventos = laborKey ? this.getEventosParaLabor(laborKey) : [];
+      const etapaFinal = this.decidirEtapaSegunLineaTrabajo(eventos);
+      const color = etapaFinal ? (this.estadoColorMap[etapaFinal] ?? '#bdbdbd') : '#bdbdbd';
+
+      const proceso = 'Horizontal';
 
       const fila: LaborFila = {
         proceso,
         zona: item.zona || 'SIN ZONA',
-        labor: laborNombreVisible || 'SIN LABOR',
-        programado: (item.cut_off_2 as number) ?? 0,
+        labor: laborNombre || 'SIN LABOR',
+        programado: item.avance_m ?? 0,
         real,
-        ancho: 0,
-        alto: 0,
+        ancho: item.ancho_m ?? 0,
+        alto: item.alto_m ?? 0,
         anchoReal,
         altoReal,
         fechaUltima,
         turnoUltimo,
-        color
+        color,
+        etapaFinal: etapaFinal ?? null
       };
 
-      console.log('🧱 [construirEstructura] LaborFila creada:', fila);
+      // actualizar resumen por etapa
+      if (fila.etapaFinal) {
+        const rec = this.resumenPorEtapa[fila.etapaFinal];
+        if (rec) {
+          rec.count += 1;
+          rec.labores.push(fila);
+        }
+      }
+
       return fila;
     });
 
-    // 2. Agrupamos directamente por zona
+    // Agrupar por zona (sigue estando disponible por compatibilidad)
     const agrupadoPorZona: Record<string, LaborFila[]> = {};
-
     filas.forEach(fila => {
-      if (!agrupadoPorZona[fila.zona]) {
-        agrupadoPorZona[fila.zona] = [];
-      }
+      if (!agrupadoPorZona[fila.zona]) agrupadoPorZona[fila.zona] = [];
       agrupadoPorZona[fila.zona].push(fila);
     });
 
-    // 🔥 Ordenar las labores dentro de cada zona (con color primero)
+    // ordenar dentro de cada zona como antes
     Object.keys(agrupadoPorZona).forEach(zona => {
       agrupadoPorZona[zona].sort((a, b) => {
         const aTieneColor = a.color !== '#bdbdbd';
         const bTieneColor = b.color !== '#bdbdbd';
-
         if (aTieneColor && !bTieneColor) return -1;
         if (!aTieneColor && bTieneColor) return 1;
-
         return 0;
       });
     });
 
-    // 3. Convertimos a arreglo para usarlo en el HTML
-    this.zonasAgrupadas = Object.keys(agrupadoPorZona).map(zona => ({
-      nombre: zona,
-      labores: agrupadoPorZona[zona]
+    this.zonasAgrupadas = Object.keys(agrupadoPorZona).map(z => ({
+      nombre: z,
+      labores: agrupadoPorZona[z]
     }));
 
-    // 4. Dejamos todo expandido por defecto
+    // expandir por defecto (opcional)
     this.zonasAgrupadas.forEach(z => {
       this.expandido[z.nombre] = true;
     });
 
-    console.log('📦 [construirEstructura] zonasAgrupadas:', this.zonasAgrupadas);
+    console.log('📦 [construirEstructura] resumenPorEtapa:', this.resumenPorEtapa);
     console.log('✅ [construirEstructura] Fin');
   }
 
@@ -465,19 +400,57 @@ export class ProduccionComponent implements OnChanges {
 
   calcularResumen(labores: LaborFila[]) {
     const resumen: Record<string, { real: number; programado: number }> = {};
-
     labores.forEach(l => {
-      if (!resumen[l.labor]) {
-        resumen[l.labor] = { real: 0, programado: 0 };
-      }
+      if (!resumen[l.labor]) resumen[l.labor] = { real: 0, programado: 0 };
       resumen[l.labor].real += l.real;
       resumen[l.labor].programado += l.programado;
     });
-
     ['Ancho', 'Alto', 'Avance'].forEach(key => {
       if (!resumen[key]) resumen[key] = { real: 0, programado: 0 };
     });
-
     return resumen;
   }
+
+  // ---------- Interacciones con botones/diálogo ----------
+  onMouseEnterEtapa(event: MouseEvent, etapa: EventoTipo) {
+    // mostramos tooltip pequeño con conteo
+    const info = {
+      etapa,
+      count: this.resumenPorEtapa[etapa].count
+    };
+    this.mostrarTooltip(event, info);
+  }
+
+  onMouseLeaveEtapa() {
+    this.ocultarTooltip();
+  }
+
+
+  cerrarModal() {
+    this.modalOpen = false;
+    this.modalEtapaSeleccionada = null;
+    this.modalLabores = [];
+  }
+
+  seleccionarLaborEnModal(l: LaborFila) {
+    // ejemplo: mostrar la tooltip con detalle dentro del modal
+    this.tooltipLabor = l;
+    this.tooltipVisible = true;
+    // colocarlo en el centro del modal (simple)
+    this.tooltipX = window.innerWidth / 2;
+    this.tooltipY = window.innerHeight / 2;
+  }
+
+  abrirModalEtapa(etapa: EventoTipo) {
+  this.modalEtapaSeleccionada = etapa;
+  this.modalLabores = this.resumenPorEtapa[etapa].labores;
+
+  this.dialog.open(ZonaDetalleDialogComponent, {
+    width: '900px',
+    data: {
+      zonas: this.zonasAgrupadas // o filtrarlas
+    }
+  });
+}
+
 }

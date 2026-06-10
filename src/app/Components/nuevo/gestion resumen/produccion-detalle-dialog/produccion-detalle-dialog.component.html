@@ -1,0 +1,33 @@
+<div class="dialog-header">
+  <h2>Etapa: {{ etapa | lowercase | titlecase }}</h2>
+  <button class="close-btn" (click)="cerrar()">✕</button>
+</div>
+
+<div class="dialog-body">
+  <div *ngIf="!zonas?.length">No hay labores para esta etapa.</div>
+
+  <div *ngFor="let zona of zonas" class="zona-block">
+    <h3>{{ zona.nombre }}</h3>
+
+    <div *ngFor="let lab of zona.labores" class="labor-row">
+      <div class="swatch" [style.background]="lab.color"></div>
+      <div class="lab-info">
+        <div class="lab-name">{{ lab.labor }}</div>
+        <div class="lab-zone">{{ lab.zona }}</div>
+        <div class="lab-meta">{{ lab.real | number:'1.1-1' }} / {{ lab.programado | number:'1.1-1' }} T</div>
+      </div>
+      <div class="lab-actions">
+        <!-- aquí podrías agregar botones para editar / ver más -->
+      </div>
+    </div>
+
+    <hr />
+  </div>
+</div>
+
+<app-tooltip-labor
+  *ngIf="tooltipVisible"
+  [labor]="tooltipLabor"
+  [x]="tooltipX"
+  [y]="tooltipY">
+</app-tooltip-labor>

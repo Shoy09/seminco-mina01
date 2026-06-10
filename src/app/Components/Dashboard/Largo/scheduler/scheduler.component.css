@@ -1,0 +1,117 @@
+.scheduler {
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+}
+
+/* ===== HEADER ===== */
+.timeline-header {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.header-left {
+  display: flex;
+}
+
+.fecha-col {
+  width: 140px;
+  font-weight: 700;
+  background: #eef2ff;
+  padding: 8px;
+}
+
+.equipo-col {
+  width: 140px;
+  font-weight: 600;
+  background: #fafafa;
+  padding: 8px;
+}
+
+.header-timeline {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+}
+.end-hour {
+  background: #e0e7ff;
+  font-weight: 700;
+  border-left: 2px solid #6366f1;
+}
+
+.hour {
+  text-align: center;
+  font-weight: 600;
+  background: #f3f4f6;
+  border-left: 1px solid #e5e7eb;
+}
+
+/* ===== BODY ===== */
+.fecha-row {
+  display: flex;
+}
+
+.fecha-cell {
+  width: 140px;
+  background: #eef2ff;
+  font-weight: 700;
+  padding: 8px;
+  border-right: 2px solid #c7d2fe;
+}
+
+.fecha-body {
+  flex: 1;
+}
+
+.equipo-row {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.equipo-cell {
+  width: 140px;
+  background: #fafafa;
+  font-weight: 600;
+  padding: 8px;
+}
+
+.timeline-row {
+  position: relative;
+  flex: 1;
+  height: 42px;
+}
+
+/* ===== TASK ===== */
+.task {
+  position: absolute;
+  top: 6px;
+  height: 30px;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  padding: 4px 6px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+
+.tooltip {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111827;
+  color: white;
+  padding: 6px 8px;
+  font-size: 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.task:hover .tooltip {
+  opacity: 1;
+}

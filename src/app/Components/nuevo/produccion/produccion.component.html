@@ -36,34 +36,13 @@
         </div>
 
         <div class="labor-medidas">
-          <span>{{ labor.real | number:'1.3-3' }} T</span>
-          <span>{{ labor.programado | number:'1.3-3' }} T</span>
+          <span>{{ labor.real | number:'1.1-1' }} T</span>
+          <span>{{ labor.programado | number:'1.1-1' }} T</span>
         </div>
       </div>
 
     </div>
 
-    <!-- 🟦 Cuadro resumen por zona -->
-    <div class="resumen-card" *ngIf="zona.labores.length > 0">
-      <h4>Cuadro Resumen</h4>
-
-      <ng-container *ngIf="calcularResumen(zona.labores) as resumen">
-        <div class="resumen-row" *ngFor="let key of ['Ancho', 'Alto', 'Avance']">
-          <span class="label">{{ key }}:</span>
-          <span class="valor">
-            {{ resumen[key].real }} / {{ resumen[key].programado }} m
-            ({{ getPorcentaje(resumen[key].real, resumen[key].programado) | number:'1.0-0' }}%)
-          </span>
-        </div>
-
-        <div class="resumen-total">
-          <strong>% Cumplimiento:</strong>
-          <span class="valor-destacado">
-            {{ getPorcentaje(resumen['Avance'].real, resumen['Avance'].programado) | number:'1.0-0' }}%
-          </span>
-        </div>
-      </ng-container>
-    </div>
 
     <hr class="separador-zona" />
 

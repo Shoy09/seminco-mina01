@@ -1,0 +1,43 @@
+
+.etapas-barra {
+  display:flex;
+  gap:8px;
+  margin-bottom:12px;
+  flex-wrap:wrap;
+}
+.etapa-btn{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border:1px solid #ddd;
+  background:#fff;
+  border-radius:6px;
+  cursor:pointer;
+  min-width:130px;
+}
+.etapa-nombre { font-weight:600; text-transform:capitalize; }
+.etapa-count { margin-left:auto; font-size:0.95rem; opacity:0.85; }
+
+/* Modal */
+.modal-backdrop {
+  position:fixed; inset:0; background:rgba(0,0,0,0.35); z-index:900;
+}
+.modal{
+  position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:901;
+  background:#fff; border-radius:8px; width:720px; max-width:95%; max-height:80vh; overflow:auto;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2); padding:12px;
+}
+.modal-header{ display:flex; align-items:center; justify-content:space-between; }
+.modal-body{ padding:8px 0; }
+.modal-list{ display:flex; flex-direction:column; gap:8px; }
+.modal-item{ display:flex; align-items:center; gap:12px; padding:8px; border-radius:6px; border:1px solid #efefef; }
+.swatch{ width:18px; height:18px; border-radius:3px; }
+.item-mid{ flex:1; }
+.modal-close{ background:transparent; border:none; cursor:pointer; font-size:1.1rem; }
+
+/* mantengo estilos previos de labor-card */
+.labor-card{ display:flex; gap:12px; padding:8px 6px; align-items:center; }
+.leyenda-cuadro{ padding:8px 12px; border-radius:6px; color:#fff; cursor:default; }
+.barra-programado{ height:10px; background:#eee; border-radius:6px; overflow:hidden; width:180px;}
+.barra-ejecutado{ height:100%; background:#5c9; width:0%;}

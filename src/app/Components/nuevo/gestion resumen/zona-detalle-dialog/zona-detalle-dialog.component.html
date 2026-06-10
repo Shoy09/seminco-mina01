@@ -1,0 +1,32 @@
+<h2>Detalle por zona</h2>
+
+<div *ngFor="let zona of zonas">
+  <h3>{{ zona.nombre }}</h3>
+
+  <div *ngFor="let labor of zona.labores" class="labor-card">
+    <div class="labor-leyenda">
+      <div class="leyenda-cuadro"
+           [style.background]="labor.color"
+           (mouseenter)="mostrarTooltip($event, labor)"
+           (mousemove)="mostrarTooltip($event, labor)"
+           (mouseleave)="ocultarTooltip()">
+        <span>{{ labor.labor }}</span>
+      </div>
+    </div>
+
+    <div class="labor-detalle">
+      <div class="barra-programado">
+        <div class="barra-ejecutado"
+            [style.width.%]="getPorcentaje(labor.real, labor.programado)">
+        </div>
+      </div>
+
+      <div class="labor-medidas">
+        <span>{{ labor.real }} m</span>
+        <span>{{ labor.programado }} m</span>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+</div>

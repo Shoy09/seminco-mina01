@@ -25,6 +25,7 @@ import { MedicionHorizontalProgramadoComponent } from './Components/Dashboard/Me
 import { ToneladasComponent } from './Components/Crear datos/toneladas/toneladas.component';
 import { PlanMantenimientoListComponent } from './Components/Planes mensuales/Plan mensual mantenimiento/plan-mantenimiento-list/plan-mantenimiento-list.component';
 import { PrinciComponent } from './Components/nuevo/princi/princi.component';
+import { PrinciResumenComponent } from './Components/nuevo/gestion resumen/princi-resumen/princi-resumen.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -53,10 +54,11 @@ export const routes: Routes = [
       { path: 'medicion-horizontal', component: MedicionHorizontalComponent },
       { path: 'acero-stock', component: AcerosGraficosComponent },
       { path: 'autocad', component: AutocadMineroComponent },
-      { path: 'medicion-horizontal-programado', component: MedicionHorizontalProgramadoComponent },
+      { path: 'factores', component: MedicionHorizontalProgramadoComponent },
       { path: 'toneladas', component: ToneladasComponent },
        { path: 'plan-mantenimiento', component: PlanMantenimientoListComponent },
-       { path: 'pensando', component: PrinciComponent },
+       { path: 'gestion-ciclo-Detalle', component: PrinciComponent },
+       { path: 'gestion-ciclo-resumen', component: PrinciResumenComponent },
     ],
   },
 

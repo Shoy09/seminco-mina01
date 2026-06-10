@@ -1,0 +1,197 @@
+/* título de cada zona */
+.zona-titulo {
+  margin: 1.5rem 0 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* separador entre zonas */
+.separador-zona {
+  margin: 1.5rem 0;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* 🔹 Card por labor */
+.labor-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 0.75rem;
+  background: #fafbfc;
+}
+
+/* Leyenda izquierda (cajita con el nombre de la labor) */
+.labor-leyenda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 90px;
+}
+
+.leyenda-cuadro {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  border: 1px solid #c5c9d0;
+  background: repeating-linear-gradient(
+    45deg,
+    #e5e9f0,
+    #e5e9f0 4px,
+    #d3d7e0 4px,
+    #d3d7e0 8px
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.leyenda-texto {
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-align: center;
+  color: #333;
+}
+
+.leyenda-label {
+  margin-top: 0.25rem;
+  font-size: 0.7rem;
+  color: #777;
+}
+
+/* Barra y medidas a la derecha */
+.labor-detalle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Línea completa = programado */
+.barra-programado {
+  position: relative;
+  height: 10px;
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* Línea ejecutado sobre la anterior */
+.barra-ejecutado {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #4caf50;
+  border-radius: 5px 0 0 5px;
+  transition: width 0.4s ease;
+}
+
+/* Medidas tipo “25 / 50 m” */
+.labor-medidas {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #555;
+  margin-top: 0.35rem;
+}
+
+/* 🟦 Cuadro resumen */
+.resumen-card {
+  margin-top: 0.5rem;
+  padding: 0.8rem 1rem;
+  background: #f9fafb;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.resumen-card h4 {
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.resumen-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem 0;
+}
+
+.resumen-row .label {
+  font-weight: 500;
+  color: #555;
+}
+
+.resumen-row .valor {
+  font-weight: 600;
+  color: #333;
+}
+
+.resumen-total {
+  margin-top: 0.8rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.valor-destacado {
+  font-weight: bold;
+  color: #2e7d32;
+}
+/* Proceso centrado */
+.proceso-container {
+  margin: 1.5rem 0 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  background: #f3f5f7;      /* color suave, casi gris-azulado */
+  border: 1px solid #e0e4ea; /* borde muy ligero */
+  display: flex;
+  justify-content: center;   /* proceso centrado horizontalmente */
+}
+
+.proceso-titulo {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+}
+/* Línea de cabecera de zona */
+.zona-header-linea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0 0.4rem;
+  cursor: pointer;
+}
+
+.zona-titulo {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #333;
+}
+
+.zona-toggle {
+  font-size: 1.2rem;
+  padding: 0 0.5rem;
+  color: #666;
+}
+
+/* separador entre zonas (ya lo tienes) */
+.separador-zona {
+  margin: 1.2rem 0;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+}

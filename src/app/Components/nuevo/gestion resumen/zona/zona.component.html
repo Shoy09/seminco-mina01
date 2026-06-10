@@ -1,0 +1,55 @@
+<!-- Barra superior: botones/etapas -->
+<div class="etapas-barra">
+  <button
+    *ngFor="let e of etapasOrden"
+    class="etapa-btn"
+    [style.border-left]="'6px solid ' + (estadoColorMap[e] || '#bdbdbd')"
+    (mouseenter)="onMouseEnterEtapa($event, e)"
+    (mouseleave)="onMouseLeaveEtapa()"
+    (click)="abrirModalEtapa(e)">
+    <div class="etapa-nombre">{{ e | lowercase | titlecase }}</div>
+    <div class="etapa-count">{{ resumenPorEtapa[e].count || 0 }}</div>
+  </button>
+</div>
+
+<!-- Tooltip pequeño para botones o labor (reusa el componente tooltip si quieres) -->
+<app-tooltip-labor
+  *ngIf="tooltipVisible"
+  [labor]="tooltipLabor"
+  [x]="tooltipX"
+  [y]="tooltipY">
+</app-tooltip-labor>
+
+<!-- Modal simple con lista de labores por etapa -->
+<div class="modal-backdrop" *ngIf="modalOpen" (click)="cerrarModal()"></div>
+
+<div class="modal" *ngIf="modalOpen" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+  <div class="modal-header">
+    <h3>Etapa: {{ modalEtapaSeleccionada | lowercase | titlecase }}</h3>
+    <button class="modal-close" (click)="cerrarModal()">✕</button>
+  </div>
+
+  <div class="modal-body">
+    <div *ngIf="!modalLabores?.length">No hay labores en esta etapa.</div>
+
+    <div class="modal-list">
+      <div *ngFor="let lab of modalLabores" class="modal-item">
+        <div class="item-left">
+          <div class="swatch" [style.background]="lab.color"></div>
+        </div>
+        <div class="item-mid">
+          <div class="lab-name">{{ lab.labor }}</div>
+          <div class="lab-zone">{{ lab.zona }}</div>
+        </div>
+        <div class="item-right">
+          <div>{{ lab.real }} / {{ lab.programado }} m</div>
+          <button (click)="seleccionarLaborEnModal(lab)">Ver / Gestionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="cerrarModal()">Cerrar</button>
+  </div>
+</div>

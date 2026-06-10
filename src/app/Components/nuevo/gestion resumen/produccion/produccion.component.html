@@ -1,0 +1,22 @@
+<!-- Barra superior: botones/etapas -->
+<div class="etapas-barra">
+  <button
+    *ngFor="let e of etapasOrden"
+    class="etapa-btn"
+    [style.border-left]="'6px solid ' + (estadoColorMap[e] || '#bdbdbd')"
+    (mouseenter)="onMouseEnterEtapa($event, e)"
+    (mouseleave)="onMouseLeaveEtapa()"
+    (click)="abrirModalEtapa(e)">
+    <div class="etapa-nombre">{{ e | lowercase | titlecase }}</div>
+    <div class="etapa-count">{{ resumenPorEtapa[e].count || 0 }}</div>
+  </button>
+</div>
+
+<!-- Tooltip pequeño -->
+<app-tooltip-labor
+  *ngIf="tooltipVisible"
+  [labor]="tooltipLabor"
+  [x]="tooltipX"
+  [y]="tooltipY">
+</app-tooltip-labor>
+

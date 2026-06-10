@@ -1,0 +1,63 @@
+<div class="scheduler">
+
+  <!-- ===== HEADER ===== -->
+  <div class="timeline-header">
+    <div class="header-left">
+      <div class="fecha-col">Fecha</div>
+      <div class="equipo-col">Equipo</div>
+    </div>
+
+    <div class="header-timeline">
+      <div class="hour" *ngFor="let h of hours">
+        {{ h }}
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BODY ===== -->
+  <ng-container *ngFor="let fecha of groups">
+
+    <div class="fecha-row">
+
+      <div class="fecha-cell">
+        {{ fecha.fecha }}
+      </div>
+
+      <div class="fecha-body">
+
+        <div
+          class="equipo-row"
+          *ngFor="let equipo of fecha.equipos; trackBy: trackByEquipo"
+        >
+
+          <div class="equipo-cell">
+            {{ equipo.equipoCodigo }}
+          </div>
+
+          <div class="timeline-row">
+
+            <div
+  class="task"
+  *ngFor="let task of equipo.tasks; trackBy: trackByTask"
+  [ngStyle]="getTaskStyle(task)"
+>
+  {{ task.labor }}
+
+  <div class="tooltip">
+    Inicio: {{ minutesToTime(task.startMin) }} <br />
+    Fin: {{ minutesToTime(task.endMin) }}
+  </div>
+</div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+</div>

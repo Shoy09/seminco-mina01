@@ -220,95 +220,124 @@ export class CalendarioSemanasComponent implements OnInit {
   }
 
   onFechaClick(fecha: Date, dia: DiaCalendario): void {
-    if (dia.esDeshabilitado) {
-      return; // No hacer nada si la fecha está deshabilitada
+  if (dia.esDeshabilitado) return;
+
+  if (!this.seleccionActiva) {
+    // Para la primera fecha: si hay última semana forzar que sea después
+    if (this.ultimaSemana) {
+      const siguienteDiaUltimaSemana = new Date(this.ultimaSemana.fecha_fin);
+      siguienteDiaUltimaSemana.setDate(siguienteDiaUltimaSemana.getDate() + 1);
+
+      if (fecha < siguienteDiaUltimaSemana) {
+        this.snackBar.open(
+          `Debes empezar desde ${siguienteDiaUltimaSemana.toLocaleDateString()}, ya existe una semana previa`,
+          'Cerrar',
+          { duration: 3000 }
+        );
+        return;
+      }
     }
-    
-    if (!this.seleccionActiva) {
-      // Iniciar nueva selección
-      this.seleccionActiva = true;
+
+    // Iniciar selección
+    this.seleccionActiva = true;
+    this.fechaSeleccionInicio = fecha;
+    this.fechaSeleccionFin = fecha;
+  } else {
+    // Validar que la fecha final no sea igual a la inicial
+    if (fecha.toDateString() === this.fechaSeleccionInicio!.toDateString()) {
+      this.snackBar.open(
+        'La fecha de inicio y fin no pueden ser la misma',
+        'Cerrar',
+        { duration: 3000 }
+      );
+      this.resetSeleccion();
+      this.generarCalendario();
+      return;
+    }
+
+    // Completar selección
+    if (fecha < this.fechaSeleccionInicio!) {
+      this.fechaSeleccionFin = this.fechaSeleccionInicio;
       this.fechaSeleccionInicio = fecha;
-      this.fechaSeleccionFin = fecha;
     } else {
-      // Completar selección
-      if (fecha < this.fechaSeleccionInicio!) {
-        this.fechaSeleccionFin = this.fechaSeleccionInicio;
-        this.fechaSeleccionInicio = fecha;
-      } else {
-        this.fechaSeleccionFin = fecha;
-      }
-      
-      // Verificar que el rango sea exactamente 7 días (una semana)
-      //RAngo de fecha para el seleccionable
-      const diasDiferencia = Math.ceil(
-        Math.abs(this.fechaSeleccionFin!.getTime() - this.fechaSeleccionInicio!.getTime()) / 
-        (1000 * 60 * 60 * 24)
-      ) + 1;
-      
-      if (diasDiferencia === 7) {
-        this.agregarSemanaSeleccionada();
-      } else {
-        // Resetear selección si no es exactamente una semana
-        this.snackBar.open('Por favor, seleccione exactamente 7 días (una semana completa)', 'Cerrar', { duration: 3000 });
-        this.resetSeleccion();
-      }
+      this.fechaSeleccionFin = fecha;
     }
-    this.generarCalendario();
+
+    this.agregarSemanaSeleccionada();
   }
 
-  agregarSemanaSeleccionada(): void {
-    if (!this.fechaSeleccionInicio || !this.fechaSeleccionFin) return;
-    
-    // Calcular número de semana ISO
-    const numeroSemana = this.getNumeroSemanaISO(this.fechaSeleccionInicio);
-    
-    // Verificar si la semana ya existe
-    const semanaExistente = this.semanasExistentes.find(
-      s => s.numero_semana === numeroSemana && s.anio === this.anioSeleccionado
+  this.generarCalendario();
+}
+
+
+
+agregarSemanaSeleccionada(): void {
+  if (!this.fechaSeleccionInicio || !this.fechaSeleccionFin) return;
+
+  // Validar mismo día (seguridad extra)
+  if (this.fechaSeleccionInicio.toDateString() === this.fechaSeleccionFin.toDateString()) {
+    this.snackBar.open(
+      'La semana debe tener al menos 2 días, el inicio y fin no pueden ser iguales',
+      'Cerrar',
+      { duration: 3000 }
     );
-    
-    if (semanaExistente) {
-      this.snackBar.open(`La semana ${numeroSemana} del ${this.anioSeleccionado} ya existe`, 'Cerrar', { duration: 3000 });
+    this.resetSeleccion();
+    return;
+  }
+
+  // Validar continuidad con última semana registrada
+  if (this.ultimaSemana) {
+    const siguienteDiaUltimaSemana = new Date(this.ultimaSemana.fecha_fin);
+    siguienteDiaUltimaSemana.setDate(siguienteDiaUltimaSemana.getDate() + 1);
+
+    if (this.fechaSeleccionInicio.toDateString() !== siguienteDiaUltimaSemana.toDateString()) {
+      this.snackBar.open(
+        `La nueva semana debe comenzar el ${siguienteDiaUltimaSemana.toLocaleDateString()} para no dejar huecos`,
+        'Cerrar',
+        { duration: 4000 }
+      );
       this.resetSeleccion();
       return;
     }
-    
-    // Verificar si ya fue agregada
-    const yaAgregada = this.semanasNuevas.some(s => s.numero === numeroSemana);
-    if (yaAgregada) {
-      this.snackBar.open(`Ya has agregado la semana ${numeroSemana}`, 'Cerrar', { duration: 3000 });
-      this.resetSeleccion();
-      return;
-    }
-    
-    // Verificar que no se solape con semanas existentes
-    const solapaConExistente = this.semanasExistentes.some(semana => {
-      const inicioExistente = new Date(semana.fecha_inicio);
-      const finExistente = new Date(semana.fecha_fin);
+  }
+
+  // Validar que no se solape con semanas nuevas o existentes
+  const solapa =
+    this.semanasNuevas.some(rango =>
+      this.fechaSeleccionInicio! <= rango.fin && this.fechaSeleccionFin! >= rango.inicio
+    ) ||
+    this.semanasExistentes.some(rango => {
+      const inicioExist = new Date(rango.fecha_inicio);
+      const finExist = new Date(rango.fecha_fin);
+
       return (
-        (this.fechaSeleccionInicio! >= inicioExistente && this.fechaSeleccionInicio! <= finExistente) ||
-        (this.fechaSeleccionFin! >= inicioExistente && this.fechaSeleccionFin! <= finExistente) ||
-        (inicioExistente >= this.fechaSeleccionInicio! && inicioExistente <= this.fechaSeleccionFin!)
+        this.fechaSeleccionInicio! <= finExist &&
+        this.fechaSeleccionFin! >= inicioExist
       );
     });
-    
-    if (solapaConExistente) {
-      this.snackBar.open('La semana seleccionada se solapa con una semana existente', 'Cerrar', { duration: 3000 });
-      this.resetSeleccion();
-      return;
-    }
-    
-    // Agregar semana nueva
-    this.semanasNuevas.push({
-      numero: numeroSemana,
-      inicio: new Date(this.fechaSeleccionInicio),
-      fin: new Date(this.fechaSeleccionFin)
-    });
-    
+
+  if (solapa) {
+    this.snackBar.open(
+      'El rango seleccionado se solapa con uno existente',
+      'Cerrar',
+      { duration: 3000 }
+    );
     this.resetSeleccion();
-    this.generarCalendario();
-    this.snackBar.open(`Semana ${numeroSemana} agregada`, 'Cerrar', { duration: 2000 });
+    return;
   }
+
+  // Guardar rango nuevo
+  this.semanasNuevas.push({
+    numero: this.semanasNuevas.length + 1,
+    inicio: new Date(this.fechaSeleccionInicio),
+    fin: new Date(this.fechaSeleccionFin)
+  });
+
+  this.resetSeleccion();
+  this.generarCalendario();
+  this.snackBar.open('Semana agregada', 'Cerrar', { duration: 2000 });
+}
+
 
   // Función para calcular el número de semana ISO
   getNumeroSemanaISO(fecha: Date): number {
