@@ -28,6 +28,7 @@ import { RendimientoPromedioComponent } from "../Graficos/rendimiento-promedio/r
 import * as XLSX from 'xlsx-js-style';
 import { ExcelHorizontalExportServiceFiltro } from '../../../../services/export/filtro/ExcelHorizontalExportService.service';
 import { ExcelHorizontalExportService } from '../../../../services/export/general/ExcelHorizontalExportService.service';
+import { ExcelImportHorizontalService } from '../../../../services/import/ExcelImportHorizontalService.service';
 @Component({
   selector: 'app-taladro-horizontal-grafica',
   standalone: true,
@@ -79,7 +80,7 @@ turnoSeleccionado: string = '';
 turnos: string[] = ['DÍA', 'NOCHE'];
 
 
-  constructor( private excelHorizontalExportServicefiltro: ExcelHorizontalExportServiceFiltro, private excelHorizontalExportService: ExcelHorizontalExportService, private metaService: MetaService, private operacionService: OperacionService) {}
+  constructor( private excelHorizontalExportServicefiltro: ExcelHorizontalExportServiceFiltro, private excelHorizontalExportService: ExcelHorizontalExportService, private metaService: MetaService, private operacionService: OperacionService, private excelImportHorizontalService: ExcelImportHorizontalService) {}
 
   ngOnInit(): void {
     const fechaISO = this.obtenerFechaLocalISO();
@@ -486,16 +487,48 @@ exportToExcelHorizontal() {
 }
 
 exportToExcelHorizontalfiltro() {
-  // Mostrar los datos crudos
-  console.log('📊 Datos de operaciones:', this.datosOperaciones);
-
-  // Mostrar los datos formateados como JSON
-  console.log('🧩 Datos en formato JSON:\n', JSON.stringify(this.datosOperaciones, null, 2));
+  console.log('Datos de operaciones:', this.datosOperaciones);
+  console.log('Datos en formato JSON:\n', JSON.stringify(this.datosOperaciones, null, 2));
 
   this.excelHorizontalExportServicefiltro.exportOperacionesToExcel(
     this.datosOperaciones,
     'Reporte_Operaciones'
   );
+}
+
+importandoHorizontal = false;
+mensajeImportHorizontal: string = '';
+
+onImportarExcelHorizontal(event: Event): void {
+  const input = event.target as HTMLInputElement;
+  if (!input.files || input.files.length === 0) return;
+
+  const file = input.files[0];
+  input.value = '';
+  this.importandoHorizontal = true;
+  this.mensajeImportHorizontal = '';
+
+  this.excelImportHorizontalService.importFromExcel(file).then(({ operaciones, errores }) => {
+    if (errores.length) {
+      console.warn('Advertencias de importación:', errores);
+    }
+    this.operacionService.postOperacionesHorizontal(operaciones).subscribe({
+      next: () => {
+        this.importandoHorizontal = false;
+        this.mensajeImportHorizontal = `Importación exitosa: ${operaciones.length} operación(es) enviadas.`;
+        this.obtenerDatos();
+      },
+      error: (err) => {
+        this.importandoHorizontal = false;
+        this.mensajeImportHorizontal = 'Error al enviar los datos al servidor.';
+        console.error('Error POST importar horizontal:', err);
+      }
+    });
+  }).catch(err => {
+    this.importandoHorizontal = false;
+    this.mensajeImportHorizontal = 'Error al leer el archivo Excel.';
+    console.error(err);
+  });
 }
 
 }

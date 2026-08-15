@@ -20,10 +20,32 @@
     </label>
     <button (click)="aplicarFiltrosLocales()">Filtrar</button>
     <button (click)="quitarFiltros()">Quitar filtros</button>
-<button (click)="exportToExcelHorizontalfiltro()">Exportar a Excel</button>
-<button (click)="exportToExcelHorizontal()" class="btn btn-success">
-  <i class="fas fa-file-excel"></i> Exportar a Excel completo
+    <button (click)="exportToExcelHorizontalfiltro()">Exportar a Excel</button>
+    <button (click)="exportToExcelHorizontal()" class="btn btn-success">
+      <i class="fas fa-file-excel"></i> Exportar a Excel completo
+    </button>
+    <!-- <button
+  type="button"
+  class="btn btn-importar"
+  [class.cargando]="importandoHorizontal"
+  [disabled]="importandoHorizontal"
+  (click)="inputExcelHorizontal.click()"
+>
+  <i class="fas fa-file-upload"></i>
+  {{ importandoHorizontal ? 'Importando...' : 'Importar Excel' }}
 </button>
+
+<input
+  #inputExcelHorizontal
+  type="file"
+  accept=".xlsx,.xls"
+  (change)="onImportarExcelHorizontal($event)"
+  hidden
+/>
+
+<span *ngIf="mensajeImportHorizontal" class="msg-import">
+  {{ mensajeImportHorizontal }}
+</span> -->
   </div>
 
   <!-- Tarjetas con los gráficos -->

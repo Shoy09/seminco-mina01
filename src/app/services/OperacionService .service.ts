@@ -59,4 +59,22 @@ export class OperacionService {
     const query = params.length ? `?${params.join('&')}` : '';
     return this.apiService.getDatos(this.endpoints.sostenimientoPlan + query);
   }
+
+
+
+  // **Crear operaciones de Taladro Largo**
+postOperacionesLargo(data: NubeOperacion | NubeOperacion[]): Observable<any> {
+  return this.apiService.postDatos(this.endpoints.largo, data);
+}
+
+// **Crear operaciones Horizontales**
+postOperacionesHorizontal(data: NubeOperacion | NubeOperacion[]): Observable<any> {
+  return this.apiService.postDatos(this.endpoints.horizontal, data);
+}
+
+// **Crear operaciones de Sostenimiento**
+postOperacionesSostenimiento(data: NubeOperacion | NubeOperacion[]): Observable<any> {
+  return this.apiService.postDatos(this.endpoints.sostenimiento, data);
+}
+
 }

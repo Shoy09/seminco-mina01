@@ -24,6 +24,7 @@ import * as XLSX from 'xlsx-js-style';
 import { ExcelExportServiceLargoFiltro } from '../../../../services/export/filtro/ExcelExportService.service';
 import { ExcelExportService } from '../../../../services/export/general/ExcelExportService.service';
 import { SchedulerComponent } from "../scheduler/scheduler.component";
+import { ExcelImportLargoService } from '../../../../services/import/ExcelImportLargoService.service';
 
  
 @Component({
@@ -65,7 +66,7 @@ private todasLasMetas: Meta[] = [];
   };
 
  
-  constructor(private excelExportService: ExcelExportService, private excelExportServiceFiltro: ExcelExportServiceLargoFiltro, private metaService: MetaLargoService, private operacionService: OperacionService) {}
+  constructor(private excelExportService: ExcelExportService, private excelExportServiceFiltro: ExcelExportServiceLargoFiltro, private metaService: MetaLargoService, private operacionService: OperacionService, private excelImportLargoService: ExcelImportLargoService) {}
  
   ngOnInit(): void {
     const fechaISO = this.obtenerFechaLocalISO();
@@ -403,6 +404,41 @@ exportToExcelFiltro() {
     this.datosOperaciones, 
     'Reporte_Operaciones_Largo'
   );
+}
+
+importandoLargo = false;
+mensajeImportLargo: string = '';
+
+onImportarExcelLargo(event: Event): void {
+  const input = event.target as HTMLInputElement;
+  if (!input.files || input.files.length === 0) return;
+
+  const file = input.files[0];
+  input.value = '';
+  this.importandoLargo = true;
+  this.mensajeImportLargo = '';
+
+  this.excelImportLargoService.importFromExcel(file).then(({ operaciones, errores }) => {
+    if (errores.length) {
+      console.warn('Advertencias de importación:', errores);
+    }
+    this.operacionService.postOperacionesLargo(operaciones).subscribe({
+      next: () => {
+        this.importandoLargo = false;
+        this.mensajeImportLargo = `Importación exitosa: ${operaciones.length} operación(es) enviadas.`;
+        this.obtenerDatos();
+      },
+      error: (err) => {
+        this.importandoLargo = false;
+        this.mensajeImportLargo = 'Error al enviar los datos al servidor.';
+        console.error('Error POST importar largo:', err);
+      }
+    });
+  }).catch(err => {
+    this.importandoLargo = false;
+    this.mensajeImportLargo = 'Error al leer el archivo Excel.';
+    console.error(err);
+  });
 }
 
 private construirGanttData(datos: NubeOperacion[]) {

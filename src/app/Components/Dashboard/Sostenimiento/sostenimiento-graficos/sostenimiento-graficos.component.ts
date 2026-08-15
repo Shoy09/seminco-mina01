@@ -25,6 +25,7 @@ import { PromedioNTaladroComponent } from "../Graficos/promedio-n-taladro/promed
 import * as XLSX from 'xlsx-js-style';
 import { ExcelSostenimientoExportServiceFiltro } from '../../../../services/export/filtro/ExcelSostenimientoExportService.service';
 import { ExcelSostenimientoExportService } from '../../../../services/export/general/ExcelSostenimientoExportService.service';
+import { ExcelImportSostenimientoService } from '../../../../services/import/ExcelImportSostenimientoService.service';
 
 @Component({
   selector: 'app-sostenimiento-graficos',
@@ -69,7 +70,7 @@ private todasLasMetas: Meta[] = [];
   };
 
 
-  constructor(private excelSostenimientoExportService: ExcelSostenimientoExportService, private excelSostenimientoExportServiceFiltro: ExcelSostenimientoExportServiceFiltro, private metaService: MetaSostenimientoService, private operacionService: OperacionService) {}
+  constructor(private excelSostenimientoExportService: ExcelSostenimientoExportService, private excelSostenimientoExportServiceFiltro: ExcelSostenimientoExportServiceFiltro, private metaService: MetaSostenimientoService, private operacionService: OperacionService, private excelImportSostenimientoService: ExcelImportSostenimientoService) {}
  
   ngOnInit(): void {
     const fechaISO = this.obtenerFechaLocalISO();
@@ -426,6 +427,41 @@ exportToExcelSostenimientoFiltro() {
     this.datosOperaciones,
     'Reporte_Operaciones'
   );
+}
+
+importandoSostenimiento = false;
+mensajeImportSostenimiento: string = '';
+
+onImportarExcelSostenimiento(event: Event): void {
+  const input = event.target as HTMLInputElement;
+  if (!input.files || input.files.length === 0) return;
+
+  const file = input.files[0];
+  input.value = '';
+  this.importandoSostenimiento = true;
+  this.mensajeImportSostenimiento = '';
+
+  this.excelImportSostenimientoService.importFromExcel(file).then(({ operaciones, errores }) => {
+    if (errores.length) {
+      console.warn('Advertencias de importación:', errores);
+    }
+    this.operacionService.postOperacionesSostenimiento(operaciones).subscribe({
+      next: () => {
+        this.importandoSostenimiento = false;
+        this.mensajeImportSostenimiento = `Importación exitosa: ${operaciones.length} operación(es) enviadas.`;
+        this.obtenerDatos();
+      },
+      error: (err) => {
+        this.importandoSostenimiento = false;
+        this.mensajeImportSostenimiento = 'Error al enviar los datos al servidor.';
+        console.error('Error POST importar sostenimiento:', err);
+      }
+    });
+  }).catch(err => {
+    this.importandoSostenimiento = false;
+    this.mensajeImportSostenimiento = 'Error al leer el archivo Excel.';
+    console.error(err);
+  });
 }
 
 }

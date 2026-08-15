@@ -24,6 +24,28 @@
     <button (click)="exportToExcelSostenimiento()" class="btn btn-success">
   <i class="fas fa-file-excel"></i> Exportar a Excel completo
 </button>
+<!-- <button
+  type="button"
+  class="btn btn-importar"
+  [class.cargando]="importandoSostenimiento"
+  [disabled]="importandoSostenimiento"
+  (click)="inputExcelSostenimiento.click()"
+>
+  <i class="fas fa-file-upload"></i>
+  {{ importandoSostenimiento ? 'Importando...' : 'Importar Excel' }}
+</button>
+
+<input
+  #inputExcelSostenimiento
+  type="file"
+  accept=".xlsx,.xls"
+  (change)="onImportarExcelSostenimiento($event)"
+  hidden
+/>
+
+<span *ngIf="mensajeImportSostenimiento" class="msg-import">
+  {{ mensajeImportSostenimiento }}
+</span> -->
   </div>
 
   <!-- Tarjetas con los gráficos -->

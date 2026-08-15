@@ -20,10 +20,31 @@
     </label>
     <button (click)="aplicarFiltrosLocales()">Filtrar</button>
     <button (click)="quitarFiltros()">Quitar filtros</button>
-    <button (click)="exportToExcelFiltro()">Exportar a Excel</button>
+    <button (click)="exportToExcelFiltro()">Exportar Excel F</button>
     <button (click)="exportToExcel()" class="btn btn-success">
-  <i class="fas fa-file-excel"></i> Exportar a Excel completo
+      <i class="fas fa-file-excel"></i> Exportar Excel C</button>
+    <!-- <button
+  type="button"
+  class="btn btn-importar"
+  [class.cargando]="importandoLargo"
+  [disabled]="importandoLargo"
+  (click)="inputExcelLargo.click()"
+>
+  <i class="fas fa-file-upload"></i>
+  {{ importandoLargo ? 'Importando...' : 'Importar Excel' }}
 </button>
+
+<input
+  #inputExcelLargo
+  type="file"
+  accept=".xlsx,.xls"
+  (change)="onImportarExcelLargo($event)"
+  hidden
+/>
+
+<span *ngIf="mensajeImportLargo" class="msg-import">
+  {{ mensajeImportLargo }}
+</span> -->
   </div>
 
    <!-- GANTT / SCHEDULER -->
