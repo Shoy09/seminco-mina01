@@ -18,6 +18,7 @@ export class MenuComponent {
         { title: 'Perforación Horizontal', path: 'taladro-horizontal-grafico' },
         { title: 'Sostenimiento', path: 'sostenimiento' },
         { title: 'Explosivos', path: 'explosivos-graficos' },
+        { title: 'Aceros', path: 'acero-stock' },
         //{ title: 'KPI P&V', path: 'medicion-horizontal' },
         { title: 'Factores', path: 'factores' },
         //{ title: 'autocad', path: 'autocad' },
@@ -48,7 +49,7 @@ export class MenuComponent {
         { title: 'Metas', path: 'metas' },
         { title: 'Semanas', path: 'semana-personali' },
         { title: 'Documentos', path: 'documentos' },
-        { title: 'Aceros', path: 'acero-stock' },
+        
 
       ],
     },
