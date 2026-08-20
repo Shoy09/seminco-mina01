@@ -1,67 +1,127 @@
 <!-- list-pdf.component.html -->
 <div class="container">
-  <div class="table_header">
-    <h2>PDFs</h2>
-    <button mat-flat-button color="primary" (click)="abrirSeleccionProcesoDialogo()">Crear Nuevo</button>
-    <div class="input_search">
-      <input type="search" placeholder="Buscar" (keyup)="applyFilter($event)" />
-      <i class="bi bi-search" id="search"></i>
-    </div> 
+  <div class="main-layout">
+    <!-- Panel izquierdo: Carpetas -->
+    <div class="carpetas-panel">
+      <div class="panel-header">
+        <h3>📁 Carpetas</h3>
+        <button class="btn-nuevo-carpeta" (click)="abrirDialogoCrearCarpeta()">
+          <i class="bi bi-folder-plus"></i> Nueva
+        </button>
+      </div>
+
+      <div class="carpetas-list" *ngIf="!loading">
+        <div 
+          *ngFor="let carpeta of carpetas" 
+          class="carpeta-item"
+          [class.selected]="carpetaSeleccionada?.id === carpeta.id"
+          (click)="seleccionarCarpeta(carpeta)">
+          <i class="bi bi-folder-fill"></i>
+          <span>{{ carpeta.nombre }}</span>
+          <span class="pdf-count">{{ pdfCountMap[carpeta.id] ?? '—' }}</span>
+        </div>
+
+        <div *ngIf="carpetas.length === 0" class="empty-state">
+          <i class="bi bi-folder-plus"></i>
+          <p>No hay carpetas</p>
+          <small>Crear una nueva carpeta</small>
+        </div>
+      </div>
+
+      <div class="loading-spinner" *ngIf="loading">
+        <i class="bi bi-arrow-repeat spinner"></i>
+        <span>Cargando...</span>
+      </div>
+    </div>
+
+    <!-- Panel derecho: PDFs -->
+    <div class="pdfs-panel">
+      <div class="panel-header">
+        <div class="header-title">
+          <h3>
+            📄 PDFs 
+            <span *ngIf="carpetaSeleccionada" class="carpeta-actual">
+              en "{{ carpetaSeleccionada.nombre }}"
+            </span>
+            <span *ngIf="!carpetaSeleccionada" class="carpeta-actual">
+              (selecciona una carpeta)
+            </span>
+          </h3>
+        </div>
+        <div class="header-actions">
+          <button 
+            class="btn-nuevo-pdf" 
+            (click)="abrirDialogoCrearPdf()"
+            [disabled]="!carpetaSeleccionada">
+            <i class="bi bi-file-earmark-plus"></i> Nuevo PDF
+          </button>
+          <div class="input_search">
+            <input 
+              type="search" 
+              placeholder="Buscar PDF..." 
+              (keyup)="applyFilter($event)" 
+              [disabled]="!carpetaSeleccionada"
+            />
+            <i class="bi bi-search" id="search"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <!-- Tabla -->
+        <div class="table-container">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Nombre -->
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let pdf"> {{ pdf.nombre }} </td>
+            </ng-container>
+
+            <!-- URL del PDF -->
+            <ng-container matColumnDef="url_pdf">
+              <th mat-header-cell *matHeaderCellDef> Archivo </th>
+              <td mat-cell *matCellDef="let pdf">
+                <button mat-button (click)="verPdf(pdf.url_pdf)">
+                  <i class="bi bi-eye"></i> Ver PDF
+                </button>
+              </td>
+            </ng-container>
+
+            <!-- Acciones -->
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef> Acciones </th>
+              <td mat-cell *matCellDef="let pdf">
+                <i class="bi bi-pencil-square icon-action" (click)="abrirDialogoEditar(pdf)"></i>
+                <i class="bi bi-trash icon-action" (click)="eliminarPdf(pdf.id)"></i>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+          <!-- Estados vacíos -->
+          <div *ngIf="!carpetaSeleccionada" class="empty-state-pdfs">
+            <i class="bi bi-folder-open"></i>
+            <p>Selecciona una carpeta para ver sus PDFs</p>
+          </div>
+
+          <div *ngIf="carpetaSeleccionada && dataSource.data.length === 0 && !loading" class="empty-state-pdfs">
+            <i class="bi bi-file-earmark-plus"></i>
+            <p>No hay PDFs en esta carpeta</p>
+            <small>Crear un nuevo PDF</small>
+          </div>
+        </div>
+
+        <!-- Paginador - Siempre visible pero condicionalmente oculto -->
+        <div class="paginator-wrapper" *ngIf="carpetaSeleccionada && dataSource.data.length > 0">
+          <mat-paginator 
+            [pageSize]="10" 
+            [pageSizeOptions]="[5, 10, 20]" 
+            showFirstLastButtons>
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-    <!-- Proceso -->
-    <ng-container matColumnDef="proceso">
-      <th mat-header-cell *matHeaderCellDef> Proceso </th>
-      <td mat-cell *matCellDef="let pdf"> {{ pdf.proceso }} </td>
-    </ng-container>
-
-    <!-- Mes -->
-    <ng-container matColumnDef="mes">
-      <th mat-header-cell *matHeaderCellDef> Mes </th>
-      <td mat-cell *matCellDef="let pdf"> {{ pdf.mes }} </td>
-    </ng-container>
-
-    <!-- Tipo Labor -->
-     <ng-container matColumnDef="tipo_labor">
-      <th mat-header-cell *matHeaderCellDef> Tipo Labor </th>
-      <td mat-cell *matCellDef="let pdf"> {{ pdf.tipo_labor || '-' }} </td>
-    </ng-container>
-
-    <!-- Labor -->
-    <ng-container matColumnDef="labor">
-      <th mat-header-cell *matHeaderCellDef> Labor </th>
-      <td mat-cell *matCellDef="let pdf"> {{ pdf.labor || '-' }} </td>
-    </ng-container>
-
-    <!-- Ala -->
-    <ng-container matColumnDef="ala">
-      <th mat-header-cell *matHeaderCellDef> Ala </th>
-      <td mat-cell *matCellDef="let pdf"> {{ pdf.ala || '-' }} </td>
-    </ng-container>
-
-    
-    <!-- URL del PDF -->
-    <ng-container matColumnDef="url_pdf">
-      <th mat-header-cell *matHeaderCellDef> Archivo </th>
-      <td mat-cell *matCellDef="let pdf">
-    <button mat-button (click)="verPdf(pdf.url_pdf)">Ver PDF</button>
-  </td>
-    </ng-container>
-
-    <!-- Acciones -->
-    <ng-container matColumnDef="acciones">
-      <th mat-header-cell *matHeaderCellDef> Acciones </th>
-      <td mat-cell *matCellDef="let pdf">
-        <i class="bi bi-pencil-square icon-action" (click)="abrirDialogoEditar(pdf)"></i>
-        <i class="bi bi-trash icon-action" (click)="eliminarPdf(pdf.id)"></i>
-      </td> 
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-
-  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

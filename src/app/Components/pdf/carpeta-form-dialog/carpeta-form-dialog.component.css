@@ -1,0 +1,21 @@
+/* carpeta-form-dialog.component.css */
+.full-width {
+  width: 100%;
+}
+
+i {
+  margin-right: 6px;
+}
+
+mat-dialog-content {
+  min-width: 350px;
+  padding-top: 20px;
+}
+
+mat-form-field {
+  margin-bottom: 8px;
+}
+
+mat-dialog-actions {
+  padding: 16px 0 8px 0;
+}

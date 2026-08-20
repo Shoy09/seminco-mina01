@@ -47,7 +47,7 @@ export class MenuComponent {
         
         { title: 'Metas', path: 'metas' },
         { title: 'Semanas', path: 'semana-personali' },
-        { title: 'PDF', path: 'pdf' },
+        { title: 'Documentos', path: 'documentos' },
         { title: 'Aceros', path: 'acero-stock' },
 
       ],

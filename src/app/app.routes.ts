@@ -50,7 +50,7 @@ export const routes: Routes = [
       { path: 'metas', component: MetasComponent },
       { path: 'explosivos-graficos', component: ExplosivosGraficosComponent },
       { path: 'semana-personali', component: SemanaListComponent },
-      { path: 'pdf', component: ListPdfComponent },
+      { path: 'documentos', component: ListPdfComponent },
       { path: 'medicion-horizontal', component: MedicionHorizontalComponent },
       { path: 'acero-stock', component: AcerosGraficosComponent },
       { path: 'autocad', component: AutocadMineroComponent },

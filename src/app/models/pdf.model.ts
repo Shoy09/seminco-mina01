@@ -1,13 +1,17 @@
-// src/app/models/pdf.model.ts
 export interface Pdf {
-  id?: number;           // Opcional para cuando creas uno nuevo
-  proceso: string;
-  mes: 'ENERO' | 'FEBRERO' | 'MARZO' | 'ABRIL' | 'MAYO' | 'JUNIO' |
-       'JULIO' | 'AGOSTO' | 'SEPTIEMBRE' | 'OCTUBRE' | 'NOVIEMBRE' | 'DICIEMBRE';
+  id: number;
+  nombre: string;
   url_pdf: string;
-  tipo_labor?: string;   // Nuevo campo (opcional)
-  labor?: string;       // Nuevo campo (opcional)
-  ala?: string;         // Nuevo campo (opcional)
-  createdAt?: string;    // Opcionales si vienen del backend
-  updatedAt?: string;
+  carpeta_id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  Carpeta?: Carpeta; // Para la relación con la carpeta
+}
+
+export interface Carpeta {
+  id: number;
+  nombre: string;
+  createdAt: Date;
+  updatedAt: Date;
+  Pdfs?: Pdf[]; // Para la relación inversa
 }
