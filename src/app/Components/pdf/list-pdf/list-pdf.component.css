@@ -112,6 +112,28 @@
   border-radius: 12px;
 }
 
+.btn-eliminar-carpeta {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  color: #ccc;
+  font-size: 14px;
+  opacity: 0;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.carpeta-item:hover .btn-eliminar-carpeta {
+  opacity: 1;
+}
+
+.btn-eliminar-carpeta:hover {
+  color: #dc3545;
+  background: #fff0f0;
+}
+
 /* Panel de PDFs */
 .pdfs-panel {
   flex: 1;

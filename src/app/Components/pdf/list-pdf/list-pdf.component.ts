@@ -177,6 +177,32 @@ export class ListPdfComponent implements OnInit {
     });
   }
 
+  // Eliminar carpeta
+  eliminarCarpeta(carpeta: Carpeta): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '380px',
+      data: {
+        mensaje: `¿Estás seguro de que deseas eliminar la carpeta "${carpeta.nombre}"? Se eliminarán todos los PDFs que contiene.`
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((confirmado: boolean) => {
+      if (confirmado) {
+        this.carpetaService.deleteCarpeta(carpeta.id).subscribe({
+          next: () => {
+            // Si la carpeta eliminada era la seleccionada, limpiar selección
+            if (this.carpetaSeleccionada?.id === carpeta.id) {
+              this.carpetaSeleccionada = null;
+              this.dataSource.data = [];
+            }
+            this.cargarCarpetas();
+          },
+          error: (error) => console.error('Error al eliminar la carpeta', error)
+        });
+      }
+    });
+  }
+
   // Eliminar PDF
   eliminarPdf(id: number): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {

@@ -19,6 +19,12 @@
           <i class="bi bi-folder-fill"></i>
           <span>{{ carpeta.nombre }}</span>
           <span class="pdf-count">{{ pdfCountMap[carpeta.id] ?? '—' }}</span>
+          <button 
+            class="btn-eliminar-carpeta"
+            (click)="eliminarCarpeta(carpeta); $event.stopPropagation()"
+            title="Eliminar carpeta">
+            <i class="bi bi-trash"></i>
+          </button>
         </div>
 
         <div *ngIf="carpetas.length === 0" class="empty-state">

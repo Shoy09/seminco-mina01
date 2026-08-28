@@ -13,22 +13,22 @@ export class ExcelAceroExportService {
 
   // Exportar datos completos (sin filtrar)
   exportarAExcelCompleto(ingresos: IngresoAceros[], salidas: SalidasAceros[], stockData: any[]): void {
-    // Hoja de Movimientos (Ingresos y Salidas combinados)
-    const movimientosData = this.prepararDatosMovimientos(ingresos, salidas);
-    
-    // Hoja de Stock
-    const stockDataFormatted = this.prepararDatosStock(stockData);
-
-    // Crear workbook
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
 
-    // Agregar hoja de movimientos
-    const wsMovimientos: XLSX.WorkSheet = XLSX.utils.json_to_sheet(movimientosData);
-    XLSX.utils.book_append_sheet(wb, wsMovimientos, 'Movimientos');
+    // Hoja de Ingresos
+    const ingresosFormatted = this.prepararDatosIngresos(ingresos);
+    const wsIngresos: XLSX.WorkSheet = XLSX.utils.json_to_sheet(ingresosFormatted);
+    XLSX.utils.book_append_sheet(wb, wsIngresos, 'Ingresos');
 
-    // Agregar hoja de stock
+    // Hoja de Salidas
+    const salidasFormatted = this.prepararDatosSalidas(salidas);
+    const wsSalidas: XLSX.WorkSheet = XLSX.utils.json_to_sheet(salidasFormatted);
+    XLSX.utils.book_append_sheet(wb, wsSalidas, 'Salidas');
+
+    // Hoja de Stocks
+    const stockDataFormatted = this.prepararDatosStock(stockData);
     const wsStock: XLSX.WorkSheet = XLSX.utils.json_to_sheet(stockDataFormatted);
-    XLSX.utils.book_append_sheet(wb, wsStock, 'Stock');
+    XLSX.utils.book_append_sheet(wb, wsStock, 'Stocks');
 
     // Generar archivo Excel
     XLSX.writeFile(wb, `Reporte_Aceros_Completo_${this.obtenerFechaActual()}.xlsx`);
@@ -36,68 +36,55 @@ export class ExcelAceroExportService {
 
   // Exportar datos filtrados
   exportarAExcelFiltrado(ingresosFiltrados: IngresoAceros[], salidasFiltrados: SalidasAceros[], stockFiltrado: any[]): void {
-    // Hoja de Movimientos (Ingresos y Salidas combinados)
-    const movimientosData = this.prepararDatosMovimientos(ingresosFiltrados, salidasFiltrados);
-    
-    // Hoja de Stock
-    const stockDataFormatted = this.prepararDatosStock(stockFiltrado);
-
-    // Crear workbook
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
 
-    // Agregar hoja de movimientos
-    const wsMovimientos: XLSX.WorkSheet = XLSX.utils.json_to_sheet(movimientosData);
-    XLSX.utils.book_append_sheet(wb, wsMovimientos, 'Movimientos');
+    // Hoja de Ingresos
+    const ingresosFormatted = this.prepararDatosIngresos(ingresosFiltrados);
+    const wsIngresos: XLSX.WorkSheet = XLSX.utils.json_to_sheet(ingresosFormatted);
+    XLSX.utils.book_append_sheet(wb, wsIngresos, 'Ingresos');
 
-    // Agregar hoja de stock
+    // Hoja de Salidas
+    const salidasFormatted = this.prepararDatosSalidas(salidasFiltrados);
+    const wsSalidas: XLSX.WorkSheet = XLSX.utils.json_to_sheet(salidasFormatted);
+    XLSX.utils.book_append_sheet(wb, wsSalidas, 'Salidas');
+
+    // Hoja de Stocks
+    const stockDataFormatted = this.prepararDatosStock(stockFiltrado);
     const wsStock: XLSX.WorkSheet = XLSX.utils.json_to_sheet(stockDataFormatted);
-    XLSX.utils.book_append_sheet(wb, wsStock, 'Stock');
+    XLSX.utils.book_append_sheet(wb, wsStock, 'Stocks');
 
     // Generar archivo Excel
     XLSX.writeFile(wb, `Reporte_Aceros_Filtrado_${this.obtenerFechaActual()}.xlsx`);
   }
 
-  // Preparar datos para hoja de Movimientos
-  private prepararDatosMovimientos(ingresos: IngresoAceros[], salidas: SalidasAceros[]): any[] {
-    const movimientos: any[] = [];
+  // Preparar datos para hoja de Ingresos
+  private prepararDatosIngresos(ingresos: IngresoAceros[]): any[] {
+    return ingresos.map(ingreso => ({
+      FECHA: ingreso.fecha,
+      TURNO: ingreso.turno,
+      MES: ingreso.mes,
+      PROCESO: ingreso.proceso,
+      'TIPO DE ACERO': ingreso.tipo_acero,
+      DESCRIPCIÓN: ingreso.descripcion || '',
+      CANTIDAD: ingreso.cantidad,
+    }));
+  }
 
-    // Procesar ingresos
-    ingresos.forEach(ingreso => {
-      movimientos.push({
-        FECHA: ingreso.fecha,
-        TURNO: ingreso.turno,
-        MES: ingreso.mes,
-        PROCESO: ingreso.proceso,
-        EQUIPO: '', // Los ingresos no tienen equipo
-        'CODIGO DE EQUIPO': '', // Los ingresos no tienen código de equipo
-        OPERADOR: '', // Los ingresos no tienen operador
-        'JEFE DE GUARDIA': '', // Los ingresos no tienen jefe de guardia
-        'TIPO DE ACERO': ingreso.tipo_acero,
-        DESCRIPCIÓN: ingreso.descripcion || '',
-        CANTIDAD: ingreso.cantidad,
-        TIPO: 'INGRESO'
-      });
-    });
-
-    // Procesar salidas
-    salidas.forEach(salida => {
-      movimientos.push({
-        FECHA: salida.fecha,
-        TURNO: salida.turno,
-        MES: salida.mes,
-        PROCESO: salida.proceso,
-        EQUIPO: salida.equipo,
-        'CODIGO DE EQUIPO': salida.codigo_equipo || '',
-        OPERADOR: salida.operador,
-        'JEFE DE GUARDIA': salida.jefe_guardia || '',
-        'TIPO DE ACERO': salida.tipo_acero,
-        DESCRIPCIÓN: salida.descripcion || '',
-        CANTIDAD: -salida.cantidad, // Negativo para salidas
-        TIPO: 'SALIDA'
-      });
-    });
-
-    return movimientos;
+  // Preparar datos para hoja de Salidas
+  private prepararDatosSalidas(salidas: SalidasAceros[]): any[] {
+    return salidas.map(salida => ({
+      FECHA: salida.fecha,
+      TURNO: salida.turno,
+      MES: salida.mes,
+      PROCESO: salida.proceso,
+      EQUIPO: salida.equipo,
+      'CODIGO DE EQUIPO': salida.codigo_equipo || '',
+      OPERADOR: salida.operador,
+      'JEFE DE GUARDIA': salida.jefe_guardia || '',
+      'TIPO DE ACERO': salida.tipo_acero,
+      DESCRIPCIÓN: salida.descripcion || '',
+      CANTIDAD: salida.cantidad,
+    }));
   }
 
   // Preparar datos para hoja de Stock
